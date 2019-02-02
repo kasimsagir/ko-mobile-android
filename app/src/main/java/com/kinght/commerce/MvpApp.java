@@ -2,6 +2,7 @@ package com.kinght.commerce;
 
 import android.app.Application;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.kinght.commerce.di.components.DaggerViewComponents;
 import com.kinght.commerce.di.components.ViewComponents;
 import com.kinght.commerce.di.modules.PresenterModules;
@@ -24,6 +25,7 @@ public class MvpApp extends Application {
         super.onCreate();
 
         viewComponents= DaggerViewComponents.builder().presenterModules(new PresenterModules(this)).build();
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
     }
 }

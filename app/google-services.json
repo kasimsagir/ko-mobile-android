@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1073526436606",
+    "firebase_url": "https://fact-79106.firebaseio.com",
+    "project_id": "fact-79106",
+    "storage_bucket": "fact-79106.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073526436606:android:238759eb2391ef47",
+        "android_client_info": {
+          "package_name": "com.kinght.commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073526436606-rbaig754ibq80rej8o5vllet90onv0gp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ShjoPrTDKCOMA3jxOK_xzaOjvboYK_4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
