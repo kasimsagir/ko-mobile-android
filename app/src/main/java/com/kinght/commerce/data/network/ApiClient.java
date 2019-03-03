@@ -48,7 +48,7 @@ public class ApiClient {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            int cacheSize = 10 * 1024 * 1024; // 10 MiB
+            int cacheSize = 10 * 1024 * 1024;
             Cache cache = new Cache(context.getCacheDir(), cacheSize);
 
 
@@ -61,10 +61,9 @@ public class ApiClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
-                                    .addHeader("udid", "123")
+                                    .addHeader("udid", CommonUtils.getUdid(context))
                                     .addHeader("AuthorizationKey",prefHelper.getAuthorizationKey())
-                                    .build()
-                                    ;
+                                    .build();
                             return chain.proceed(request);
                         }
                     })

@@ -32,4 +32,15 @@ public class PrefHelperImp implements PrefHelper {
     public String getAuthorizationKey() {
         return mPrefs.getString(PREF_AUTH_KEY,"");
     }
+
+    @Override
+    public void saveUdid(String udid) {
+        mPrefs.edit().putString("UDID", udid).apply();
+
+    }
+
+    @Override
+    public String getUdid() {
+        return mPrefs.getString("UDID","");
+    }
 }

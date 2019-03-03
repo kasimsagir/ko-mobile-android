@@ -19,6 +19,7 @@ public class Constant {
     // ServerResponse
     public static final int SUCCESS_CODE=200;
     public static final int ERROR_CODE=500;
+    public static final int UNREGISTER_CODE=401;
 
     //Prefs
     public static String authorizationKey="authorizationKey";
