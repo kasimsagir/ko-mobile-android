@@ -1,9 +1,11 @@
 package com.kinght.commerce.ui.MainActivity;
 
-import com.kinght.commerce.R;
 import com.kinght.commerce.data.DataManager;
+import com.kinght.commerce.data.network.ServiceCallback;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
-import com.kinght.commerce.ui.base.DialogCallback;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -22,6 +24,40 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
     @Override
     public void chooseFragment() {
 
+      /*  getDataManager().registerStepOne("Serkan", "Özaydin", "12345", "5c714821776be3693af2c9b6", "gec", "123", true, "1234", new ServiceCallback<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse response) {
+
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });*/
+
+     /* getDataManager().registerStepTwo("1234", new ServiceCallback<CommonResponse>() {
+          @Override
+          public void onSuccess(CommonResponse response) {
+
+          }
+
+          @Override
+          public void onSuccess() {
+
+          }
+
+          @Override
+          public void onError(int code, String errorResponse) {
+
+          }
+      });
+/*
         if(getDataManager().getAuthorizationKey() == null){
             getMvpView().openChooseFragment();
         }else {
@@ -43,6 +79,24 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
         }else {
             getMvpView().openAccountFragment();
         }*/
+
+
+     getDataManager().getServers(new ServiceCallback<List<Servers>>() {
+         @Override
+         public void onSuccess(List<Servers> response) {
+
+         }
+
+         @Override
+         public void onSuccess() {
+
+         }
+
+         @Override
+         public void onError(int code, String errorResponse) {
+
+         }
+     });
 
     }
 

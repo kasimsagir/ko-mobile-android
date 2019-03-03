@@ -8,12 +8,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.provider.Settings;
+import android.util.Log;
 import android.widget.ImageView;
 
 
+import com.google.gson.Gson;
 import com.kinght.commerce.R;
+import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import okhttp3.ResponseBody;
 
 import static androidx.core.app.ActivityCompat.requestPermissions;
 
@@ -117,6 +123,24 @@ public class CommonUtils {
             return true;
         }
         return false;
+    }
+    public static String getUdid(Context context) {
+        String udid = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        return udid;
+    }
+
+    public static CommonResponse errorHandler(String response){
+        CommonResponse errorResponse = null;
+        try {
+            Gson gson = new Gson();
+            errorResponse= gson.fromJson(response, CommonResponse.class);
+        } catch (Exception e) {
+            Log.e("Error",e.getMessage());
+        }
+        return errorResponse;
+
     }
 }
 

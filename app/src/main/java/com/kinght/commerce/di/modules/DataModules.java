@@ -9,6 +9,10 @@ import com.kinght.commerce.data.DataManagerImp;
 import com.kinght.commerce.data.network.ApiClient;
 import com.kinght.commerce.data.network.ApiServices;
 import com.kinght.commerce.data.network.ApiServicesImp;
+import com.kinght.commerce.data.network.services.RegisterServices;
+import com.kinght.commerce.data.network.services.RegisterServicesImp;
+import com.kinght.commerce.data.network.services.ServerServices;
+import com.kinght.commerce.data.network.services.ServerServicesImp;
 import com.kinght.commerce.data.pref.PrefHelper;
 import com.kinght.commerce.data.pref.PrefHelperImp;
 
@@ -28,14 +32,14 @@ public class DataModules {
 
     @Provides
     @Singleton
-    ApiServices provideApiServices() {
-        return new ApiServicesImp();
+    ApiServices provideApiServices(RegisterServices registerServices,ServerServices serverServices) {
+        return new ApiServicesImp(registerServices,serverServices);
     }
 
     @Provides
     @Singleton
-    ApiClient provideApiClient(PrefHelper prefHelper) {
-        return new ApiClient(prefHelper);
+    ApiClient provideApiClient(PrefHelper prefHelper,Context context) {
+        return new ApiClient(prefHelper,context);
     }
 
     @Provides
@@ -44,5 +48,15 @@ public class DataModules {
         return new PrefHelperImp(context);
     }
 
+    @Provides
+    @Singleton
+    RegisterServices provideRegisterServices(ApiClient apiClient){
+        return new RegisterServicesImp(apiClient);
+    }
 
+    @Provides
+    @Singleton
+    ServerServices provideServerServices(ApiClient apiClient){
+        return new ServerServicesImp(apiClient);
+    }
 }

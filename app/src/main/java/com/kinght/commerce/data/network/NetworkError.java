@@ -1,6 +1,10 @@
 package com.kinght.commerce.data.network;
 
 
+import java.io.IOException;
+
+import retrofit2.HttpException;
+
 public class NetworkError extends Throwable {
     public static String DEFAULT_ERROR_MESSAGE = "Something went wrong! Please try again.";
     public static String NETWORK_ERROR_MESSAGE = "Can not connect to server";
@@ -17,8 +21,34 @@ public class NetworkError extends Throwable {
     }
 
 
-    public void response(ServiceCallback serviceCallback) {
-    serviceCallback.onError(500,"Err");
+    public String response( ) {
+        if (this.error instanceof IOException) {
+            return NETWORK_ERROR_MESSAGE;
+            // serviceCallback.onError(NETWORK_ERROR_MESSAGE);
+        }
+        else if (!(this.error instanceof HttpException)) {
+            return DEFAULT_ERROR_MESSAGE;
+            //serviceCallback.onError((DEFAULT_ERROR_MESSAGE));
+        }
+        else {
+            retrofit2.Response<?> response = ((HttpException) this.error).response();
+            if (!response.isSuccessful()) {
+                if(response.code() == 500){
+                    return DEFAULT_ERROR_MESSAGE;
+                }else if(response.code()== 500){
+                    return DEFAULT_ERROR_MESSAGE;
+                }
+                else {
+
+                    // serviceCallback.onResponse(Utils.errorHandler(response.errorBody()));
+                }
+            } else {
+                return DEFAULT_ERROR_MESSAGE;
+            }
+
+
+        }
+        return DEFAULT_ERROR_MESSAGE;
 
     }
 

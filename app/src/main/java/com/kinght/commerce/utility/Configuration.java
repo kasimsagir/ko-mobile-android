@@ -3,7 +3,7 @@ package com.kinght.commerce.utility;
 public class Configuration {
     // Server Configuration
     public static final String prodBaseUrl="https://www.vitrinova.com/api/v2/";
-    public static final String devBaseUrl="http://app.nakitup.com/api/";
+    public static final String devBaseUrl="http://192.168.0.47:8080/api/";
     public static String baseUrl="";
 
     // Network Configuration
