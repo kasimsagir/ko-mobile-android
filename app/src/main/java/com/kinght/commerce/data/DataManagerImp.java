@@ -5,8 +5,15 @@ import com.kinght.commerce.data.network.ApiServices;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
 import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Entries.Entry;
+import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
+import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.LoginRequest;
+import com.kinght.commerce.data.network.entities.Lottery.Lottery;
+import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.RegisterObject;
+import com.kinght.commerce.data.network.entities.Report.ReportRequest;
+import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.pref.PrefHelper;
 import com.kinght.commerce.utility.Constant;
@@ -69,6 +76,7 @@ public class DataManagerImp implements DataManager {
         registerObject.setPassword(password);
         registerObject.setServerId(serverId);
         registerObject.setPhoneNumber(phoneNumber);
+        registerObject.setNickname(nickname);
         registerObject.setIsShowPhoneNumber(isShowPhoneNumber);
         registerObject.setPnsToken(pnsToken);
 
@@ -137,6 +145,16 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
+    public void getIntermediaries(ServiceCallback<User> userServiceCallback) {
+        apiServices.getIntermediaries(userServiceCallback);
+    }
+
+    @Override
+    public void getPromotions(ServiceCallback<List<Promotions>> listServiceCallback) {
+        apiServices.getPromotions(listServiceCallback);
+    }
+
+    @Override
     public void getServers(ServiceCallback<List<Servers>> serviceCallback) {
         apiServices.getServers(new ServiceCallback<List<Servers>>() {
             @Override
@@ -154,6 +172,114 @@ public class DataManagerImp implements DataManager {
                 serviceCallback.onError(code, errorResponse);
             }
         });
+    }
+
+    @Override
+    public void createEntry(String serverId, String header, String message, int price, String base64Image, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        CreateEntryRequest createEntryRequest=new CreateEntryRequest();
+        createEntryRequest.setHeader(header);
+        createEntryRequest.setMessage(message);
+        createEntryRequest.setPrice(price);
+        createEntryRequest.setImageBase64(base64Image);
+
+        apiServices.createEntry(serverId, createEntryRequest, new ServiceCallback<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse response) {
+                commonResponseServiceCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onSuccess() {
+                commonResponseServiceCallback.onSuccess();
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+                commonResponseServiceCallback.onError(code,errorResponse);
+            }
+        });
+    }
+
+    @Override
+    public void getServerEntries(String serverId, ServiceCallback<List<Entry>> listServiceCallback) {
+        apiServices.getServerEntries(serverId,listServiceCallback);
+    }
+
+    @Override
+    public void getUser(String userId, ServiceCallback<User> userServiceCallback) {
+        apiServices.getUser(userId,userServiceCallback);
+    }
+
+    @Override
+    public void createReport(String entryId, String header, String message, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        ReportRequest reportRequest=new ReportRequest();
+        reportRequest.setHeader(header);
+        reportRequest.setMessage(message);
+        apiServices.createReport(entryId,reportRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getMe(ServiceCallback<User> userServiceCallback) {
+        apiServices.getMe(userServiceCallback);
+    }
+
+    @Override
+    public void getEntries(ServiceCallback<List<Entry>> listServiceCallback) {
+        apiServices.getEntries(listServiceCallback);
+    }
+
+    @Override
+    public void getLotteries(ServiceCallback<List<Lottery>> listServiceCallback) {
+        apiServices.getLotteries(listServiceCallback);
+    }
+
+    @Override
+    public void getLottery(String lotteryId, ServiceCallback<Lottery> lotteryServiceCallback) {
+        apiServices.getLotteryDetail(lotteryId,lotteryServiceCallback);
+    }
+
+    @Override
+    public void partipicateLottery(String lotteryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.partipicateLottery(lotteryId,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void deleteEntry(String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.deleteEntry(entryId,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getEntry(String entryId, ServiceCallback<Entry> entryServiceCallback) {
+        apiServices.getEntry(entryId,entryServiceCallback);
+    }
+
+    @Override
+    public void updateEntryHeader(String header, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
+        updateEntryRequest.setHeader(header);
+        apiServices.updateEntry("HEADER",entryId,updateEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void updateEntryMessage(String message, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
+        updateEntryRequest.setMessage(message);
+        apiServices.updateEntry("MESSAGE",entryId,updateEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void updateEntryPrice(int price, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
+        updateEntryRequest.setPrice(price);
+        apiServices.updateEntry("PRICE",entryId,updateEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void updateEntryServer(String serverId, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
+        updateEntryRequest.setServer(serverId);
+        apiServices.updateEntry("SERVER",entryId,updateEntryRequest,commonResponseServiceCallback);
     }
 
 

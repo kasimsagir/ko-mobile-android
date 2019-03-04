@@ -3,11 +3,21 @@ package com.kinght.commerce.data.network;
 
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
 import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Entries.Entry;
+import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
+import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
+import com.kinght.commerce.data.network.entities.Lottery.Lottery;
+import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.RegisterObject;
+import com.kinght.commerce.data.network.entities.Report.ReportRequest;
+import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.network.services.ApplicationServices;
+import com.kinght.commerce.data.network.services.EntryServices;
+import com.kinght.commerce.data.network.services.LotteryServices;
+import com.kinght.commerce.data.network.services.PromotionServices;
 import com.kinght.commerce.data.network.services.UserServices;
 import com.kinght.commerce.data.network.services.ServerServices;
 
@@ -20,12 +30,18 @@ public class ApiServicesImp implements ApiServices {
     UserServices userServices;
     ServerServices serverServices;
     ApplicationServices applicationServices;
+    PromotionServices promotionServices;
+    EntryServices entryServices;
+    LotteryServices lotteryServices;
 
     @Inject
-    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices) {
+    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices, LotteryServices lotteryServices) {
         this.userServices = userServices;
         this.serverServices = serverServices;
         this.applicationServices = applicationServices;
+        this.promotionServices=promotionServices;
+        this.entryServices=entryServices;
+        this.lotteryServices=lotteryServices;
     }
 
 
@@ -60,12 +76,82 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
+    public void getUser(String userId, ServiceCallback<User> userServiceCallback) {
+        userServices.getUser(userId,userServiceCallback);
+    }
+
+    @Override
+    public void getMe(ServiceCallback<User> userServiceCallback) {
+        userServices.getMe(userServiceCallback);
+    }
+
+    @Override
     public void getServers(ServiceCallback<List<Servers>> serversServiceCallback) {
         serverServices.getServers(serversServiceCallback);
     }
 
     @Override
+    public void createEntry(String serverId, CreateEntryRequest createEntryRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        serverServices.createEntry(serverId,createEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getServerEntries(String serverId, ServiceCallback<List<Entry>> listServiceCallback) {
+        serverServices.getServerEntries(serverId,listServiceCallback);
+    }
+
+    @Override
     public void startApplication(ServiceCallback<CommonResponse> commonResponseServiceCallback) {
         applicationServices.startApplication(commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getIntermediaries(ServiceCallback<User> userServiceCallback) {
+        applicationServices.getIntermediaries(userServiceCallback);
+    }
+
+    @Override
+    public void getPromotions(ServiceCallback<List<Promotions>> serviceCallback) {
+        promotionServices.getPromotions(serviceCallback);
+    }
+
+    @Override
+    public void createReport(String entryId, ReportRequest reportRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        entryServices.createReport(entryId,reportRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getEntries(ServiceCallback<List<Entry>> entries) {
+        entryServices.getEntries(entries);
+    }
+
+    @Override
+    public void deleteEntry(String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        entryServices.deleteEntry(entryId,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getEntry(String entryId, ServiceCallback<Entry> entryServiceCallback) {
+        entryServices.getEntry(entryId,entryServiceCallback);
+    }
+
+    @Override
+    public void updateEntry(String area, String entryId, UpdateEntryRequest updateEntryRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        entryServices.updateEntry(area,entryId,updateEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getLotteries(ServiceCallback<List<Lottery>> listServiceCallback) {
+        lotteryServices.getLotteries(listServiceCallback);
+    }
+
+    @Override
+    public void getLotteryDetail(String lotteryId, ServiceCallback<Lottery> lotteryServiceCallback) {
+        lotteryServices.getLotteryDetail(lotteryId,lotteryServiceCallback);
+    }
+
+    @Override
+    public void partipicateLottery(String lotteryId, ServiceCallback<CommonResponse> lotteryServiceCallback) {
+        lotteryServices.partipicateLottery(lotteryId,lotteryServiceCallback);
     }
 }

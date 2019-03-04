@@ -4,6 +4,10 @@ import com.kinght.commerce.data.network.ApiClient;
 import com.kinght.commerce.data.network.ApiInterface;
 import com.kinght.commerce.data.network.NetworkError;
 import com.kinght.commerce.data.network.ServiceCallback;
+import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Entries.Entry;
+import com.kinght.commerce.data.network.entities.Entries.EntryResponse;
+import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.ServerResponse;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.utility.CommonUtils;
@@ -47,6 +51,56 @@ public class ServerServicesImp implements ServerServices {
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 serversServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
+            }
+        });
+    }
+
+    @Override
+    public void createEntry(String serverId, CreateEntryRequest createEntryRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.createEntry(serverId,createEntryRequest);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.isSuccessful()){
+                    commonResponseServiceCallback.onSuccess(response.body());
+                }else {
+                    try {
+                        commonResponseServiceCallback.onError(response.code(), CommonUtils.errorHandler(response.errorBody().string()).getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                commonResponseServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
+            }
+        });
+    }
+
+    @Override
+    public void getServerEntries(String serverId, ServiceCallback<List<Entry>> listServiceCallback) {
+        Call<EntryResponse> call=apiInterface.getServerEntries(serverId);
+
+        call.enqueue(new Callback<EntryResponse>() {
+            @Override
+            public void onResponse(Call<EntryResponse> call, Response<EntryResponse> response) {
+                if(response.isSuccessful()){
+                    listServiceCallback.onSuccess(response.body().getEntries());
+                }else {
+                    try {
+                        listServiceCallback.onError(response.code(), CommonUtils.errorHandler(response.errorBody().string()).getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EntryResponse> call, Throwable t) {
+                listServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
             }
         });
     }

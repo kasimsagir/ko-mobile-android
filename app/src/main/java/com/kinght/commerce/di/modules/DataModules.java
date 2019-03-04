@@ -11,6 +11,12 @@ import com.kinght.commerce.data.network.ApiServices;
 import com.kinght.commerce.data.network.ApiServicesImp;
 import com.kinght.commerce.data.network.services.ApplicationServices;
 import com.kinght.commerce.data.network.services.ApplicationServicesImp;
+import com.kinght.commerce.data.network.services.EntryServices;
+import com.kinght.commerce.data.network.services.EntryServicesImp;
+import com.kinght.commerce.data.network.services.LotteryServices;
+import com.kinght.commerce.data.network.services.LotteryServicesImp;
+import com.kinght.commerce.data.network.services.PromotionServices;
+import com.kinght.commerce.data.network.services.PromotionServicesImp;
 import com.kinght.commerce.data.network.services.UserServices;
 import com.kinght.commerce.data.network.services.UserServicesImp;
 import com.kinght.commerce.data.network.services.ServerServices;
@@ -34,8 +40,8 @@ public class DataModules {
 
     @Provides
     @Singleton
-    ApiServices provideApiServices(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices) {
-        return new ApiServicesImp(userServices,serverServices,applicationServices);
+    ApiServices provideApiServices(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices,LotteryServices lotteryServices) {
+        return new ApiServicesImp(userServices,serverServices,applicationServices,promotionServices,entryServices,lotteryServices);
     }
 
     @Provides
@@ -67,4 +73,24 @@ public class DataModules {
     ApplicationServices provideApplicationServices(ApiClient apiClient){
         return new ApplicationServicesImp(apiClient);
     }
+
+    @Provides
+    @Singleton
+    PromotionServices providePromotionService(ApiClient apiClient){
+        return new PromotionServicesImp(apiClient);
+    }
+
+    @Provides
+    @Singleton
+    EntryServices provideEntryService(ApiClient apiClient){
+        return new EntryServicesImp(apiClient);
+    }
+
+    @Provides
+    @Singleton
+    LotteryServices provideLotteryService(ApiClient apiClient){
+        return new LotteryServicesImp(apiClient);
+    }
+
+
 }
