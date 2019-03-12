@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -24,6 +26,7 @@ import java.io.File;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -46,7 +49,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
     @Inject
     CreateEntryFragmentMvpPresenter<CreateEntryFragmentMvpView> presenter;
-
+    View root;
     private int TAKE_PICTURE=0;
     private int SELECT_GALLERY=1;
     long pictureTimeMillis;
@@ -59,9 +62,14 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectCreateEntryFragment(this);
 
-        return inflater.inflate(R.layout.fragment_create_entry, container, false);
+        root= inflater.inflate(R.layout.fragment_create_entry, container, false);
+        ButterKnife.bind(this,root);
+
+        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectCreateEntryFragment(this);
+        presenter.onAttach(this);
+
+        return root;
     }
 
 
@@ -100,5 +108,10 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
         galleryIntent.setType("image/*");
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(galleryIntent, "Galeriyi Aç"), SELECT_GALLERY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
