@@ -10,6 +10,8 @@
 
 
     <string name="button_ok">Tamam</string>
+    <string name="button_cancel">İptal</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

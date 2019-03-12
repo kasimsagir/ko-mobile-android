@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class Entry {
     @SerializedName("creator")
     @Expose
@@ -20,7 +21,7 @@ public class Entry {
     private Integer price;
     @SerializedName("createdDate")
     @Expose
-    private Integer createdDate;
+    private double createdDate;
     @SerializedName("isDisable")
     @Expose
     private Boolean isDisable;
@@ -72,7 +73,7 @@ public class Entry {
         this.price = price;
     }
 
-    public Integer getCreatedDate() {
+    public double getCreatedDate() {
         return createdDate;
     }
 

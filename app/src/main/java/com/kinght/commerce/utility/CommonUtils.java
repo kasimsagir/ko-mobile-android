@@ -10,12 +10,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -140,6 +144,35 @@ public class CommonUtils {
             Log.e("Error",e.getMessage());
         }
         return errorResponse;
+
+    }
+
+    public static String regularText(EditText editText){
+        return editText.getText().toString().trim();
+    }
+
+    public static String getPnsToken(){
+        return FirebaseInstanceId.getInstance().getToken();
+    }
+
+    public static void getImageWithCache(ImageView imageView,String url){
+
+        Picasso.get().load(url).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                Log.d("veri","veri");
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+                Picasso.get().load(url).into(imageView);
+            }
+        });
+    }
+
+    public static void getImage(ImageView imageView,String url){
+        Picasso.get().load(url).into(imageView);
 
     }
 }

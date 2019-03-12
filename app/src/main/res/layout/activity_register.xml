@@ -66,6 +66,49 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@mipmap/ic_login_user"
+                />
+
+            <EditText
+                android:textColorHint="@color/white"
+                android:hint="Nickname"
+                android:id="@+id/activity_register_customer_nickname_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_register_server"
+                />
+
+            <EditText
+                android:textColorHint="@color/white"
+                android:hint="Sunucuyu Seçiniz"
+                android:focusable="false"
+                android:id="@+id/activity_register_server_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@mipmap/ic_register_phone"
                 />
 
@@ -86,17 +129,42 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/ic_register_server"
+                android:background="@mipmap/ic_register_phone"
                 />
 
             <EditText
                 android:textColorHint="@color/white"
-                android:hint="Sunucuyu Seçiniz"
-                android:id="@+id/activity_register_server_edit_text"
+                android:hint="Şifre"
+                android:id="@+id/activity_register_phone_password_text"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_register_phone"
+                />
+
+            <TextView
+                android:textColorHint="@color/white"
+                android:hint="Şifre"
+                android:text="Bilgililerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesini için burada belirtilen şartlarda izi veriyorum ve Kullanıcı gelnel sözleşmesini"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+
+
+
 
         <com.google.android.material.button.MaterialButton
             android:text="Kayıt Ol"

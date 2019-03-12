@@ -6,6 +6,8 @@ import com.kinght.commerce.data.network.entities.Promotion.Coin;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 public class User {
     @Expose
     @SerializedName("__v")
@@ -36,8 +38,9 @@ public class User {
     @SerializedName("entries")
     private List<Entry> entryList;
 
-    @Expose
+    @Expose(deserialize = false)
     @SerializedName("coin")
+
     private Coin coin;
 
     public Coin getCoin() {

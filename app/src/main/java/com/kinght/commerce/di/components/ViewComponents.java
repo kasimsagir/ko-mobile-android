@@ -12,6 +12,7 @@ import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
+import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
 
 import javax.inject.Singleton;
 
@@ -21,7 +22,6 @@ import dagger.Component;
 @Component(modules = {PresenterModules.class, DataModules.class})
 public interface ViewComponents {
     void injectMainActivity(MainActivity mainActivity);
-    void injectMainFragment(MainFragment mainFragment);
 
 
     void injectLoginFragment(ChooseFragment chooseFragment);
@@ -29,4 +29,8 @@ public interface ViewComponents {
     void injectRegisterActivity(RegisterActivity registerActivity);
 
     void injectLoginActivity(LoginActivity loginActivity);
+
+    void injectSmsVerificationActivity(SmsVerificationActivity smsVerificationActivity);
+    void injectMainFragment(MainFragment mainFragment);
+
 }

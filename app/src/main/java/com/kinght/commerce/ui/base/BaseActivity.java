@@ -1,18 +1,23 @@
 package com.kinght.commerce.ui.base;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
 import com.kinght.commerce.R;
 import com.kinght.commerce.utility.CommonUtils;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +50,11 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
 
             }
         }
+    }
+
+    @Override
+    public Activity getActivity() {
+        return BaseActivity.this;
     }
 
     @Override
@@ -144,6 +154,60 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
             return true;
         }
         return false;
+    }
+
+
+    @Override
+    public void showListDialog(List<String> itemList, String title, ListSelectItem<Integer> listSelectItem) {
+        if(itemList != null){
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(BaseActivity.this);
+            builder.setTitle(title);
+
+
+            String[] stockArr = new String[itemList.size()];
+            stockArr = itemList.toArray(stockArr);
+
+
+            builder.setItems(stockArr, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    listSelectItem.selectedItem(which);
+                }
+            });
+
+            androidx.appcompat.app.AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+    }
+
+    @Override
+    public void showInputDialog(String title, String hint, DialogStringCallback dialogStringCallback) {
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setTitle(title);
+
+        final EditText input = new EditText(this);
+
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+
+        builder.setPositiveButton(getStringFromResourceId(R.string.button_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialogStringCallback.inputText(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton(getStringFromResourceId(R.string.button_cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialogStringCallback.clickCancelButton();
+            }
+        });
+
+
+
+
+        builder.show();
     }
 
     @Override

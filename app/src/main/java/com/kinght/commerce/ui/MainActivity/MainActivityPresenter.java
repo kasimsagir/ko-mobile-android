@@ -25,88 +25,8 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
     @Override
     public void chooseFragment() {
 
-        getDataManager().login("05457878383", "123456", new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
 
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });
-       /* getDataManager().startApplication(new ServiceCallback<Boolean>() {
-            @Override
-            public void onSuccess(Boolean response) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        }, new ServiceCallback<Boolean>() {
-            @Override
-            public void onSuccess(Boolean response) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });
-      /*  getDataManager().registerStepOne("Serkan", "Özaydin", "12345", "5c714821776be3693af2c9b6", "gec", "123", true, "1234", new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });*/
-
-     /* getDataManager().registerStepTwo("1234", new ServiceCallback<CommonResponse>() {
-          @Override
-          public void onSuccess(CommonResponse response) {
-
-          }
-
-          @Override
-          public void onSuccess() {
-
-          }
-
-          @Override
-          public void onError(int code, String errorResponse) {
-
-          }
-      });
-/*
-        if(getDataManager().getAuthorizationKey() == null){
+        if(getDataManager().getAuthorizationKey() == ""){
             getMvpView().openChooseFragment();
         }else {
             getMvpView().openAccountFragment();
@@ -129,22 +49,7 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
         }*/
 
 
-  /*   getDataManager().getServers(new ServiceCallback<List<Servers>>() {
-         @Override
-         public void onSuccess(List<Servers> response) {
 
-         }
-
-         @Override
-         public void onSuccess() {
-
-         }
-
-         @Override
-         public void onError(int code, String errorResponse) {
-
-         }
-     });*/
 
     }
 

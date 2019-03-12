@@ -20,6 +20,9 @@ import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpView;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityPresenter;
+import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpPresenter;
+import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpView;
+import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityPresenter;
 
 import javax.inject.Singleton;
 
@@ -62,4 +65,8 @@ public class PresenterModules {
         return new LoginActivityPresenter<>(dataManager);
     }
 
+    @Provides
+    SmsVerificationActivityMvpPresenter<SmsVerificationActivityMvpView> provideSmsVerificationActivity(DataManager dataManager){
+        return new SmsVerificationActivityPresenter<>(dataManager);
+    }
 }

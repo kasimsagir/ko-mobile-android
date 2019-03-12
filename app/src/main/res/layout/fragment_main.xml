@@ -59,7 +59,7 @@
                 <Button
                     android:textAllCaps="false"
                     android:id="@+id/fragment_main_server_name_button"
-                    android:text="Ares"
+                    android:text="Tümü"
                     android:layout_marginRight="5dp"
                     android:backgroundTint="@color/blue"
                     android:layout_weight="0.5"

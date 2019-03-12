@@ -8,7 +8,9 @@ import android.widget.EditText;
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
+import com.kinght.commerce.utility.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -33,6 +35,10 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
     EditText activityRegisterServer;
     @BindView(R.id.activity_register_register_button)
     MaterialButton activityRegisterRegisterButton;
+    @BindView(R.id.activity_register_customer_nickname_edit_text)
+    EditText activityRegisterCustomerNicknameEditText;
+    @BindView(R.id.activity_register_phone_password_text)
+    EditText activityRegisterPhonePasswordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +56,21 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_register_server_edit_text:
+                presenter.showServerList();
                 break;
             case R.id.activity_register_register_button:
+                presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText),CommonUtils.regularText(activityRegisterSurnameEditText),CommonUtils.regularText(activityRegisterCustomerNicknameEditText),CommonUtils.regularText(activityRegisterPhoneEditText),CommonUtils.regularText(activityRegisterPhonePasswordText));
                 break;
         }
+    }
+
+    @Override
+    public void showServerNameToUser(String name) {
+        activityRegisterServer.setText(name);
+    }
+
+    @Override
+    public void openSmsVerificationActivity() {
+        CommonUtils.changeActivity(RegisterActivity.this, SmsVerificationActivity.class);
     }
 }

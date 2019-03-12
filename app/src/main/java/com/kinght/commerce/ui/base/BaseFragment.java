@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.kinght.commerce.utility.CommonUtils;
 
+import java.util.List;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -119,5 +121,15 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         void onFragmentAttached();
 
         void onFragmentDetached(String tag);
+    }
+
+    @Override
+    public void showInputDialog(String title, String hint, DialogStringCallback dialogStringCallback) {
+        baseActivity.showInputDialog(title,hint,dialogStringCallback);
+    }
+
+    @Override
+    public void showListDialog(List<String> itemList, String title, ListSelectItem<Integer> listSelectItem) {
+        baseActivity.showListDialog(itemList,title,listSelectItem);
     }
 }
