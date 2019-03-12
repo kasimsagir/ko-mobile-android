@@ -16,7 +16,6 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
         super(dataManager);
     }
 
-
     @Override
     public void mainFragment() {
         getMvpView().openMainFragment();
@@ -26,11 +25,7 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
     public void chooseFragment() {
 
 
-        if(getDataManager().getAuthorizationKey() == ""){
-            getMvpView().openChooseFragment();
-        }else {
-            getMvpView().openAccountFragment();
-        }
+
 
         /*if(getDataManager().getAuthorizationKey() == null){
             getMvpView().showDialogWithOutChoose(getMvpView().getStringFromResourceId(R.string.description_info), getMvpView().getStringFromResourceId(R.string.description_if_use_this_func), getMvpView().getStringFromResourceId(R.string.button_ok), new DialogCallback() {
@@ -49,16 +44,36 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
         }*/
 
 
-
-
     }
 
     @Override
     public void addFragment() {
-        if(getDataManager().getAuthorizationKey() == null){
+        if (getDataManager().getAuthorizationKey() == null) {
             getMvpView().openChooseFragment();
-        }else {
+        } else {
             getMvpView().openAccountFragment();
         }
+    }
+
+    @Override
+    public void navigateFragment(String account) {
+        if (account.equalsIgnoreCase("MAIN")) {
+            getMvpView().openMainFragment();
+        } else if (account.equalsIgnoreCase("SEARCH")) {
+            getMvpView().openSearchFragment();
+        } else if (account.equalsIgnoreCase("NOTIFICATION")) {
+            getMvpView().openNotificationFragment();
+        } else {
+            if (getDataManager().getAuthorizationKey() == "") {
+                getMvpView().openChooseFragment();
+            } else {
+                if (account.equalsIgnoreCase("ADD")) {
+                    getMvpView().createEntryFragment();
+                } else if (account.equalsIgnoreCase("ACCOUNT")) {
+                    getMvpView().openAccountFragment();
+                }
+            }
+        }
+
     }
 }

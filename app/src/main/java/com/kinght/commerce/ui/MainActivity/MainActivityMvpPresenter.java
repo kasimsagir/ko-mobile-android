@@ -8,4 +8,5 @@ void mainFragment();
 void chooseFragment();
 void addFragment();
 
+    void navigateFragment(String account);
 }

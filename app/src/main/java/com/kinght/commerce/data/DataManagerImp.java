@@ -130,6 +130,7 @@ public class DataManagerImp implements DataManager {
             @Override
             public void onSuccess(AuthorizationResponse response) {
                 commonResponseServiceCallback.onSuccess();
+                saveAuthorizationKey(response.getSecretKey());
             }
 
             @Override

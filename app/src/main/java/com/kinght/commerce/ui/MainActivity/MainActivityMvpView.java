@@ -7,4 +7,10 @@ public interface MainActivityMvpView extends MvpView {
    // void openLoginActivity();
     void openChooseFragment();
     void openAccountFragment();
+
+    void openSearchFragment();
+
+    void openNotificationFragment();
+
+    void createEntryFragment();
 }

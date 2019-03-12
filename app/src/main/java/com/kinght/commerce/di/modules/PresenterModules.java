@@ -11,6 +11,9 @@ import com.kinght.commerce.ui.LoginActivity.LoginActivityPresenter;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentMvpPresenter;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentMvpView;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentPresenter;
 import com.kinght.commerce.ui.MainActivity.MainActivityMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainActivityMvpView;
 import com.kinght.commerce.ui.MainActivity.MainActivityPresenter;
@@ -68,5 +71,10 @@ public class PresenterModules {
     @Provides
     SmsVerificationActivityMvpPresenter<SmsVerificationActivityMvpView> provideSmsVerificationActivity(DataManager dataManager){
         return new SmsVerificationActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    CreateEntryFragmentMvpPresenter<CreateEntryFragmentMvpView> provideCreateEntryFragment(DataManager dataManager){
+        return new CreateEntryFragmentPresenter<>(dataManager);
     }
 }

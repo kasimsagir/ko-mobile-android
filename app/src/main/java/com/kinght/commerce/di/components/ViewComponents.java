@@ -9,6 +9,7 @@ import com.kinght.commerce.di.modules.DataModules;
 import com.kinght.commerce.di.modules.PresenterModules;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
@@ -33,4 +34,5 @@ public interface ViewComponents {
     void injectSmsVerificationActivity(SmsVerificationActivity smsVerificationActivity);
     void injectMainFragment(MainFragment mainFragment);
 
+    void injectCreateEntryFragment(CreateEntryFragment createEntryFragment);
 }

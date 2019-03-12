@@ -3,11 +3,11 @@ package com.kinght.commerce.data.network.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public abstract class AuthorizationResponse {
+public  class AuthorizationResponse {
 
 
     @Expose
-    @SerializedName("secretKey")
+    @SerializedName("authorizationKey")
     private String secretKey;
     @Expose
     @SerializedName("message")

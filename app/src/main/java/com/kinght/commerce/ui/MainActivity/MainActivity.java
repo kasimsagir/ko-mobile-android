@@ -9,6 +9,7 @@ import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
@@ -44,19 +45,19 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    presenter.mainFragment();
+                    presenter.navigateFragment("MAIN");
                     return true;
                 case R.id.navigation_search:
-                    presenter.mainFragment();
+                    presenter.navigateFragment("SEARCH");
                     return true;
                 case R.id.navigation_add:
-                    presenter.chooseFragment();
+                    presenter.navigateFragment("ADD");
                     return true;
                 case R.id.navigation_notificaion:
-                    presenter.addFragment();
+                    presenter.navigateFragment("NOTIFICATION");
                     return true;
                 case R.id.navigation_account:
-                    presenter.chooseFragment();
+                    presenter.navigateFragment("ACCOUNT");
                     return true;
             }
             return false;
@@ -77,6 +78,22 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
     @Override
     public void openAccountFragment() {
         CommonUtils.switchToFragment(MainActivity.this, new MainFragment());
+
+    }
+
+    @Override
+    public void openSearchFragment() {
+
+    }
+
+    @Override
+    public void openNotificationFragment() {
+
+    }
+
+    @Override
+    public void createEntryFragment() {
+        CommonUtils.switchToFragment(MainActivity.this, new CreateEntryFragment());
 
     }
 

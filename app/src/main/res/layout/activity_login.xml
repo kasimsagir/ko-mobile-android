@@ -30,8 +30,8 @@
 
             <EditText
                 android:textColorHint="@color/white"
-                android:hint="Nickname"
-                android:id="@+id/activity_login_customer_id_edit_text"
+                android:hint="Telefon Numarası"
+                android:id="@+id/activity_login_customer_phone_number_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
