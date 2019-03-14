@@ -4,4 +4,8 @@ public interface CreateEntryFragmentMvpView extends MvpView {
     void showCamera();
 
     void openGallery();
+
+    void getSelectedServerName(String name);
+
+    void openMainFragment();
 }

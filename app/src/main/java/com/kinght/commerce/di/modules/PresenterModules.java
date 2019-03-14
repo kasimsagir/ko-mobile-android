@@ -5,6 +5,9 @@ import android.content.Context;
 
 
 import com.kinght.commerce.data.DataManager;
+import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpPresenter;
+import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpView;
+import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityPresenter;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityMvpPresenter;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityMvpView;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityPresenter;
@@ -20,6 +23,9 @@ import com.kinght.commerce.ui.MainActivity.MainActivityPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentPresenter;
+import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpPresenter;
+import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpView;
+import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpView;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityPresenter;
@@ -76,5 +82,15 @@ public class PresenterModules {
     @Provides
     CreateEntryFragmentMvpPresenter<CreateEntryFragmentMvpView> provideCreateEntryFragment(DataManager dataManager){
         return new CreateEntryFragmentPresenter<>(dataManager);
+    }
+
+    @Provides
+    EntryDetailActivityMvpPresenter<EntryDetailActivityMvpView> provideEntryDetailActivity(DataManager dataManager){
+        return new EntryDetailActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    PartipicateActivityMvpPresenter<PartipicateActivityMvpView> providePartipicateActivity(DataManager dataManager){
+        return new PartipicateActivityPresenter<>(dataManager);
     }
 }

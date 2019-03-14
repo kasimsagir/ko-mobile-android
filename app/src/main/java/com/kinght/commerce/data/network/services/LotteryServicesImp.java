@@ -55,7 +55,7 @@ public class LotteryServicesImp implements LotteryServices {
 
     @Override
     public void getLotteryDetail(String lotteryId, ServiceCallback<Lottery> lotteryServiceCallback) {
-        Call<LotteryResponse> call=apiInterface.getLotteries();
+        Call<LotteryResponse> call=apiInterface.getLotteryDetail(lotteryId);
 
         call.enqueue(new Callback<LotteryResponse>() {
             @Override
@@ -80,7 +80,7 @@ public class LotteryServicesImp implements LotteryServices {
 
     @Override
     public void partipicateLottery(String lotteryId, ServiceCallback<CommonResponse> lotteryServiceCallback) {
-        Call<CommonResponse> call=apiInterface.participateLottery();
+        Call<CommonResponse> call=apiInterface.participateLottery(lotteryId);
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

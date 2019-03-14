@@ -90,7 +90,7 @@ public interface ApiInterface {
     Call<LotteryResponse> getLotteryDetail(@Path("lotteryId") String lotteryId);
 
     @POST("secure/lotteries/{lotteryId}")
-    Call<CommonResponse> participateLottery();
+    Call<CommonResponse> participateLottery(@Path("lotteryId") String lotteryId);
 
     @PATCH("entries/{entryId}/delete")
     Call<CommonResponse> deleteEntry(@Path("entryId") String entryId);

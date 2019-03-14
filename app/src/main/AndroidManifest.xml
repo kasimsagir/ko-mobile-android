@@ -4,6 +4,8 @@
     package="com.kinght.commerce">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 
@@ -15,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SmsVerificationActivity.SmsVerificationActivity"></activity>
+        <activity android:name=".ui.PartipicateActivity.PartipicateActivity"></activity>
+        <activity android:name=".ui.EntryDetailActivity.EntryDetailActivity" />
+        <activity android:name=".ui.SmsVerificationActivity.SmsVerificationActivity" />
         <activity android:name=".ui.LoginActivity.LoginActivity" />
         <activity android:name=".ui.RegisterActivity.RegisterActivity" />
         <activity

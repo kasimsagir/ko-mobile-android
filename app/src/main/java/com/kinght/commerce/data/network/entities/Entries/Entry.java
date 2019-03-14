@@ -4,6 +4,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
 
 
 public class Entry {
@@ -21,7 +22,7 @@ public class Entry {
     private Integer price;
     @SerializedName("createdDate")
     @Expose
-    private double createdDate;
+    private long createdDate;
     @SerializedName("isDisable")
     @Expose
     private Boolean isDisable;
@@ -40,6 +41,29 @@ public class Entry {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("server")
+    @Expose
+    private Servers servers;
+
+    public void setCreatedDate(long createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Boolean getDisable() {
+        return isDisable;
+    }
+
+    public void setDisable(Boolean disable) {
+        isDisable = disable;
+    }
+
+    public Servers getServers() {
+        return servers;
+    }
+
+    public void setServers(Servers servers) {
+        this.servers = servers;
+    }
 
     public User getCreator() {
         return creator;
@@ -73,7 +97,7 @@ public class Entry {
         this.price = price;
     }
 
-    public double getCreatedDate() {
+    public long getCreatedDate() {
         return createdDate;
     }
 

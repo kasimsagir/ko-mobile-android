@@ -9,10 +9,10 @@ import java.util.List;
 public class Lottery {
     @SerializedName("createdDate")
     @Expose
-    private Integer createdDate;
+    private Long createdDate;
     @SerializedName("endDate")
     @Expose
-    private Object endDate;
+    private Long endDate;
     @SerializedName("winner")
     @Expose
     private String winner;
@@ -32,19 +32,19 @@ public class Lottery {
     @Expose
     private Integer v;
 
-    public Integer getCreatedDate() {
+    public Long getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Integer createdDate) {
+    public void setCreatedDate(Long createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Object getEndDate() {
+    public Long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Object endDate) {
+    public void setEndDate(Long endDate) {
         this.endDate = endDate;
     }
 

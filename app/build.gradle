@@ -61,4 +61,7 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     //EventBus
     implementation "org.greenrobot:eventbus:$rootProject.eventBusVersion"
+
+    implementation 'com.github.hsmnzaydn:imagezoom:1.2.1'
+
 }

@@ -1,19 +1,23 @@
 package com.kinght.commerce.ui.MainActivity.MainFragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
-import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
+import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
+import com.kinght.commerce.utility.Constant;
 
 import java.util.List;
 
@@ -51,6 +55,10 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     Button fragmentMainAddLeftButton;
 
     EntryRecylerViewAdapters entryRecylerViewAdapters;
+    @BindView(R.id.fragment_main_gold_image_view)
+    ImageView fragmentMainGoldImageView;
+    @BindView(R.id.fragment_main_partipicate_image_view)
+    ImageView fragmentMainPartipicateImageView;
 
 
     public MainFragment() {
@@ -72,10 +80,12 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         presenter.onAttach(this);
 
         presenter.getEntries();
-        entryRecylerViewAdapters=new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
+        entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Entry item) {
-
+                Intent intent = new Intent(getActivity(), EntryDetailActivity.class);
+                intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
+                startActivity(intent);
             }
         });
 
@@ -97,7 +107,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         fragmentMainServerNameButton.setText(name);
     }
 
-    @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button})
+    @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button,R.id.fragment_main_gold_image_view, R.id.fragment_main_partipicate_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_main_server_name_button:
@@ -105,6 +115,14 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 break;
             case R.id.fragment_main_add_left_button:
                 break;
+            case R.id.fragment_main_gold_image_view:
+                break;
+            case R.id.fragment_main_partipicate_image_view:
+                Intent intent=new Intent(getActivity(), PartipicateActivity.class);
+                startActivity(intent);
+                break;
         }
     }
+
+
 }
