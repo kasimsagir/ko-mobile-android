@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -16,6 +20,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -183,13 +188,31 @@ public class CommonUtils {
 
     }
 
+    public static Bitmap getResizedBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+        Bitmap resizedBitmap = Bitmap.createBitmap(newWidth, newHeight, Bitmap.Config.ARGB_8888);
+
+        float scaleX = newWidth / (float) bitmap.getWidth();
+        float scaleY = newHeight / (float) bitmap.getHeight();
+        float pivotX = 0;
+        float pivotY = 0;
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(scaleX, scaleY, pivotX, pivotY);
+
+        Canvas canvas = new Canvas(resizedBitmap);
+        canvas.setMatrix(scaleMatrix);
+        canvas.drawBitmap(bitmap, 0, 0, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+        return resizedBitmap;
+    }
     public static String getImageBase64(Bitmap bm){
+        bm=getResizedBitmap(bm,400,400);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,80,baos);
+        bm.compress(Bitmap.CompressFormat.JPEG,20,baos);
         byte[] b = baos.toByteArray();
         String encImage = Base64.encodeToString(b, Base64.DEFAULT);
 
-        return encImage;
+        return resizeBase64Image(encImage);
     }
 
     public static String resizeBase64Image(String base64image){
@@ -201,13 +224,28 @@ public class CommonUtils {
             return base64image;
         }
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG,95, baos);
+        image.compress(Bitmap.CompressFormat.JPEG,20, baos);
 
         byte [] b=baos.toByteArray();
         System.gc();
         return Base64.encodeToString(b, Base64.NO_WRAP);
 
     }
+
+    public static void sendMessageToUserOnWhatsapp(Activity activity, String number){
+        Uri uri = Uri.parse("smsto:" + number);
+        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+        i.setPackage("com.whatsapp");
+       activity.startActivity(Intent.createChooser(i, ""));
+
+    }
+
+    public static void callPhone(Activity activity,String phoneNumber){
+        Uri call = Uri.parse("tel:" + phoneNumber);
+        Intent surf = new Intent(Intent.ACTION_DIAL, call);
+        activity.startActivity(surf);
+
+}
 
 
 }

@@ -11,6 +11,8 @@ import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragment;
+import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 import android.view.MenuItem;
@@ -83,12 +85,13 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
     @Override
     public void openSearchFragment() {
+        CommonUtils.switchToFragment(MainActivity.this, new SearchFragment());
 
     }
 
     @Override
     public void openNotificationFragment() {
-
+        CommonUtils.switchToFragment(MainActivity.this,new NotificationFragment());
     }
 
     @Override

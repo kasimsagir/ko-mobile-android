@@ -23,6 +23,9 @@ import com.kinght.commerce.ui.MainActivity.MainActivityPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpPresenter;
+import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpView;
+import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentPresenter;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpPresenter;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpView;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityPresenter;
@@ -92,5 +95,10 @@ public class PresenterModules {
     @Provides
     PartipicateActivityMvpPresenter<PartipicateActivityMvpView> providePartipicateActivity(DataManager dataManager){
         return new PartipicateActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    SearchFragmentMvpPresenter<SearchFragmentMvpView> provideSearchFragment(DataManager dataManager){
+        return new SearchFragmentPresenter<>(dataManager);
     }
 }

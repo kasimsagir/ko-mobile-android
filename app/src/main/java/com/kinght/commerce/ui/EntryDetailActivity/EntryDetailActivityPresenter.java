@@ -6,6 +6,7 @@ import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.ListSelectItem;
+import com.kinght.commerce.utility.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +55,10 @@ public class EntryDetailActivityPresenter<V extends EntryDetailActivityMvpView> 
                         @Override
                         public void selectedItem(Integer select) {
                             if(select==0){
-
+                                CommonUtils.sendMessageToUserOnWhatsapp(getMvpView().getActivity(),response.getPhoneNumber());
                             }
                             if(select == 1){
+                                CommonUtils.callPhone(getMvpView().getActivity(),response.getPhoneNumber());
 
                             }
                         }

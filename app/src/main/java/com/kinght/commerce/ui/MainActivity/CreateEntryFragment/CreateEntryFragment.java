@@ -160,8 +160,10 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
                 imageUri = Uri.fromFile(file);
             }
         }
+        if(data != null){
+            loadImage(imageUri);
 
-        loadImage(imageUri);
+        }
 
     }
 

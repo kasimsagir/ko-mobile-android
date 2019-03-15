@@ -11,6 +11,7 @@ import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.utility.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -97,6 +98,11 @@ public class EntryRecylerViewAdapters extends RecyclerView.Adapter<EntryRecylerV
         }
     }
 
+    public void filter(List<Entry> entryList) {
+        myItems = new ArrayList<>();
+        myItems.addAll(entryList);
+        notifyDataSetChanged();
+    }
 
 }
                                 
