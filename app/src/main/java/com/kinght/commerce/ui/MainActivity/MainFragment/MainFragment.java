@@ -43,8 +43,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     View root;
     @BindView(R.id.fragment_main_recyler_view)
     RecyclerView fragmentMainRecylerView;
-    @BindView(R.id.fragment_main_swipe_refresh_layout)
-    SwipeRefreshLayout fragmentMainSwipeRefreshLayout;
+
     @BindView(R.id.fragment_main_server_name_button)
     Button fragmentMainServerNameButton;
     @BindView(R.id.fragment_main_title_text_view)

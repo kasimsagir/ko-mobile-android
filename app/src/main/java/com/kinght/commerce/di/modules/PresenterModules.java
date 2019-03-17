@@ -8,6 +8,9 @@ import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpPresenter;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpView;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityPresenter;
+import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityMvpPresenter;
+import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityMvpView;
+import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityPresenter;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityMvpPresenter;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityMvpView;
 import com.kinght.commerce.ui.LoginActivity.LoginActivityPresenter;
@@ -124,5 +127,10 @@ public class PresenterModules {
     @Provides
     ReportActivityMvpPresenter<ReportActivityMvpView> provideReportActivity(DataManager dataManager){
         return new ReportActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    ForgetPasswordActivityMvpPresenter<ForgetPasswordActivityMvpView> provideForgetPasswordActivity(DataManager dataManager){
+        return new ForgetPasswordActivityPresenter<>(dataManager);
     }
 }

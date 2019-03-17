@@ -8,6 +8,7 @@ import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
@@ -293,6 +294,25 @@ public class DataManagerImp implements DataManager {
     @Override
     public void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback) {
         apiServices.getNotifications(listServiceCallback);
+    }
+
+    @Override
+    public void forgetPasswordStepOne(String phoneNumber, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.forgetPasswordStepOne(phoneNumber,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void forgetPasswordStepTwo(String phoneNumber, String smsCode, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.forgetPasswordStepTwo(phoneNumber,smsCode,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void forgetPasswordStepThree(String phoneNumber, String password, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        ForgetPasswordRequest forgetPasswordRequest=new ForgetPasswordRequest();
+        forgetPasswordRequest.setPassword(password);
+
+        apiServices.forgetPasswordStepThree(phoneNumber,forgetPasswordRequest,commonResponseServiceCallback);
+
     }
 
 

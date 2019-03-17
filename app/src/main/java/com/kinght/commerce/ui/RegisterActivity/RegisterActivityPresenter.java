@@ -63,7 +63,7 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
         getMvpView().showLoading();
         phoneNumber=phoneNumber.replace("(","").replace(")","").replace("-","");
 
-        getDataManager().registerStepOne(name, surname, name, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
+        getDataManager().registerStepOne(name, surname, password, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
             @Override
             public void onSuccess(CommonResponse response) {
                 getMvpView().hideLoading();

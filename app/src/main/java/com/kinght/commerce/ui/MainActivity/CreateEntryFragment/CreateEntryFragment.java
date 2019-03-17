@@ -1,6 +1,8 @@
 package com.kinght.commerce.ui.MainActivity.CreateEntryFragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -30,10 +32,14 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -87,7 +93,17 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_create_entry_image_select_from_image_view:
-                presenter.selectImageFrom();
+                List<String> permissionList = new ArrayList<>();
+                int readFilePermissionId = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
+                int writeFilePermissionId=ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (readFilePermissionId != PackageManager.PERMISSION_GRANTED || writeFilePermissionId != PackageManager.PERMISSION_GRANTED)  {
+                    permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    requestPermissions(permissionList.toArray(new String[permissionList.size()]), 3);
+                }else {
+                    presenter.selectImageFrom();
+
+                }
                 break;
             case R.id.fragment_create_entry_send_button:
                 presenter.createEntry(base64Image,CommonUtils.regularText(fragmentCreateEntryHeaderEditText),CommonUtils.regularText(fragmentCreateEntryMessageEditText),Integer.parseInt(fragmentCreateEntryPriceEditText.getText().toString()));
@@ -158,6 +174,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
                 file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + getStringFromResourceId(R.string.app_name) + File.separator + pictureTimeMillis + ".jpg");
 
                 imageUri = Uri.fromFile(file);
+                loadImage(imageUri);
             }
         }
         if(data != null){
@@ -179,5 +196,16 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
         base64Image = CommonUtils.getImageBase64(selectedImage);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 3){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                presenter.selectImageFrom();
+            }
+
+        }
+
+    }
 
 }

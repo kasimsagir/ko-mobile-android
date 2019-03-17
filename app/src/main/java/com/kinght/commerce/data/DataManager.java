@@ -41,4 +41,8 @@ public interface DataManager  {
     void updateEntryPrice(int price,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateEntryServer(String serverId,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback);
+    void forgetPasswordStepOne(String phoneNumber,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void forgetPasswordStepThree(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+
 }
