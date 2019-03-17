@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.LoginActivity.LoginActivity"
     android:background="@color/colorPrimaryDark">
@@ -28,13 +29,20 @@
                 android:background="@mipmap/ic_login_user"
            />
 
-            <EditText
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:imeOptions="actionDone"
+                mask:mask="0(5##)###-##-##"
+                android:inputType="phone"
+                android:typeface="monospace"
+                mask:allowed_chars="1234567890"
+                android:hint="____ __ ___"
                 android:textColorHint="@color/white"
-                android:hint="Telefon Numarası"
-                android:id="@+id/activity_login_customer_phone_number_edit_text"
+                android:id="@+id/activity_login_phone_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                style="@style/RegisterTextInputEditText"
+                android:layout_gravity="center"
+                />
 
         </LinearLayout>
 
@@ -70,9 +78,10 @@
 
 
         <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle"
             android:text="Giriş Yap"
             android:id="@+id/activitY_login_login_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

@@ -209,9 +209,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/orange"
-            app:cornerRadius="50dp"
+            style="@style/ButtonStyle"
             android:text="Kayıt Ol"
             android:id="@+id/activity_register_register_button"
             android:layout_width="match_parent"

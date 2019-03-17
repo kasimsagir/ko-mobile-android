@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.PartipicateActivity.PartipicateActivity">
+    tools:context=".ui.PartipicateActivity.PartipicateActivity"
+    android:background="@color/colorPrimaryDark">
 
     <include
         android:id="@+id/include2"
@@ -22,7 +23,8 @@
         app:layout_constraintTop_toBottomOf="@+id/include2"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/ButtonStyle"
         android:id="@+id/activity_partipicate_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

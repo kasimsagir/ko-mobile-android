@@ -38,6 +38,9 @@ import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpPresenter;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityMvpView;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivityPresenter;
+import com.kinght.commerce.ui.ReportActivity.ReportActivityMvpPresenter;
+import com.kinght.commerce.ui.ReportActivity.ReportActivityMvpView;
+import com.kinght.commerce.ui.ReportActivity.ReportActivityPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpView;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityPresenter;
@@ -116,5 +119,10 @@ public class PresenterModules {
     @Provides
     ProfileFragmentMvpPresenter<ProfileFragmentMvpView> provideProfileFragment(DataManager dataManager){
         return new ProfileFragmentPresenter<>(dataManager);
+    }
+
+    @Provides
+    ReportActivityMvpPresenter<ReportActivityMvpView> provideReportActivity(DataManager dataManager){
+        return new ReportActivityPresenter<>(dataManager);
     }
 }

@@ -32,6 +32,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="HeaderHeaderHeaderHeaderHeaderHeader"
+        android:textColor="@color/white"
         android:lines="1"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/row_entry_price_text_view"
@@ -40,6 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/row_entry_thumbnail_image_view" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/row_entry_description_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +59,8 @@
         app:layout_constraintVertical_bias="0.117" />
 
     <TextView
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:id="@+id/row_entry_price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

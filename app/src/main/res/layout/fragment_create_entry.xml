@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity.CreateEntryFragment.CreateEntryFragment">
+    tools:context=".ui.MainActivity.CreateEntryFragment.CreateEntryFragment"
+    android:background="@color/colorPrimaryDark">
 
     <ImageView
         android:id="@+id/fragment_create_entry_image_select_from_image_view"
@@ -35,6 +36,7 @@
         android:layout_marginRight="8dp"
         android:hint="Server Seç"
         android:focusable="false"
+        style="@style/RegisterTextInputEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +50,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        style="@style/RegisterTextInputEditText"
         android:hint="Başlık"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,12 +80,17 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        style="@style/RegisterTextInputEditText"
+        android:inputType="number"
         android:hint="Ücret"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_create_entry_message_edit_text" />
 
     <com.google.android.material.button.MaterialButton
+        app:layout_goneMarginRight="15dp"
+        app:layout_goneMarginLeft="15dp"
+        style="@style/ButtonStyle"
         android:id="@+id/fragment_create_entry_send_button"
         android:layout_width="407dp"
         android:layout_height="wrap_content"

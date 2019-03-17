@@ -61,6 +61,7 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
     @Override
     public void register(String name, String surname, String nickname, String phoneNumber, String password) {
         getMvpView().showLoading();
+        phoneNumber=phoneNumber.replace("(","").replace(")","").replace("-","");
 
         getDataManager().registerStepOne(name, surname, name, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
             @Override

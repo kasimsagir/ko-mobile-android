@@ -18,6 +18,7 @@ import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
+import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
 
 import javax.inject.Singleton;
@@ -50,4 +51,6 @@ public interface ViewComponents {
     void injectNotificationFragment(NotificationFragment notificationFragment);
 
     void injectProfileFragment(ProfileFragment profileFragment);
+
+    void injectReportActivity(ReportActivity reportActivity);
 }

@@ -1,12 +1,15 @@
 package com.kinght.commerce.ui.EntryDetailActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
@@ -42,6 +45,8 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
     MaterialButton activityEntryDetailContactButton;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.activity_entry_report_button)
+    MaterialButton activityEntryReportButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +84,17 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
 
     }
 
-    @OnClick(R.id.activity_entry_detail_contact_button)
-    public void onViewClicked() {
-        presenter.showContactList();
+    @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.activity_entry_detail_contact_button:
+                presenter.showContactList();
+                break;
+            case R.id.activity_entry_report_button:
+                Intent intent=new Intent(EntryDetailActivity.this, ReportActivity.class);
+                intent.putExtra(Constant.BUNDLE_ENTRY_ID,entryId);
+                startActivity(intent);
+                break;
+        }
     }
 }

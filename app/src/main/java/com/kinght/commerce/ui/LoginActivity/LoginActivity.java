@@ -28,7 +28,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
     LoginActivityMvpPresenter<LoginActivityMvpView> presenter;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.activity_login_customer_phone_number_edit_text)
+    @BindView(R.id.activity_login_phone_edit_text)
     EditText activityLoginCustomePhoneNumber;
     @BindView(R.id.activity_login_password_edit_text)
     EditText activityLoginPasswordEditText;

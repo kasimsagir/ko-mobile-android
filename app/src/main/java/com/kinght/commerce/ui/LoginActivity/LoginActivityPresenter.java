@@ -16,6 +16,7 @@ public class LoginActivityPresenter<V extends LoginActivityMvpView> extends Base
     @Override
     public void login(String phoneNumber, String password) {
         getMvpView().showLoading();
+        phoneNumber=phoneNumber.replace("(","").replace(")","").replace("-","");
         getDataManager().login(phoneNumber, password, new ServiceCallback<CommonResponse>() {
             @Override
             public void onSuccess(CommonResponse response) {
