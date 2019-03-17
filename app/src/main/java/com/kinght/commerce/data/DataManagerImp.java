@@ -10,6 +10,7 @@ import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
+import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
@@ -80,10 +81,15 @@ public class DataManagerImp implements DataManager {
         registerObject.setIsShowPhoneNumber(isShowPhoneNumber);
         registerObject.setPnsToken(pnsToken);
 
-        apiServices.registerStepOne(registerObject, new ServiceCallback<CommonResponse>() {
+        apiServices.registerStepOne(registerObject, new ServiceCallback<AuthorizationResponse>() {
+
+
             @Override
-            public void onSuccess(CommonResponse response) {
-                commonResponseServiceCallback.onSuccess(response);
+            public void onSuccess(AuthorizationResponse response) {
+                prefHelper.saveAuthorizationKey(response.getSecretKey());
+                Constant.authorizationKey=response.getSecretKey();
+                commonResponseServiceCallback.onSuccess(new CommonResponse());
+
             }
 
             @Override
@@ -104,7 +110,6 @@ public class DataManagerImp implements DataManager {
         apiServices.registerStepTwo(smsCode, new ServiceCallback<AuthorizationResponse>() {
             @Override
             public void onSuccess(AuthorizationResponse response) {
-                prefHelper.saveAuthorizationKey(response.getSecretKey());
                 commonResponseServiceCallback.onSuccess();
             }
 
@@ -130,7 +135,8 @@ public class DataManagerImp implements DataManager {
             @Override
             public void onSuccess(AuthorizationResponse response) {
                 commonResponseServiceCallback.onSuccess();
-                saveAuthorizationKey(response.getSecretKey());
+                prefHelper.saveAuthorizationKey(response.getSecretKey());
+                Constant.authorizationKey=response.getSecretKey();
             }
 
             @Override
@@ -227,6 +233,7 @@ public class DataManagerImp implements DataManager {
 
     @Override
     public void getEntries(ServiceCallback<List<Entry>> listServiceCallback) {
+        Constant.authorizationKey=prefHelper.getAuthorizationKey();
         apiServices.getEntries(listServiceCallback);
     }
 
@@ -281,6 +288,11 @@ public class DataManagerImp implements DataManager {
         UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
         updateEntryRequest.setServer(serverId);
         apiServices.updateEntry("SERVER",entryId,updateEntryRequest,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback) {
+        apiServices.getNotifications(listServiceCallback);
     }
 
 

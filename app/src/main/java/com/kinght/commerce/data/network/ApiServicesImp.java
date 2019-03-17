@@ -9,6 +9,7 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
+import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
@@ -17,6 +18,7 @@ import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.network.services.ApplicationServices;
 import com.kinght.commerce.data.network.services.EntryServices;
 import com.kinght.commerce.data.network.services.LotteryServices;
+import com.kinght.commerce.data.network.services.NotificationServices;
 import com.kinght.commerce.data.network.services.PromotionServices;
 import com.kinght.commerce.data.network.services.UserServices;
 import com.kinght.commerce.data.network.services.ServerServices;
@@ -33,20 +35,22 @@ public class ApiServicesImp implements ApiServices {
     PromotionServices promotionServices;
     EntryServices entryServices;
     LotteryServices lotteryServices;
+    NotificationServices notificationServices;
 
     @Inject
-    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices, LotteryServices lotteryServices) {
+    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices, LotteryServices lotteryServices,NotificationServices notificationServices) {
         this.userServices = userServices;
         this.serverServices = serverServices;
         this.applicationServices = applicationServices;
         this.promotionServices=promotionServices;
         this.entryServices=entryServices;
         this.lotteryServices=lotteryServices;
+        this.notificationServices=notificationServices;
     }
 
 
     @Override
-    public void registerStepOne(RegisterObject registerObject, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+    public void registerStepOne(RegisterObject registerObject, ServiceCallback<AuthorizationResponse> commonResponseServiceCallback) {
         userServices.registerStepOne(registerObject, commonResponseServiceCallback);
     }
 
@@ -153,5 +157,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void partipicateLottery(String lotteryId, ServiceCallback<CommonResponse> lotteryServiceCallback) {
         lotteryServices.partipicateLottery(lotteryId,lotteryServiceCallback);
+    }
+
+    @Override
+    public void getNotifications(ServiceCallback<List<Notifications>> notificationCallBack) {
+        notificationServices.getNotifications(notificationCallBack);
     }
 }

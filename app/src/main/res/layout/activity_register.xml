@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,10 +12,9 @@
     <include layout="@layout/toolbar" />
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
@@ -34,6 +34,8 @@
                 android:id="@+id/activity_register_customer_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/RegisterTextInputEditText"
+                android:textColor="@color/white"
                 android:layout_gravity="center" />
 
         </LinearLayout>
@@ -55,6 +57,7 @@
                 android:id="@+id/activity_register_surname_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/RegisterTextInputEditText"
                 android:layout_gravity="center" />
         </LinearLayout>
 
@@ -75,6 +78,7 @@
                 android:id="@+id/activity_register_customer_nickname_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/RegisterTextInputEditText"
                 android:layout_gravity="center" />
 
         </LinearLayout>
@@ -97,6 +101,7 @@
                 android:id="@+id/activity_register_server_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/RegisterTextInputEditText"
                 android:layout_gravity="center" />
         </LinearLayout>
 
@@ -111,14 +116,22 @@
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_register_phone"
                 />
-
-            <EditText
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:imeOptions="actionDone"
+                mask:mask="0(5##)###-##-##"
+                android:inputType="phone"
+                android:typeface="monospace"
+                mask:allowed_chars="1234567890"
+                android:hint="____ __ ___"
                 android:textColorHint="@color/white"
-                android:hint="Telefon Numarası"
                 android:id="@+id/activity_register_phone_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                style="@style/RegisterTextInputEditText"
+                android:layout_gravity="center"
+                />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +142,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/ic_register_phone"
+                android:background="@mipmap/ic_login_password"
                 />
 
             <EditText
@@ -139,6 +152,7 @@
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/RegisterTextInputEditText"
                 android:layout_gravity="center" />
         </LinearLayout>
 
@@ -147,19 +161,45 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/ic_register_phone"
-                />
+                android:orientation="horizontal">
 
-            <TextView
-                android:textColorHint="@color/white"
-                android:hint="Şifre"
-                android:text="Bilgililerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesini için burada belirtilen şartlarda izi veriyorum ve Kullanıcı gelnel sözleşmesini"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/activity_login_check_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@mipmap/ic_login_check_off"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/activity_login_use_terms_text_view"
+                    android:layout_width="333dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="Bilgililerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesini için burada belirtilen şartlarda izi veriyorum ve Kullanıcı gelnel sözleşmesini"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_login_check_image_view"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
 
@@ -167,6 +207,11 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/orange"
+            app:cornerRadius="50dp"
             android:text="Kayıt Ol"
             android:id="@+id/activity_register_register_button"
             android:layout_width="match_parent"

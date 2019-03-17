@@ -23,6 +23,12 @@ import com.kinght.commerce.ui.MainActivity.MainActivityPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentMvpPresenter;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentMvpView;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentMvpPresenter;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentMvpView;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentPresenter;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentPresenter;
@@ -100,5 +106,15 @@ public class PresenterModules {
     @Provides
     SearchFragmentMvpPresenter<SearchFragmentMvpView> provideSearchFragment(DataManager dataManager){
         return new SearchFragmentPresenter<>(dataManager);
+    }
+
+    @Provides
+    NotificationFragmentMvpPresenter<NotificationFragmentMvpView> provideNotficationFragment(DataManager dataManager){
+        return new NotificationFragmentPresenter<>(dataManager);
+    }
+
+    @Provides
+    ProfileFragmentMvpPresenter<ProfileFragmentMvpView> provideProfileFragment(DataManager dataManager){
+        return new ProfileFragmentPresenter<>(dataManager);
     }
 }

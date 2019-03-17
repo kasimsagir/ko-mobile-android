@@ -1,12 +1,9 @@
-package com.kinght.commerce.data.network.entities.Entries;
+package com.kinght.commerce.data.network.entities.Notification;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Notifications {
-    @Expose
-    @SerializedName("__v")
-    private int __v;
     @Expose
     @SerializedName("message")
     private String message;
@@ -16,14 +13,6 @@ public class Notifications {
     @Expose
     @SerializedName("_id")
     private String _id;
-
-    public int get__v() {
-        return __v;
-    }
-
-    public void set__v(int __v) {
-        this.__v = __v;
-    }
 
     public String getMessage() {
         return message;

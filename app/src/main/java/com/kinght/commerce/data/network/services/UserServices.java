@@ -10,7 +10,7 @@ import com.kinght.commerce.data.network.entities.RegisterObject;
 
 public interface UserServices {
 
-    void registerStepOne(RegisterObject registerObject, ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void registerStepOne(RegisterObject registerObject, ServiceCallback<AuthorizationResponse> commonResponseServiceCallback);
     void registerStepTwo(String smsCode, ServiceCallback<AuthorizationResponse> authorizationResponseServiceCallback);
     void forgetPasswordStepOne(String phoneNumber,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);

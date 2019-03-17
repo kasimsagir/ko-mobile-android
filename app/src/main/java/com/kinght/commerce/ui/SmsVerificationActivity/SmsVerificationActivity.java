@@ -33,7 +33,7 @@ public class SmsVerificationActivity extends BaseActivity implements SmsVerifica
         setContentView(R.layout.activity_sms_verification);
         ButterKnife.bind(this);
 
-      //  ((MvpApp) getApplication()).getActivityComponent().injectSmsVerificationActivity(this);
+       ((MvpApp) getApplication()).getActivityComponent().injectSmsVerificationActivity(this);
         presenter.onAttach(this);
 
     }

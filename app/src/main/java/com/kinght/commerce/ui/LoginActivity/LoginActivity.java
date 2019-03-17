@@ -34,11 +34,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
     EditText activityLoginPasswordEditText;
     @BindView(R.id.activity_login_forget_password_text_view)
     TextView activityLoginForgetPasswordTextView;
-    @BindView(R.id.activity_login_check_image_view)
-    AppCompatImageView activityLoginCheckImageView;
-    @BindView(R.id.activity_login_use_terms_text_view)
-    TextView activityLoginUseTermsTextView;
-    boolean isCheck = false;
+
     @BindView(R.id.activitY_login_login_button)
     MaterialButton activitYLoginLoginButton;
 
@@ -53,18 +49,10 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
     }
 
 
-    @OnClick({R.id.activity_login_check_image_view, R.id.activitY_login_login_button})
+    @OnClick({ R.id.activitY_login_login_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.activity_login_check_image_view:
-                if (!isCheck) {
-                    activityLoginCheckImageView.setImageResource(R.mipmap.ic_login_check_on);
-                    isCheck = true;
-                } else {
-                    activityLoginCheckImageView.setImageResource(R.mipmap.ic_login_check_off);
-                    isCheck = false;
-                }
-                break;
+
             case R.id.activitY_login_login_button:
                 presenter.login(CommonUtils.regularText(activityLoginCustomePhoneNumber),CommonUtils.regularText(activityLoginPasswordEditText));
                 break;

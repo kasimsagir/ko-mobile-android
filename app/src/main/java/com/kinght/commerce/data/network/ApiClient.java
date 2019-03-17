@@ -8,6 +8,7 @@ import com.kinght.commerce.BuildConfig;
 import com.kinght.commerce.data.pref.PrefHelper;
 import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Configuration;
+import com.kinght.commerce.utility.Constant;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -62,7 +63,7 @@ public class ApiClient {
                         public Response intercept(Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
                                     .addHeader("udid", CommonUtils.getUdid(context))
-                                    .addHeader("AuthorizationKey",prefHelper.getAuthorizationKey())
+                                    .addHeader("AuthorizationKey", Constant.authorizationKey)
                                     .build();
                             return chain.proceed(request);
                         }

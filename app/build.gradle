@@ -64,4 +64,7 @@ dependencies {
 
     implementation 'com.github.hsmnzaydn:imagezoom:1.2.1'
 
+    // Mask Edittext
+    implementation 'ru.egslava:MaskedEditText:1.0.5'
+
 }

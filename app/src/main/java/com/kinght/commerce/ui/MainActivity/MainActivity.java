@@ -1,22 +1,23 @@
 package com.kinght.commerce.ui.MainActivity;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
-import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragment;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
-import android.view.MenuItem;
+
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
 
 public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
@@ -79,7 +80,7 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
     @Override
     public void openAccountFragment() {
-        CommonUtils.switchToFragment(MainActivity.this, new MainFragment());
+        CommonUtils.switchToFragment(MainActivity.this, new ProfileFragment());
 
     }
 

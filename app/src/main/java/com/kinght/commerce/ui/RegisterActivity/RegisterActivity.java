@@ -14,6 +14,7 @@ import com.kinght.commerce.utility.CommonUtils;
 
 import javax.inject.Inject;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +40,10 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
     EditText activityRegisterCustomerNicknameEditText;
     @BindView(R.id.activity_register_phone_password_text)
     EditText activityRegisterPhonePasswordText;
+    @BindView(R.id.activity_login_check_image_view)
+    AppCompatImageView activityLoginCheckImageView;
+    boolean isCheck = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,7 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
 
     }
 
-    @OnClick({R.id.activity_register_server_edit_text, R.id.activity_register_register_button})
+    @OnClick({R.id.activity_register_server_edit_text, R.id.activity_register_register_button,R.id.activity_login_check_image_view,})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_register_server_edit_text:
@@ -60,6 +65,15 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
                 break;
             case R.id.activity_register_register_button:
                 presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText),CommonUtils.regularText(activityRegisterSurnameEditText),CommonUtils.regularText(activityRegisterCustomerNicknameEditText),CommonUtils.regularText(activityRegisterPhoneEditText),CommonUtils.regularText(activityRegisterPhonePasswordText));
+                break;
+            case R.id.activity_login_check_image_view:
+                if (!isCheck) {
+                    activityLoginCheckImageView.setImageResource(R.mipmap.ic_login_check_on);
+                    isCheck = true;
+                } else {
+                    activityLoginCheckImageView.setImageResource(R.mipmap.ic_login_check_off);
+                    isCheck = false;
+                }
                 break;
         }
     }

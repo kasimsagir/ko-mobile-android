@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+
     tools:context=".ui.MainActivity.SearchFragment.SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -26,6 +28,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.SearchView
+        android:background="@drawable/corner_round_grey_linear_layout"
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +41,8 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <com.google.android.material.button.MaterialButton
+        app:cornerRadius="50dp"
+        android:backgroundTint="@color/blue"
         android:id="@+id/fragment_search_server_name_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -2,6 +2,7 @@ package com.kinght.commerce.data.network.entities.Entries;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Coin;
 
 import java.util.List;

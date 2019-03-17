@@ -23,4 +23,10 @@
     <style name="LoginTextInputEditText">
         <item name="android:backgroundTint">@color/white</item>
     </style>
+
+    <style name="RegisterTextInputEditText">
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:inputType">text</item>
+    </style>
 </resources>

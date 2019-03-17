@@ -13,6 +13,8 @@ import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragment;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
@@ -44,4 +46,8 @@ public interface ViewComponents {
     void injectPartipicateActivity(PartipicateActivity partipicateActivity);
 
     void injectSearchFragment(SearchFragment searchFragment);
+
+    void injectNotificationFragment(NotificationFragment notificationFragment);
+
+    void injectProfileFragment(ProfileFragment profileFragment);
 }

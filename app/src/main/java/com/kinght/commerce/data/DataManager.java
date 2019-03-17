@@ -1,11 +1,14 @@
 package com.kinght.commerce.data;
 
 
+import android.app.Notification;
+
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
+import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 
@@ -37,4 +40,5 @@ public interface DataManager  {
     void updateEntryMessage(String message,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateEntryPrice(int price,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateEntryServer(String serverId,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback);
 }

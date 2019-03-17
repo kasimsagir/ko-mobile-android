@@ -15,6 +15,8 @@ import com.kinght.commerce.data.network.services.EntryServices;
 import com.kinght.commerce.data.network.services.EntryServicesImp;
 import com.kinght.commerce.data.network.services.LotteryServices;
 import com.kinght.commerce.data.network.services.LotteryServicesImp;
+import com.kinght.commerce.data.network.services.NotificationServices;
+import com.kinght.commerce.data.network.services.NotificationServicesImp;
 import com.kinght.commerce.data.network.services.PromotionServices;
 import com.kinght.commerce.data.network.services.PromotionServicesImp;
 import com.kinght.commerce.data.network.services.UserServices;
@@ -40,8 +42,8 @@ public class DataModules {
 
     @Provides
     @Singleton
-    ApiServices provideApiServices(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices,LotteryServices lotteryServices) {
-        return new ApiServicesImp(userServices,serverServices,applicationServices,promotionServices,entryServices,lotteryServices);
+    ApiServices provideApiServices(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices,LotteryServices lotteryServices,NotificationServices notificationServices) {
+        return new ApiServicesImp(userServices,serverServices,applicationServices,promotionServices,entryServices,lotteryServices,notificationServices);
     }
 
     @Provides
@@ -92,5 +94,10 @@ public class DataModules {
         return new LotteryServicesImp(apiClient);
     }
 
+    @Provides
+    @Singleton
+    NotificationServices provideNotificationService(ApiClient apiClient){
+        return new NotificationServicesImp(apiClient);
+    }
 
 }

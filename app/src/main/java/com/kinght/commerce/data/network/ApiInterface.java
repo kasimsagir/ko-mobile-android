@@ -10,6 +10,7 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.LotteryResponse;
+import com.kinght.commerce.data.network.entities.Notification.NotificationResponse;
 import com.kinght.commerce.data.network.entities.Promotion.PromotionResponse;
 import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
@@ -39,7 +40,7 @@ public interface ApiInterface {
 
     @Headers("Cache-Control: no-store")
     @POST("register")
-    Call<CommonResponse> registerStepOne(@Body RegisterObject registerObject);
+    Call<AuthorizationResponse> registerStepOne(@Body RegisterObject registerObject);
 
     @Headers("Cache-Control: no-store")
     @GET("register")
@@ -100,4 +101,7 @@ public interface ApiInterface {
 
     @PATCH("secure/entries/{entryId}/update")
     Call<CommonResponse> updateEntry(@Query("area") String area, @Path("entryId") String entryId, @Body UpdateEntryRequest updateEntryRequest);
+
+    @GET("secure/notifications")
+    Call<NotificationResponse> getNotifications();
 }

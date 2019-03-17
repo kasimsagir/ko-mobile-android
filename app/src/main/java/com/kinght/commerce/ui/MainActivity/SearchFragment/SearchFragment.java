@@ -17,7 +17,6 @@ import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
 import com.kinght.commerce.utility.Constant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

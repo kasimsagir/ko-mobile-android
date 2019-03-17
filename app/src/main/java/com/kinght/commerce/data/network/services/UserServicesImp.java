@@ -30,12 +30,12 @@ public class UserServicesImp implements UserServices {
     }
 
     @Override
-    public void registerStepOne(RegisterObject registerObject, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        Call<CommonResponse> call=apiInterface.registerStepOne(registerObject);
+    public void registerStepOne(RegisterObject registerObject, ServiceCallback<AuthorizationResponse> commonResponseServiceCallback) {
+        Call<AuthorizationResponse> call=apiInterface.registerStepOne(registerObject);
 
-        call.enqueue(new Callback<CommonResponse>() {
+        call.enqueue(new Callback<AuthorizationResponse>() {
             @Override
-            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+            public void onResponse(Call<AuthorizationResponse> call, Response<AuthorizationResponse> response) {
                 if(response.isSuccessful()){
                     commonResponseServiceCallback.onSuccess(response.body());
                 }else {
@@ -48,7 +48,7 @@ public class UserServicesImp implements UserServices {
             }
 
             @Override
-            public void onFailure(Call<CommonResponse> call, Throwable t) {
+            public void onFailure(Call<AuthorizationResponse> call, Throwable t) {
                 commonResponseServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
             }
         });
