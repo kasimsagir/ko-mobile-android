@@ -1,3 +1,9 @@
 package com.kinght.commerce.ui.ForgetPasswordActivity;
 import com.kinght.commerce.ui.base.MvpPresenter;
-public interface ForgetPasswordActivityMvpPresenter<V extends ForgetPasswordActivityMvpView> extends MvpPresenter<V> {}
+public interface ForgetPasswordActivityMvpPresenter<V extends ForgetPasswordActivityMvpView> extends MvpPresenter<V> {
+    void forgetPasswordStepOne(String toString);
+
+    void forgetPasswordStepTwo(String toString);
+
+    void forgetPasswordStepThree(String toString, String toString1);
+}

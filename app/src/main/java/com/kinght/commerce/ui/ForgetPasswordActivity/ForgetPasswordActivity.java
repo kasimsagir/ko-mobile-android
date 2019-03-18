@@ -60,12 +60,24 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_forget_password_step_one_button:
-
+                presenter.forgetPasswordStepOne(activityRegisterPhoneEditText.getText().toString());
+                activityForgetPasswordStepOneLinearLayout.setVisibility(View.GONE);
+                activityForgetPasswordStepTwoLinearLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.activity_forget_password_step_two_button:
+                presenter.forgetPasswordStepTwo(activityRegisterSmsCodeEditText.getText().toString());
+                activityForgetPasswordStepTwoLinearLayout.setVisibility(View.GONE);
+                activityForgetPasswordStepThreeLinearLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.activity_forget_password_step_three_button:
+                presenter.forgetPasswordStepThree(activityRegisterPasswordPasswordOneEditText.getText().toString(),activityRegisterPasswordPasswordTwoEditText.getText().toString());
+
                 break;
         }
+    }
+
+    @Override
+    public void openLoginActivity() {
+
     }
 }

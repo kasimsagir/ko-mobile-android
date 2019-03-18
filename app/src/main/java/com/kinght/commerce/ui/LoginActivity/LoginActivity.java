@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivity;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
@@ -49,12 +50,15 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
     }
 
 
-    @OnClick({ R.id.activitY_login_login_button})
+    @OnClick({ R.id.activitY_login_login_button,R.id.activity_login_forget_password_text_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             case R.id.activitY_login_login_button:
                 presenter.login(CommonUtils.regularText(activityLoginCustomePhoneNumber),CommonUtils.regularText(activityLoginPasswordEditText));
+                break;
+            case  R.id.activity_login_forget_password_text_view:
+                CommonUtils.changeActivity(LoginActivity.this, ForgetPasswordActivity.class);
                 break;
         }
     }
