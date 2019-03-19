@@ -26,6 +26,7 @@ public class SmsVerificationActivityPresenter<V extends SmsVerificationActivityM
 
             @Override
             public void onSuccess() {
+                getMvpView().openMainActivity();
                 getMvpView().hideLoading();
             }
 

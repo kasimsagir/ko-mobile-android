@@ -20,6 +20,9 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
     @Override
     public void mainFragment() {
         getMvpView().openMainFragment();
+
+
+
     }
 
     @Override

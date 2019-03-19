@@ -9,4 +9,6 @@ public interface MainFragmentMvpView extends MvpView {
     void loadDataToList(List<Entry> response);
 
     void getSelectedServerName(String name);
+
+    void coinDetail(int value);
 }

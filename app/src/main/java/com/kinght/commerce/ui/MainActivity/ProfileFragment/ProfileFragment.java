@@ -12,8 +12,10 @@ import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
+import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
+import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
 
 import java.util.List;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpView {
@@ -41,6 +44,10 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
     RecyclerView fragmentProfileRecylerview;
 
     EntryRecylerViewAdapters entryRecylerViewAdapters;
+    @BindView(R.id.fragment_profile_phone_number_text_view)
+    TextView fragmentProfilePhoneNumberTextView;
+    @BindView(R.id.fragment_profile_nickname_text_view)
+    TextView fragmentProfileNicknameTextView;
 
 
     public ProfileFragment() {
@@ -56,7 +63,7 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         ((MvpApp) getActivity().getApplication()).getActivityComponent().injectProfileFragment(this);
-        ButterKnife.bind(this,root);
+        ButterKnife.bind(this, root);
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Entry item) {
@@ -68,7 +75,7 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
 
         presenter.onAttach(this);
         presenter.getMe();
-
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
 
         return root;
@@ -81,5 +88,17 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentProfileRecylerview.setLayoutManager(manager);
         fragmentProfileRecylerview.setAdapter(entryRecylerViewAdapters);
+    }
+
+    @Override
+    public void loadUserDataToView(String s, String nickname) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Profilm");
+        fragmentProfilePhoneNumberTextView.setText(s);
+        fragmentProfileNicknameTextView.setText(nickname);
+    }
+
+    @OnClick(R.id.fragment_profile_phone_number_text_view)
+    public void onViewClicked() {
+        CommonUtils.callPhone(getActivity(),fragmentProfilePhoneNumberTextView.getText().toString());
     }
 }

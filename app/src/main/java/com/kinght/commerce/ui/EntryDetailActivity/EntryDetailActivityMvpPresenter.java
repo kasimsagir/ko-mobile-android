@@ -4,4 +4,6 @@ public interface EntryDetailActivityMvpPresenter<V extends EntryDetailActivityMv
     void getEntryDetail(String entryId);
 
     void showContactList();
+
+    void showPublishedProfile();
 }

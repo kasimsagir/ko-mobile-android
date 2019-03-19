@@ -10,6 +10,8 @@ public class Constant {
 
     // Intent Values
     public static final String BUNDLE_ENTRY_ID="entryId";
+    public static final String BUNDLE_USER_ID="userID";
+
 
     //Prefs
     public static String authorizationKey="";

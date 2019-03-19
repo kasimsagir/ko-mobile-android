@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProfileFragmentMvpView extends MvpView {
     void loadDataToList(List<Entry> entryList);
+
+    void loadUserDataToView(String s, String nickname);
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
+import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.adapters.NotificiationRecylerviewAdapter;
 import com.kinght.commerce.ui.base.BaseFragment;
 
@@ -56,6 +57,9 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
 
             }
         });
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Bildirimler");
+
         return root;
     }
 

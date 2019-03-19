@@ -45,7 +45,9 @@ public class ReportActivity extends BaseActivity implements ReportActivityMvpVie
         if (bundle != null) {
             entryId = bundle.getString(Constant.BUNDLE_ENTRY_ID, "1");
         }
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @OnClick(R.id.activity_report_report_button)

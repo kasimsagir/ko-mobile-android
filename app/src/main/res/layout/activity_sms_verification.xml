@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.SmsVerificationActivity.SmsVerificationActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimaryDark">
 
+    <include
+        android:id="@+id/include7"
+        layout="@layout/toolbar" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        style="@style/RegisterTextInputEditText"
         android:id="@+id/activity_sms_verification_verificate_code_edit_text"
+        style="@style/RegisterTextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
@@ -23,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include7" />
 
     <com.google.android.material.button.MaterialButton
         android:text="Doğrula"

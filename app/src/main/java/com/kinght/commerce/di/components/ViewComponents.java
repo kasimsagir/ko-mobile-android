@@ -21,6 +21,7 @@ import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 
 import javax.inject.Singleton;
 
@@ -56,4 +57,6 @@ public interface ViewComponents {
     void injectReportActivity(ReportActivity reportActivity);
 
     void injectForgetPasswordActivity(ForgetPasswordActivity forgetPasswordActivity);
+
+    void injectUserProfileActivity(UserProfileActivity userProfileActivity);
 }

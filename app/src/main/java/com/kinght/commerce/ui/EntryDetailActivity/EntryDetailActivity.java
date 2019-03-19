@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
@@ -84,7 +85,14 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
 
     }
 
-    @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button})
+    @Override
+    public void showUserProfileActivity(String userId) {
+        Intent intent=new Intent(EntryDetailActivity.this, UserProfileActivity.class);
+        intent.putExtra(Constant.BUNDLE_USER_ID,userId);
+        startActivity(intent);
+    }
+
+    @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button, R.id.activity_entry_detail_published_text_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_entry_detail_contact_button:
@@ -94,6 +102,10 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
                 Intent intent=new Intent(EntryDetailActivity.this, ReportActivity.class);
                 intent.putExtra(Constant.BUNDLE_ENTRY_ID,entryId);
                 startActivity(intent);
+                break;
+            case R.id.activity_entry_detail_published_text_view:
+                presenter.showPublishedProfile();
+
                 break;
         }
     }

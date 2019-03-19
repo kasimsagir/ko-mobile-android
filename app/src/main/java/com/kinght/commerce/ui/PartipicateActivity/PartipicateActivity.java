@@ -1,13 +1,18 @@
 package com.kinght.commerce.ui.PartipicateActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
+import com.kinght.commerce.ui.ReportActivity.ReportActivity;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 import com.kinght.commerce.ui.adapters.LotteryRecylerViewAdapter;
 import com.kinght.commerce.ui.base.BaseActivity;
+import com.kinght.commerce.utility.Constant;
 
 import java.util.List;
 
@@ -50,7 +55,9 @@ public class PartipicateActivity extends BaseActivity implements PartipicateActi
         adapter=new LotteryRecylerViewAdapter(new LotteryRecylerViewAdapter.ItemListener() {
             @Override
             public void onItemClick(User item) {
-
+                Intent intent=new Intent(PartipicateActivity.this, UserProfileActivity.class);
+                intent.putExtra(Constant.BUNDLE_USER_ID,item.get_id());
+                startActivity(intent);
             }
         });
 

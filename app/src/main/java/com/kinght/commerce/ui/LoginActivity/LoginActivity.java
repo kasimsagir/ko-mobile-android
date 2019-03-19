@@ -48,6 +48,8 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
 
         ((MvpApp) getApplication()).getActivityComponent().injectLoginActivity(this);
         presenter.onAttach(this);
+        setSupportActionBar(toolbar);
+        setTitle("Giriş");
     }
 
 

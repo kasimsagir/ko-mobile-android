@@ -17,9 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ForgetPasswordActivity.ForgetPasswordActivity"></activity>
-        <activity android:name=".ui.ReportActivity.ReportActivity" />
-        <activity android:name=".ui.PartipicateActivity.PartipicateActivity" />
+        <activity android:name=".ui.UserProfileActivity.UserProfileActivity"></activity>
+        <activity android:name=".ui.ForgetPasswordActivity.ForgetPasswordActivity" />
+        <activity android:name=".ui.ReportActivity.ReportActivity"
+            android:label="Rapor"/>
+        <activity android:name=".ui.PartipicateActivity.PartipicateActivity"
+            android:label="Çekiliş"/>
         <activity android:name=".ui.EntryDetailActivity.EntryDetailActivity" />
         <activity android:name=".ui.SmsVerificationActivity.SmsVerificationActivity" />
         <activity

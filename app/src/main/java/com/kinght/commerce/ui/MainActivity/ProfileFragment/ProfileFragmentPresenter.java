@@ -20,6 +20,11 @@ public class ProfileFragmentPresenter<V extends ProfileFragmentMvpView> extends 
             @Override
             public void onSuccess(User response) {
                 getMvpView().loadDataToList(response.getEntryList());
+                if(response.isShowPhoneNumber()){
+                    getMvpView().loadUserDataToView(response.getPhoneNumber(),response.getNickname());
+                }else {
+                    getMvpView().loadUserDataToView("",response.getNickname());
+                }
                 getMvpView().hideLoading();
             }
 

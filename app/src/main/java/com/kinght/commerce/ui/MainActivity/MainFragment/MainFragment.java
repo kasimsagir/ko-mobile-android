@@ -27,7 +27,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -58,6 +57,8 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     ImageView fragmentMainGoldImageView;
     @BindView(R.id.fragment_main_partipicate_image_view)
     ImageView fragmentMainPartipicateImageView;
+    @BindView(R.id.fragment_main_coin_text_view)
+    TextView fragmentMainCoinTextView;
 
 
     public MainFragment() {
@@ -88,6 +89,8 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
             }
         });
 
+        presenter.getCoinDetail();
+
         return root;
 
     }
@@ -106,7 +109,12 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         fragmentMainServerNameButton.setText(name);
     }
 
-    @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button,R.id.fragment_main_gold_image_view, R.id.fragment_main_partipicate_image_view})
+    @Override
+    public void coinDetail(int value) {
+        fragmentMainCoinTextView.setText(String.valueOf(value));
+    }
+
+    @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button, R.id.fragment_main_gold_image_view, R.id.fragment_main_partipicate_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_main_server_name_button:
@@ -117,7 +125,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
             case R.id.fragment_main_gold_image_view:
                 break;
             case R.id.fragment_main_partipicate_image_view:
-                Intent intent=new Intent(getActivity(), PartipicateActivity.class);
+                Intent intent = new Intent(getActivity(), PartipicateActivity.class);
                 startActivity(intent);
                 break;
         }

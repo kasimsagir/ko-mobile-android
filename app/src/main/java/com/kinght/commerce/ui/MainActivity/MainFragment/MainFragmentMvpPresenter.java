@@ -5,4 +5,6 @@ public interface MainFragmentMvpPresenter<V extends MainFragmentMvpView> extends
 
     void getEntries();
     void getServerEntries(String serverId);
+
+    void getCoinDetail();
 }

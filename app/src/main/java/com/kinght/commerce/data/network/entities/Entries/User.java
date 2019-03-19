@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Coin;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
 
 import java.util.List;
 
@@ -38,11 +39,22 @@ public class User {
     @Expose
     @SerializedName("entries")
     private List<Entry> entryList;
-
-    @Expose(deserialize = false)
+    @Expose
     @SerializedName("coin")
-
     private Coin coin;
+
+    @Expose
+    @SerializedName("registerServer")
+    Servers servers;
+
+
+    public Servers getServers() {
+        return servers;
+    }
+
+    public void setServers(Servers servers) {
+        this.servers = servers;
+    }
 
     public Coin getCoin() {
         return coin;

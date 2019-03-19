@@ -13,15 +13,15 @@
 
     <ozaydin.serkan.com.image_zoom_view.ImageViewZoom
         android:id="@+id/activity_entry_detail"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="269dp"
+        android:layout_height="229dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Server:"
+                android:text="Server             :"
                 style="@style/EntryDetailStyle"/>
 
             <TextView
@@ -71,7 +71,7 @@
                 style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ilan Tarihi:" />
+                android:text="Ilan Tarihi       :" />
 
             <TextView
                 style="@style/EntryDetailStyle"
@@ -89,7 +89,7 @@
                 style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Başlık:" />
+                android:text="Başlık              :" />
 
             <TextView
                 style="@style/EntryDetailStyle"
@@ -108,7 +108,7 @@
                 style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Açıklama:" />
+                android:text="Açıklama        :" />
 
             <TextView
                 style="@style/EntryDetailStyle"
@@ -126,7 +126,7 @@
                 style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fiyat:" />
+                android:text="Fiyat                :" />
 
             <TextView
                 style="@style/EntryDetailStyle"
@@ -145,7 +145,7 @@
                 style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yayınlayan:" />
+                android:text="Yayınlayan     :" />
 
             <TextView
                 style="@style/EntryDetailStyle"
@@ -178,20 +178,17 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/activity_entry_report_button"
         style="@style/ButtonStyle"
-        android:layout_width="match_parent"
+        android:layout_width="74dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="192dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Raporla"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_entry_detail_contact_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

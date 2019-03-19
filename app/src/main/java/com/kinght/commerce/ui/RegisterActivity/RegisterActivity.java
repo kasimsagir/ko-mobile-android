@@ -54,6 +54,8 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
         ((MvpApp) getApplication()).getActivityComponent().injectRegisterActivity(this);
 
         presenter.onAttach(this);
+        setSupportActionBar(toolbar);
+        setTitle("Kayıt Ol");
 
     }
 

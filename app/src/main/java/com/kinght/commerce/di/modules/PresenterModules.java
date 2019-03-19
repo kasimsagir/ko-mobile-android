@@ -47,6 +47,9 @@ import com.kinght.commerce.ui.ReportActivity.ReportActivityPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpView;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityPresenter;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityMvpPresenter;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityMvpView;
+import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityPresenter;
 
 import javax.inject.Singleton;
 
@@ -132,5 +135,10 @@ public class PresenterModules {
     @Provides
     ForgetPasswordActivityMvpPresenter<ForgetPasswordActivityMvpView> provideForgetPasswordActivity(DataManager dataManager){
         return new ForgetPasswordActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    UserProfileActivityMvpPresenter<UserProfileActivityMvpView> provideUserProfileActivity(DataManager dataManager){
+        return new UserProfileActivityPresenter<>(dataManager);
     }
 }

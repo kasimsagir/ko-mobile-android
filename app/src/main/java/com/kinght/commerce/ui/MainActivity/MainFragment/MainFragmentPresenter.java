@@ -3,6 +3,7 @@ package com.kinght.commerce.ui.MainActivity.MainFragment;
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
+import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.ListSelectItem;
@@ -102,5 +103,29 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
             }
         });
+    }
+
+    @Override
+    public void getCoinDetail() {
+        if(getDataManager().getAuthorizationKey() != ""){
+            getDataManager().getMe(new ServiceCallback<User>() {
+                @Override
+                public void onSuccess(User response) {
+                    getMvpView().coinDetail(response.getCoin().getValue());
+
+                }
+
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(int code, String errorResponse) {
+
+                }
+            });
+        }
+
     }
 }

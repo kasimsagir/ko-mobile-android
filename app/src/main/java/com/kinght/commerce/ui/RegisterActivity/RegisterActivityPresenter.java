@@ -24,7 +24,7 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
     @Inject
     public RegisterActivityPresenter(DataManager dataManager) {
         super(dataManager);
-        serverList=new ArrayList<>();
+        serverList = new ArrayList<>();
     }
 
     @Override
@@ -33,14 +33,14 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
         getDataManager().getServers(new ServiceCallback<List<Servers>>() {
             @Override
             public void onSuccess(List<Servers> response) {
-                for(Servers server:response){
+                for (Servers server : response) {
                     serverList.add(server.getName());
                 }
 
                 getMvpView().showListDialog(serverList, "Server Seç", new ListSelectItem<Integer>() {
                     @Override
                     public void selectedItem(Integer select) {
-                        selectedServerId=response.get(select).get_id();
+                        selectedServerId = response.get(select).get_id();
                         getMvpView().showServerNameToUser(response.get(select).getName());
                     }
                 });
@@ -60,27 +60,38 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
 
     @Override
     public void register(String name, String surname, String nickname, String phoneNumber, String password) {
-        getMvpView().showLoading();
-        phoneNumber=phoneNumber.replace("(","").replace(")","").replace("-","");
+        if (!CommonUtils.isRegularText(name)) {
+            getMvpView().showError("Lütfen isim alanını doldurunuz");
+        } else if (!CommonUtils.isRegularText(nickname)) {
+            getMvpView().showError("Lütfen nickname alanını doldurunuz");
+        } else if (!CommonUtils.isRegularText(phoneNumber)) {
+            getMvpView().showError("Lütfen telefon alanını doldurunuz");
+        } else if (!CommonUtils.isRegularText(password)) {
+            getMvpView().showError("Lütfen şifre alanını doldurunuz");
+        } else {
+            getMvpView().showLoading();
+            phoneNumber = phoneNumber.replace("(", "").replace(")", "").replace("-", "");
 
-        getDataManager().registerStepOne(name, surname, password, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
-                getMvpView().hideLoading();
-                getMvpView().openSmsVerificationActivity();
+            getDataManager().registerStepOne(name, surname, password, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
+                @Override
+                public void onSuccess(CommonResponse response) {
+                    getMvpView().hideLoading();
+                    getMvpView().openSmsVerificationActivity();
 
-            }
+                }
 
-            @Override
-            public void onSuccess() {
+                @Override
+                public void onSuccess() {
 
-            }
+                }
 
-            @Override
-            public void onError(int code, String errorResponse) {
-                getMvpView().hideLoading();
-                getMvpView().showError(errorResponse);
-            }
-        });
+                @Override
+                public void onError(int code, String errorResponse) {
+                    getMvpView().hideLoading();
+                    getMvpView().showError(errorResponse);
+                }
+            });
+        }
+
     }
 }

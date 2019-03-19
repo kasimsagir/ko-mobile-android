@@ -52,6 +52,7 @@ public class PartipicateActivityPresenter<V extends PartipicateActivityMvpView> 
             }
                 @Override
                 public void onSuccess () {
+                    getMvpView().hideLoading();
 
                 }
 

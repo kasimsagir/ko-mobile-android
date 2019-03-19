@@ -66,8 +66,8 @@ public class CommonUtils {
         return progressDialog;
     }
 
-    public static void changeActivity(Activity activity, Class goClass ){
-        Intent intent=new Intent(activity,goClass);
+    public static void changeActivity(Activity activity, Class goClass) {
+        Intent intent = new Intent(activity, goClass);
         activity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         activity.startActivity(intent);
     }
@@ -77,15 +77,15 @@ public class CommonUtils {
         manager.beginTransaction().replace(R.id.fragment, targetFragment).commit();
     }
 
-    public static String getStringNameFromInteger(Context context,int id){
+    public static String getStringNameFromInteger(Context context, int id) {
         return context.getString(id);
     }
 
-    public static void getImage(String imageUrl, final ImageView imageView){
+    public static void getImage(String imageUrl, final ImageView imageView) {
         Picasso.get().load(imageUrl).fit().centerCrop().into(imageView);
     }
 
-    public static boolean shareTextWithWhatsapp(Context context,String text){
+    public static boolean shareTextWithWhatsapp(Context context, String text) {
         Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
         whatsappIntent.setType("text/plain");
         whatsappIntent.setPackage("com.whatsapp");
@@ -98,14 +98,14 @@ public class CommonUtils {
         }
     }
 
-    public static void shareTextWithTwitter(Context context,String text){
-        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text="+text;
+    public static void shareTextWithTwitter(Context context, String text) {
+        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text=" + text;
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         context.startActivity(i);
     }
 
-    public static void shareTextWithMessagingApps(Context context,String text){
+    public static void shareTextWithMessagingApps(Context context, String text) {
         String shareBody = "Here is the share content body";
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -119,27 +119,28 @@ public class CommonUtils {
         return dateString;
     }
 
-    public static boolean askPermissionForActivity(Activity activity, String permission, int requestCode){
+    public static boolean askPermissionForActivity(Activity activity, String permission, int requestCode) {
         List<String> permissionList = new ArrayList<>();
         int permissionId = ContextCompat.checkSelfPermission(activity.getApplicationContext(), permission);
         if (permissionId != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(permission);
             requestPermissions(activity, permissionList.toArray(new String[permissionList.size()]), requestCode);
-        }else {
+        } else {
             return true;
         }
         return false;
     }
 
-    public static boolean askPermissionForFragment(Activity activity, Fragment fragment, String permission, int requestCode){
+    public static boolean askPermissionForFragment(Activity activity, Fragment fragment, String permission, int requestCode) {
         int permissionId = ContextCompat.checkSelfPermission(activity.getApplicationContext(), permission);
         if (permissionId != PackageManager.PERMISSION_GRANTED) {
-            fragment.requestPermissions(new String[]{permission},requestCode);
-        }else {
+            fragment.requestPermissions(new String[]{permission}, requestCode);
+        } else {
             return true;
         }
         return false;
     }
+
     public static String getUdid(Context context) {
         String udid = Settings.Secure.getString(context.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -147,32 +148,40 @@ public class CommonUtils {
         return udid;
     }
 
-    public static CommonResponse errorHandler(String response){
+    public static CommonResponse errorHandler(String response) {
         CommonResponse errorResponse = null;
         try {
             Gson gson = new Gson();
-            errorResponse= gson.fromJson(response, CommonResponse.class);
+            errorResponse = gson.fromJson(response, CommonResponse.class);
         } catch (Exception e) {
-            Log.e("Error",e.getMessage());
+            Log.e("Error", e.getMessage());
         }
         return errorResponse;
 
     }
 
-    public static String regularText(EditText editText){
+    public static String regularText(EditText editText) {
         return editText.getText().toString().trim();
     }
 
-    public static String getPnsToken(){
+    public static boolean isRegularText(String text){
+        text=text.replace("-","").replace("(","").replace(")","").trim();
+        if(text.isEmpty()){
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public static String getPnsToken() {
         return FirebaseInstanceId.getInstance().getToken();
     }
 
-    public static void getImageWithCache(ImageView imageView,String url){
+    public static void getImageWithCache(ImageView imageView, String url) {
 
         Picasso.get().load(url).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
-                Log.d("veri","veri");
+                Log.d("veri", "veri");
             }
 
             @Override
@@ -183,7 +192,7 @@ public class CommonUtils {
         });
     }
 
-    public static void getImage(ImageView imageView,String url){
+    public static void getImage(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
 
     }
@@ -205,47 +214,47 @@ public class CommonUtils {
 
         return resizedBitmap;
     }
-    public static String getImageBase64(Bitmap bm){
-        bm=getResizedBitmap(bm,400,400);
+
+    public static String getImageBase64(Bitmap bm) {
+        bm = getResizedBitmap(bm, 400, 400);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,20,baos);
+        bm.compress(Bitmap.CompressFormat.JPEG, 20, baos);
         byte[] b = baos.toByteArray();
         String encImage = Base64.encodeToString(b, Base64.DEFAULT);
 
         return resizeBase64Image(encImage);
     }
 
-    public static String resizeBase64Image(String base64image){
-        byte [] encodeByte= Base64.decode(base64image.getBytes(),Base64.NO_WRAP);
-        BitmapFactory.Options options=new BitmapFactory.Options();
+    public static String resizeBase64Image(String base64image) {
+        byte[] encodeByte = Base64.decode(base64image.getBytes(), Base64.NO_WRAP);
+        BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPurgeable = true;
-        Bitmap image = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length,options);
-        if(image.getHeight() <400 || image.getWidth() <400){
+        Bitmap image = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length, options);
+        if (image.getHeight() < 400 || image.getWidth() < 400) {
             return base64image;
         }
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG,20, baos);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 
-        byte [] b=baos.toByteArray();
+        byte[] b = baos.toByteArray();
         System.gc();
         return Base64.encodeToString(b, Base64.NO_WRAP);
 
     }
 
-    public static void sendMessageToUserOnWhatsapp(Activity activity, String number){
+    public static void sendMessageToUserOnWhatsapp(Activity activity, String number) {
         Uri uri = Uri.parse("smsto:" + number);
         Intent i = new Intent(Intent.ACTION_SENDTO, uri);
         i.setPackage("com.whatsapp");
-       activity.startActivity(Intent.createChooser(i, ""));
+        activity.startActivity(Intent.createChooser(i, ""));
 
     }
 
-    public static void callPhone(Activity activity,String phoneNumber){
+    public static void callPhone(Activity activity, String phoneNumber) {
         Uri call = Uri.parse("tel:" + phoneNumber);
         Intent surf = new Intent(Intent.ACTION_DIAL, call);
         activity.startActivity(surf);
-
-}
+    }
 
 
 }
