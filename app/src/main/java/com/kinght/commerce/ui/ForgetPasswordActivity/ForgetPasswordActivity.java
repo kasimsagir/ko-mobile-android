@@ -1,13 +1,17 @@
 package com.kinght.commerce.ui.ForgetPasswordActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.LoginActivity.LoginActivity;
+import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -44,6 +48,8 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
     MaterialButton activityForgetPasswordStepThreeButton;
     @BindView(R.id.activity_forget_password_step_three_linear_layout)
     LinearLayout activityForgetPasswordStepThreeLinearLayout;
+    @BindView(R.id.title_toolbar_title_text_view)
+    TextView titleToolbarTitleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,9 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
 
         ((MvpApp) getApplication()).getActivityComponent().injectForgetPasswordActivity(this);
         presenter.onAttach(this);
+
+        setSupportActionBar(toolbar);
+        titleToolbarTitleTextView.setText("Şifremi Unuttum");
     }
 
     @OnClick({R.id.activity_forget_password_step_one_button, R.id.activity_forget_password_step_two_button, R.id.activity_forget_password_step_three_button})
@@ -61,16 +70,14 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
         switch (view.getId()) {
             case R.id.activity_forget_password_step_one_button:
                 presenter.forgetPasswordStepOne(activityRegisterPhoneEditText.getText().toString());
-                activityForgetPasswordStepOneLinearLayout.setVisibility(View.GONE);
-                activityForgetPasswordStepTwoLinearLayout.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.activity_forget_password_step_two_button:
                 presenter.forgetPasswordStepTwo(activityRegisterSmsCodeEditText.getText().toString());
-                activityForgetPasswordStepTwoLinearLayout.setVisibility(View.GONE);
-                activityForgetPasswordStepThreeLinearLayout.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.activity_forget_password_step_three_button:
-                presenter.forgetPasswordStepThree(activityRegisterPasswordPasswordOneEditText.getText().toString(),activityRegisterPasswordPasswordTwoEditText.getText().toString());
+                presenter.forgetPasswordStepThree(activityRegisterPasswordPasswordOneEditText.getText().toString(), activityRegisterPasswordPasswordTwoEditText.getText().toString());
 
                 break;
         }
@@ -78,6 +85,21 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
 
     @Override
     public void openLoginActivity() {
+        Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showStepThree() {
+        activityForgetPasswordStepTwoLinearLayout.setVisibility(View.GONE);
+        activityForgetPasswordStepThreeLinearLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showStepTwo() {
+        activityForgetPasswordStepOneLinearLayout.setVisibility(View.GONE);
+        activityForgetPasswordStepTwoLinearLayout.setVisibility(View.VISIBLE);
 
     }
 }

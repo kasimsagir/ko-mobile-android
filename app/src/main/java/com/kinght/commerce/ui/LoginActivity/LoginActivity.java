@@ -11,6 +11,7 @@ import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivity;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
+import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 
@@ -50,7 +51,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
     }
 
 
-    @OnClick({ R.id.activitY_login_login_button,R.id.activity_login_forget_password_text_view})
+    @OnClick({ R.id.activitY_login_login_button,R.id.activity_login_forget_password_text_view,R.id.activitY_login_register_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -59,6 +60,9 @@ public class LoginActivity extends BaseActivity implements LoginActivityMvpView 
                 break;
             case  R.id.activity_login_forget_password_text_view:
                 CommonUtils.changeActivity(LoginActivity.this, ForgetPasswordActivity.class);
+                break;
+            case R.id.activitY_login_register_button:
+                CommonUtils.changeActivity(LoginActivity.this, RegisterActivity.class);
                 break;
         }
     }

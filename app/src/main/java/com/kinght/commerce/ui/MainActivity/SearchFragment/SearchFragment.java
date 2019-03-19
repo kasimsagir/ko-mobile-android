@@ -34,8 +34,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.appBarLayout2)
-    AppBarLayout appBarLayout2;
+
     @BindView(R.id.searchView)
     SearchView searchView;
     @BindView(R.id.fragment_search_server_name_button)

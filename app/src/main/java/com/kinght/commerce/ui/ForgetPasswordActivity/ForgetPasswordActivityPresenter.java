@@ -25,6 +25,7 @@ public class ForgetPasswordActivityPresenter<V extends ForgetPasswordActivityMvp
             public void onSuccess(CommonResponse response) {
 
                 getMvpView().hideLoading();
+                getMvpView().showStepTwo();
             }
 
             @Override
@@ -48,6 +49,7 @@ public class ForgetPasswordActivityPresenter<V extends ForgetPasswordActivityMvp
             @Override
             public void onSuccess(CommonResponse response) {
                 getMvpView().hideLoading();
+                getMvpView().showStepThree();
 
             }
 

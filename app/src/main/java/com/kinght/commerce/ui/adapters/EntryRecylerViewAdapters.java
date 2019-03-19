@@ -86,7 +86,7 @@ public class EntryRecylerViewAdapters extends RecyclerView.Adapter<EntryRecylerV
             CommonUtils.getImageWithCache(rowEntryThumbnailImageView,item.getEntryImageUrl());
             rowEntryHeaderTextView.setText(item.getHeader());
             rowEntryDescriptionTextView.setText(item.getMessage());
-            rowEntryPriceTextView.setText(String.valueOf(item.getPrice()));
+            rowEntryPriceTextView.setText(String.valueOf(item.getPrice())+" TL");
             // TODO set data to view
         }
 

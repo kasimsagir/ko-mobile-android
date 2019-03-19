@@ -51,12 +51,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Server:" />
+                android:text="Server:"
+                style="@style/EntryDetailStyle"/>
 
             <TextView
                 android:id="@+id/activity_entry_detail_server_name_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/EntryDetailStyle"/>
         </LinearLayout>
 
 
@@ -66,11 +68,13 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ilan Tarihi:" />
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:id="@+id/activity_entry_detail_advertisement_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -82,27 +86,32 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Başlık:" />
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:id="@+id/activity_entry_detail_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Açıklama:" />
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:id="@+id/activity_entry_detail_description_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -114,12 +123,15 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fiyat:" />
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:id="@+id/activity_entry_detail_price_text_view"
+                android:textColor="@android:color/holo_green_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -130,11 +142,13 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yayınlayan:" />
 
             <TextView
+                style="@style/EntryDetailStyle"
                 android:id="@+id/activity_entry_detail_published_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -147,7 +161,6 @@
         android:id="@+id/activity_entry_detail_contact_button"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -166,7 +179,6 @@
         android:id="@+id/activity_entry_report_button"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -179,7 +191,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_entry_detail_contact_button"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

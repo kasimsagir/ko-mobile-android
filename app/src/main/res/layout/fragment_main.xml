@@ -99,7 +99,8 @@
                     android:layout_weight="0.5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cornerRadius="50dp"/>
+                    app:cornerRadius="50dp"
+                    />
                 <Button
                     android:id="@+id/fragment_main_add_left_button"
                     android:textAllCaps="false"

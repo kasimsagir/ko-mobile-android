@@ -12,20 +12,21 @@
     <include layout="@layout/toolbar" />
 
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/RegisterIconImageView"
                 android:background="@mipmap/ic_login_user"
            />
 
@@ -47,34 +48,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/RegisterIconImageView"
                 android:background="@mipmap/ic_login_password"
                />
 
             <EditText
                 android:textColorHint="@color/white"
                 android:hint="Şifre"
+                style="@style/RegisterTextInputEditText"
+                android:inputType="textPassword"
                 android:id="@+id/activity_login_password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
         </LinearLayout>
 
-        <TextView
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:id="@+id/activity_login_forget_password_text_view"
-            android:clickable="true"
-            android:text="Şifrem Yok / Unuttum"
-            android:textColor="@color/purple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
 
 
         <com.google.android.material.button.MaterialButton
@@ -82,6 +78,23 @@
             android:text="Giriş Yap"
             android:id="@+id/activitY_login_login_button"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle"
+            android:text="Kayıt Ol"
+            android:id="@+id/activitY_login_register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:id="@+id/activity_login_forget_password_text_view"
+            android:clickable="true"
+            android:text="Şifremi Unuttum"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

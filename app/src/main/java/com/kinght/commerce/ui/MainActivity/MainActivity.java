@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
@@ -98,6 +99,12 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
     @Override
     public void createEntryFragment() {
         CommonUtils.switchToFragment(MainActivity.this, new CreateEntryFragment());
+
+    }
+
+    @Override
+    public void openLoginActivity() {
+        CommonUtils.changeActivity(MainActivity.this, LoginActivity.class);
 
     }
 

@@ -5,6 +5,7 @@ import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
+import com.kinght.commerce.ui.base.DialogCallback;
 
 import java.util.List;
 
@@ -49,7 +50,18 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
     @Override
     public void addFragment() {
         if (getDataManager().getAuthorizationKey() == null) {
-            getMvpView().openChooseFragment();
+            getMvpView().showDialogWithOutChoose("Uyarı", "Bu Özelliği kullanabilmek için giriş yapmanız gerekmekte", "Giriş Yap", new DialogCallback() {
+                @Override
+                public void pressedPossitiveButton() {
+                    getMvpView().openLoginActivity();
+
+                }
+
+                @Override
+                public void pressedNegativeButton() {
+
+                }
+            });
         } else {
             getMvpView().openAccountFragment();
         }
@@ -65,7 +77,20 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
             getMvpView().openNotificationFragment();
         } else {
             if (getDataManager().getAuthorizationKey() == "") {
-                getMvpView().openChooseFragment();
+
+                getMvpView().showDialogWithOutChoose("Uyarı", "Bu Özelliği kullanabilmek için giriş yapmanız gerekmekte", "Giriş Yap", new DialogCallback() {
+                    @Override
+                    public void pressedPossitiveButton() {
+                        getMvpView().openLoginActivity();
+
+                    }
+
+                    @Override
+                    public void pressedNegativeButton() {
+
+                    }
+                });
+
             } else {
                 if (account.equalsIgnoreCase("ADD")) {
                     getMvpView().createEntryFragment();
