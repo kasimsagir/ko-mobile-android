@@ -35,6 +35,9 @@ import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentPresen
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentPresenter;
+import com.kinght.commerce.ui.NotificationSettingsActivity.NotificationSettingsActivityMvpPresenter;
+import com.kinght.commerce.ui.NotificationSettingsActivity.NotificationSettingsActivityMvpView;
+import com.kinght.commerce.ui.NotificationSettingsActivity.NotificationSettingsActivityPresenter;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpPresenter;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityMvpView;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivityPresenter;
@@ -44,9 +47,15 @@ import com.kinght.commerce.ui.RegisterActivity.RegisterActivityPresenter;
 import com.kinght.commerce.ui.ReportActivity.ReportActivityMvpPresenter;
 import com.kinght.commerce.ui.ReportActivity.ReportActivityMvpView;
 import com.kinght.commerce.ui.ReportActivity.ReportActivityPresenter;
+import com.kinght.commerce.ui.SettingsActivity.SettingsActivityMvpPresenter;
+import com.kinght.commerce.ui.SettingsActivity.SettingsActivityMvpView;
+import com.kinght.commerce.ui.SettingsActivity.SettingsActivityPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpView;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityPresenter;
+import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityMvpPresenter;
+import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityMvpView;
+import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityPresenter;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityMvpPresenter;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityMvpView;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivityPresenter;
@@ -140,5 +149,20 @@ public class PresenterModules {
     @Provides
     UserProfileActivityMvpPresenter<UserProfileActivityMvpView> provideUserProfileActivity(DataManager dataManager){
         return new UserProfileActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    SettingsActivityMvpPresenter<SettingsActivityMvpView> provideSettingActivity(DataManager dataManager){
+        return new SettingsActivityPresenter<>(dataManager);
+    }
+    @Provides
+    NotificationSettingsActivityMvpPresenter<NotificationSettingsActivityMvpView> provideNotificationSettingsActivity(DataManager dataManager){
+        return new NotificationSettingsActivityPresenter<>(dataManager);
+    }
+
+
+    @Provides
+    UpdateProfileActivityMvpPresenter<UpdateProfileActivityMvpView> provideUpdateProfileActivity(DataManager dataManager){
+        return new UpdateProfileActivityPresenter<>(dataManager);
     }
 }

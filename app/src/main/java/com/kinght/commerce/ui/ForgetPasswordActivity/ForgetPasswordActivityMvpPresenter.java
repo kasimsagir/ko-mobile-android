@@ -6,4 +6,8 @@ public interface ForgetPasswordActivityMvpPresenter<V extends ForgetPasswordActi
     void forgetPasswordStepTwo(String toString);
 
     void forgetPasswordStepThree(String toString, String toString1);
+
+    void configurationForChangePassword();
+
+    void changePassword(String toString, String toString1);
 }

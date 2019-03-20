@@ -229,4 +229,29 @@ public class UserServicesImp implements UserServices {
             }
         });
     }
+
+    @Override
+    public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.updateProfile(user);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.isSuccessful()){
+                    commonResponseServiceCallback.onSuccess(response.body());
+                }else {
+                    try {
+                        commonResponseServiceCallback.onError(response.code(),CommonUtils.errorHandler(response.errorBody().string()).getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                commonResponseServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
+            }
+        });
+    }
 }

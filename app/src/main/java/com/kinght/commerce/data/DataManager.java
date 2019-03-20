@@ -44,5 +44,6 @@ public interface DataManager  {
     void forgetPasswordStepOne(String phoneNumber,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepThree(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void updateProfile(String nickname,String name,String surname, String registerServerId, boolean isShowPassword,ServiceCallback<CommonResponse> commonResponseServiceCallback);
 
 }

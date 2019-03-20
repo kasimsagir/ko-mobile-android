@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SettingsActivity.SettingsActivity"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+    <include layout="@layout/toolbar"/>
+
+    <FrameLayout
+        android:id="@+id/activity_settings_profile_update_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:textSize="19sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Profil Güncelle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_settings_password_update_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="19sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Şifre Değiştir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_settings_notification_configuration_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="19sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Bildirim Ayarları"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_settings_logout_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="19sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Çıkış Yap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
+</LinearLayout>

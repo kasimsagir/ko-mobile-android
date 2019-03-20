@@ -46,7 +46,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     @BindView(R.id.fragment_main_server_name_button)
     Button fragmentMainServerNameButton;
     @BindView(R.id.fragment_main_title_text_view)
-    TextView fragmentMainTitleTextView;
+    ImageView fragmentMainTitleTextView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.fragment_main_add_left_button)
@@ -75,7 +75,6 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
 
 
         fragmentMainServerNameButton.setTypeface(getRegularMyriadFont());
-        fragmentMainTitleTextView.setTypeface(getBoldMyriadFont());
         fragmentMainAddLeftButton.setTypeface(getRegularMyriadFont());
         presenter.onAttach(this);
 

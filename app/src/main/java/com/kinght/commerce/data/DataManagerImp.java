@@ -315,5 +315,19 @@ public class DataManagerImp implements DataManager {
 
     }
 
+    @Override
+    public void updateProfile(String nickname, String name, String surname, String registerServerId, boolean isShowPassword, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        User user=new User();
+        user.setNickname(nickname);
+        user.setName(name);
+        user.setSurname(surname);
+        Servers servers=new Servers();
+        servers.set_id(registerServerId);
+        user.setServers(servers);
+        user.setIsShowPhoneNumber(isShowPassword);
+
+        apiServices.updateMe(user,commonResponseServiceCallback);
+    }
+
 
 }

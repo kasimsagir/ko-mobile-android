@@ -104,4 +104,7 @@ public interface ApiInterface {
 
     @GET("secure/notifications")
     Call<NotificationResponse> getNotifications();
+
+    @POST("secure/users/me/update")
+    Call<CommonResponse> updateProfile(@Body User user);
 }

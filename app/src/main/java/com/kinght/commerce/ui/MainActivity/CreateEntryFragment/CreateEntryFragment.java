@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -27,8 +25,6 @@ import com.kinght.commerce.ui.base.BaseFragment;
 import com.kinght.commerce.utility.CommonUtils;
 import com.squareup.picasso.Picasso;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -39,6 +35,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +62,8 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     @Inject
     CreateEntryFragmentMvpPresenter<CreateEntryFragmentMvpView> presenter;
     View root;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private int TAKE_PICTURE = 0;
     private int SELECT_GALLERY = 1;
     long pictureTimeMillis;
@@ -84,7 +83,8 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
         ((MvpApp) getActivity().getApplication()).getActivityComponent().injectCreateEntryFragment(this);
         presenter.onAttach(this);
-
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Gönderi Oluştur");
         return root;
     }
 
@@ -95,18 +95,18 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
             case R.id.fragment_create_entry_image_select_from_image_view:
                 List<String> permissionList = new ArrayList<>();
                 int readFilePermissionId = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
-                int writeFilePermissionId=ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                if (readFilePermissionId != PackageManager.PERMISSION_GRANTED || writeFilePermissionId != PackageManager.PERMISSION_GRANTED)  {
+                int writeFilePermissionId = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (readFilePermissionId != PackageManager.PERMISSION_GRANTED || writeFilePermissionId != PackageManager.PERMISSION_GRANTED) {
                     permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
                     permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     requestPermissions(permissionList.toArray(new String[permissionList.size()]), 3);
-                }else {
+                } else {
                     presenter.selectImageFrom();
 
                 }
                 break;
             case R.id.fragment_create_entry_send_button:
-                presenter.createEntry(base64Image,CommonUtils.regularText(fragmentCreateEntryHeaderEditText),CommonUtils.regularText(fragmentCreateEntryMessageEditText),Integer.parseInt(fragmentCreateEntryPriceEditText.getText().toString()));
+                presenter.createEntry(base64Image, CommonUtils.regularText(fragmentCreateEntryHeaderEditText), CommonUtils.regularText(fragmentCreateEntryMessageEditText), Integer.parseInt(fragmentCreateEntryPriceEditText.getText().toString()));
                 break;
             case R.id.fragment_create_entry_select_server_edit_text:
                 presenter.getServerList();
@@ -119,7 +119,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     public void showCamera() {
 
         pictureTimeMillis = System.currentTimeMillis();
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + getStringFromResourceId(R.string.app_name));
         if (!file.exists()) {
             file.mkdir();
@@ -147,7 +147,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
     @Override
     public void openMainFragment() {
-        CommonUtils.switchToFragment((AppCompatActivity) getActivity(),new MainFragment());
+        CommonUtils.switchToFragment((AppCompatActivity) getActivity(), new MainFragment());
     }
 
     @Override
@@ -177,7 +177,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
                 loadImage(imageUri);
             }
         }
-        if(data != null){
+        if (data != null) {
             loadImage(imageUri);
 
         }
@@ -186,7 +186,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
     private void loadImage(Uri imageUri) {
         Picasso.get().load(imageUri).into(fragmentCreateEntryImageSelectFromImageView);
-         InputStream imageStream = null;
+        InputStream imageStream = null;
         try {
             imageStream = getActivity().getContentResolver().openInputStream(imageUri);
         } catch (FileNotFoundException e) {
@@ -199,8 +199,8 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 3){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 3) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 presenter.selectImageFrom();
             }
 

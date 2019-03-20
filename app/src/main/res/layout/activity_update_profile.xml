@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.UpdateProfileActivity.UpdateProfileActivity"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+
+    <include layout="@layout/toolbar"/>
+
+    <LinearLayout
+
+        style="@style/IconTextLinearLayoutStyle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+
+            style="@style/RegisterIconImageView"
+            android:background="@mipmap/ic_login_user"
+            />
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:hint="Ad"
+            android:id="@+id/activity_update_profile_customer_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RegisterTextInputEditText"
+            android:textColor="@color/white"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/IconTextLinearLayoutStyle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            style="@style/RegisterIconImageView"
+            android:background="@mipmap/ic_login_password"
+            />
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:hint="Soyad"
+            android:id="@+id/activity_update_profile_surname_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RegisterTextInputEditText"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/IconTextLinearLayoutStyle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            style="@style/RegisterIconImageView"
+
+            android:background="@mipmap/ic_login_user"
+            />
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:hint="Nickname"
+            android:id="@+id/activity_update_profile_customer_nickname_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RegisterTextInputEditText"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/IconTextLinearLayoutStyle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            style="@style/RegisterIconImageView"
+
+            android:background="@mipmap/ic_register_phone"
+            />
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:imeOptions="actionDone"
+            mask:mask="0(5##)###-##-##"
+            android:inputType="phone"
+            android:typeface="monospace"
+            mask:allowed_chars="1234567890"
+            android:hint="____ __ ___"
+            android:focusable="false"
+            android:textColorHint="@color/white"
+            android:id="@+id/activity_update_profile_phone_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            style="@style/RegisterTextInputEditText"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/IconTextLinearLayoutStyle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            style="@style/RegisterIconImageView"
+
+            android:background="@mipmap/ic_register_server"
+            />
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:hint="Sunucuyu Seçiniz"
+            android:focusable="false"
+            android:id="@+id/activity_update_profile_server_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RegisterTextInputEditText"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/activity_update_profile_check_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@mipmap/ic_login_check_off"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/activity_login_use_terms_text_view"
+                android:layout_width="333dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="Telefon numaram gözüksün"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/activity_update_profile_check_image_view"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        style="@style/ButtonStyle"
+        android:text="Profili Güncelle"
+        android:id="@+id/activity_update_profile_register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -90,6 +90,11 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
+    public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        userServices.updateMe(user,commonResponseServiceCallback);
+    }
+
+    @Override
     public void getServers(ServiceCallback<List<Servers>> serversServiceCallback) {
         serverServices.getServers(serversServiceCallback);
     }

@@ -17,10 +17,13 @@ import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragment;
 import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
+import com.kinght.commerce.ui.NotificationSettingsActivity.NotificationSettinsActivity;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
+import com.kinght.commerce.ui.SettingsActivity.SettingsActivity;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
+import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivity;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 
 import javax.inject.Singleton;
@@ -59,4 +62,11 @@ public interface ViewComponents {
     void injectForgetPasswordActivity(ForgetPasswordActivity forgetPasswordActivity);
 
     void injectUserProfileActivity(UserProfileActivity userProfileActivity);
+
+    void injectSettingsActivity(SettingsActivity settingsActivity);
+
+
+    void injectUpdateProfileActivity(UpdateProfileActivity updateProfileActivity);
+
+    void injectNotificationSettinsActivity(NotificationSettinsActivity notificationSettinsActivity);
 }

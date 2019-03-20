@@ -13,6 +13,7 @@ import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
+import com.kinght.commerce.ui.SettingsActivity.SettingsActivity;
 import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
 import com.kinght.commerce.utility.CommonUtils;
@@ -97,8 +98,16 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         fragmentProfileNicknameTextView.setText(nickname);
     }
 
-    @OnClick(R.id.fragment_profile_phone_number_text_view)
-    public void onViewClicked() {
-        CommonUtils.callPhone(getActivity(),fragmentProfilePhoneNumberTextView.getText().toString());
+
+    @OnClick({R.id.fragment_profile_setting_image_view, R.id.fragment_profile_phone_number_text_view})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fragment_profile_setting_image_view:
+                CommonUtils.changeActivity(getActivity(), SettingsActivity.class);
+                break;
+            case R.id.fragment_profile_phone_number_text_view:
+                CommonUtils.callPhone(getActivity(), fragmentProfilePhoneNumberTextView.getText().toString());
+                break;
+        }
     }
 }

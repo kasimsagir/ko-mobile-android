@@ -11,6 +11,7 @@ public class Constant {
     // Intent Values
     public static final String BUNDLE_ENTRY_ID="entryId";
     public static final String BUNDLE_USER_ID="userID";
+    public static final String BUNDLE_IS_FROM_SETTING="isFromSetting";
 
 
     //Prefs

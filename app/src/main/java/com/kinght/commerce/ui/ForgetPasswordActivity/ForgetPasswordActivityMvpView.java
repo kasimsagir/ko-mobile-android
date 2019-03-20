@@ -6,4 +6,6 @@ public interface ForgetPasswordActivityMvpView extends MvpView {
     void showStepThree();
 
     void showStepTwo();
+
+    void showOnlyStepThree();
 }
