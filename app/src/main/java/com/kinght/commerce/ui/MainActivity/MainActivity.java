@@ -1,9 +1,15 @@
 package com.kinght.commerce.ui.MainActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
@@ -37,6 +43,21 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         presenter.onAttach(this);
         presenter.mainFragment();
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        Log.d("veri","veri");
+                    }
+                });
 
 
     }

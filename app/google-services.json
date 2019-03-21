@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "1073526436606",
-    "firebase_url": "https://fact-79106.firebaseio.com",
-    "project_id": "fact-79106",
-    "storage_bucket": "fact-79106.appspot.com"
+    "project_number": "941291540787",
+    "firebase_url": "https://floody-d858a.firebaseio.com",
+    "project_id": "floody-d858a",
+    "storage_bucket": "floody-d858a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1073526436606:android:238759eb2391ef47",
+        "mobilesdk_app_id": "1:941291540787:android:238759eb2391ef47",
         "android_client_info": {
           "package_name": "com.kinght.commerce"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1073526436606-rbaig754ibq80rej8o5vllet90onv0gp.apps.googleusercontent.com",
+          "client_id": "941291540787-7b04vgla52d460ehuc0ca005jrq2oilu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kinght.commerce",
+            "certificate_hash": "aae36e27d2b503d99d361c7d9bbcd9129d827383"
+          }
+        },
+        {
+          "client_id": "941291540787-co1t8tajfcftv42gh2ki3glbn3hmbsv2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD_ShjoPrTDKCOMA3jxOK_xzaOjvboYK_4"
+          "current_key": "AIzaSyABW1ingt7Y_GFchzUEIwKum8hD_PDHIjI"
         }
       ],
       "services": {
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941291540787-co1t8tajfcftv42gh2ki3glbn3hmbsv2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "941291540787-agq22f0u1kutqmiut34jen6dsf8riunb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kasim.floody"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

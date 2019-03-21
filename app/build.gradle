@@ -68,3 +68,4 @@ dependencies {
     implementation 'ru.egslava:MaskedEditText:1.0.5'
 
 }
+apply plugin: 'com.google.gms.google-services'

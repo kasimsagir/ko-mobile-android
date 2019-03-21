@@ -18,7 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.NotificationSettingsActivity.NotificationSettinsActivity"></activity>
-        <activity android:name=".ui.UpdatePasswordActivity.UpdatePasswordActivity" />
         <activity android:name=".ui.UpdateProfileActivity.UpdateProfileActivity" />
         <activity android:name=".ui.SettingsActivity.SettingsActivity" />
         <activity android:name=".ui.UserProfileActivity.UserProfileActivity" />
