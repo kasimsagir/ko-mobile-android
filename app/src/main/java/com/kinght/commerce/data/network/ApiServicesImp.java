@@ -6,6 +6,7 @@ import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
@@ -17,6 +18,7 @@ import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.network.services.ApplicationServices;
 import com.kinght.commerce.data.network.services.EntryServices;
+import com.kinght.commerce.data.network.services.EventServices;
 import com.kinght.commerce.data.network.services.LotteryServices;
 import com.kinght.commerce.data.network.services.NotificationServices;
 import com.kinght.commerce.data.network.services.PromotionServices;
@@ -36,9 +38,10 @@ public class ApiServicesImp implements ApiServices {
     EntryServices entryServices;
     LotteryServices lotteryServices;
     NotificationServices notificationServices;
+    EventServices eventServices;
 
     @Inject
-    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices, LotteryServices lotteryServices,NotificationServices notificationServices) {
+    public ApiServicesImp(UserServices userServices, ServerServices serverServices, ApplicationServices applicationServices, PromotionServices promotionServices, EntryServices entryServices, LotteryServices lotteryServices,NotificationServices notificationServices, EventServices eventServices) {
         this.userServices = userServices;
         this.serverServices = serverServices;
         this.applicationServices = applicationServices;
@@ -46,6 +49,7 @@ public class ApiServicesImp implements ApiServices {
         this.entryServices=entryServices;
         this.lotteryServices=lotteryServices;
         this.notificationServices=notificationServices;
+        this.eventServices=eventServices;
     }
 
 
@@ -167,5 +171,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void getNotifications(ServiceCallback<List<Notifications>> notificationCallBack) {
         notificationServices.getNotifications(notificationCallBack);
+    }
+
+    @Override
+    public void getEvents(ServiceCallback<List<Events>> eventsServiceCallback) {
+
     }
 }

@@ -8,6 +8,7 @@ import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
@@ -327,6 +328,12 @@ public class DataManagerImp implements DataManager {
         user.setIsShowPhoneNumber(isShowPassword);
 
         apiServices.updateMe(user,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getEvents(ServiceCallback<List<Events>> listServiceCallback) {
+
+
     }
 
 

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
@@ -44,6 +44,8 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
 
 
     EntryRecylerViewAdapters entryRecylerViewAdapters;
+    @BindView(R.id.logo_toolbar_coin_text_view)
+    TextView logoToolbarCoinTextView;
 
 
     public SearchFragment() {
@@ -61,7 +63,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         root = inflater.inflate(R.layout.fragment_search, container, false);
         ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
         presenter.onAttach(this);
-        ButterKnife.bind(this,root);
+        ButterKnife.bind(this, root);
 
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
@@ -73,6 +75,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         });
 
         presenter.getAllEntries();
+        presenter.getMe();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -85,7 +88,6 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
 
                 String input = newText.toLowerCase();
                 presenter.getFilterEntries(input);
-
 
 
                 return false;
@@ -101,6 +103,11 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         fragmentSearchEntryRecylerView.setLayoutManager(manager);
         fragmentSearchEntryRecylerView.setAdapter(entryRecylerViewAdapters);
 
+    }
+
+    @Override
+    public void loadCoinData(int value) {
+        logoToolbarCoinTextView.setText(String.valueOf(value));
     }
 
     @OnClick(R.id.fragment_search_server_name_button)

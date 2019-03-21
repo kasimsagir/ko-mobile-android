@@ -6,4 +6,6 @@ public interface SearchFragmentMvpPresenter<V extends SearchFragmentMvpView> ext
     void getFilterEntries(String input);
 
     void getAllEntries();
+
+    void getMe();
 }

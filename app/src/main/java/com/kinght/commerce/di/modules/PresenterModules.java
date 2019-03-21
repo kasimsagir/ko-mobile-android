@@ -165,4 +165,6 @@ public class PresenterModules {
     UpdateProfileActivityMvpPresenter<UpdateProfileActivityMvpView> provideUpdateProfileActivity(DataManager dataManager){
         return new UpdateProfileActivityPresenter<>(dataManager);
     }
+
+
 }

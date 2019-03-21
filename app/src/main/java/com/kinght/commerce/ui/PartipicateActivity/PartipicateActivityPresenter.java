@@ -71,8 +71,8 @@ public class PartipicateActivityPresenter<V extends PartipicateActivityMvpView> 
         getDataManager().partipicateLottery(lotteryId, new ServiceCallback<CommonResponse>() {
             @Override
             public void onSuccess(CommonResponse response) {
-                getPartipicate();
                 getMvpView().hideLoading();
+                getPartipicate();
             }
 
             @Override

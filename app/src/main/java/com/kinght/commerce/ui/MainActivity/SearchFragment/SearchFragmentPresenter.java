@@ -3,6 +3,7 @@ package com.kinght.commerce.ui.MainActivity.SearchFragment;
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
+import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.ListSelectItem;
@@ -88,6 +89,26 @@ public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends Ba
 
                 getMvpView().hideLoading();
                 getMvpView().showError(errorResponse);
+
+            }
+        });
+    }
+
+    @Override
+    public void getMe() {
+        getDataManager().getMe(new ServiceCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
+                getMvpView().loadCoinData(response.getCoin().getValue());
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
 
             }
         });

@@ -7,6 +7,7 @@ import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.EntryResponse;
 import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.EventResponse;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.LotteryResponse;
@@ -107,4 +108,7 @@ public interface ApiInterface {
 
     @POST("secure/users/me/update")
     Call<CommonResponse> updateProfile(@Body User user);
+
+    @GET("getEvents")
+    Call<EventResponse> getEvents();
 }

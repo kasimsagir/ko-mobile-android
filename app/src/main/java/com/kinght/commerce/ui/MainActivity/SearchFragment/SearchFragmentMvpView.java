@@ -8,4 +8,6 @@ public interface SearchFragmentMvpView extends MvpView {
     void showServerNameToUser(String name);
 
     void loadDataToList(List<Entry> response);
+
+    void loadCoinData(int value);
 }
