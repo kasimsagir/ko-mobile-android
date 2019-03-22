@@ -59,7 +59,7 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
     }
 
     @Override
-    public void register(String name, String surname, String nickname, String phoneNumber, String password) {
+    public void register(String name, String surname, String nickname, String phoneNumber, String password, boolean isCheckPhone) {
         if (!CommonUtils.isRegularText(name)) {
             getMvpView().showError("Lütfen isim alanını doldurunuz");
         } else if (!CommonUtils.isRegularText(nickname)) {
@@ -72,7 +72,7 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
             getMvpView().showLoading();
             phoneNumber = phoneNumber.replace("(", "").replace(")", "").replace("-", "");
 
-            getDataManager().registerStepOne(name, surname, password, selectedServerId, nickname, phoneNumber, true, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
+            getDataManager().registerStepOne(name, surname, password, selectedServerId, nickname, phoneNumber, isCheckPhone, CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
                 @Override
                 public void onSuccess(CommonResponse response) {
                     getMvpView().hideLoading();

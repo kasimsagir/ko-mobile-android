@@ -42,8 +42,12 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
     EditText activityRegisterPhonePasswordText;
     @BindView(R.id.activity_login_check_image_view)
     AppCompatImageView activityLoginCheckImageView;
-    boolean isCheck = false;
 
+    @BindView(R.id.activity_register_phone_number_check_image_view)
+    AppCompatImageView activityRegisterPhoneNumberCheckImageView;
+
+    boolean isCheck = false;
+    boolean isPhoneCheck= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +63,14 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
 
     }
 
-    @OnClick({R.id.activity_register_server_edit_text, R.id.activity_register_register_button,R.id.activity_login_check_image_view,})
+    @OnClick({R.id.activity_register_server_edit_text, R.id.activity_register_register_button, R.id.activity_login_check_image_view,R.id.activity_register_phone_number_check_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_register_server_edit_text:
                 presenter.showServerList();
                 break;
             case R.id.activity_register_register_button:
-                presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText),CommonUtils.regularText(activityRegisterSurnameEditText),CommonUtils.regularText(activityRegisterCustomerNicknameEditText),CommonUtils.regularText(activityRegisterPhoneEditText),CommonUtils.regularText(activityRegisterPhonePasswordText));
+                presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText), CommonUtils.regularText(activityRegisterSurnameEditText), CommonUtils.regularText(activityRegisterCustomerNicknameEditText), CommonUtils.regularText(activityRegisterPhoneEditText), CommonUtils.regularText(activityRegisterPhonePasswordText),isPhoneCheck);
                 break;
             case R.id.activity_login_check_image_view:
                 if (!isCheck) {
@@ -75,6 +79,15 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
                 } else {
                     activityLoginCheckImageView.setImageResource(R.mipmap.ic_login_check_off);
                     isCheck = false;
+                }
+                break;
+            case R.id.activity_register_phone_number_check_image_view:
+                if (!isPhoneCheck) {
+                    activityRegisterPhoneNumberCheckImageView.setImageResource(R.mipmap.ic_login_check_on);
+                    isPhoneCheck = true;
+                } else {
+                    activityRegisterPhoneNumberCheckImageView.setImageResource(R.mipmap.ic_login_check_off);
+                    isPhoneCheck = false;
                 }
                 break;
         }
