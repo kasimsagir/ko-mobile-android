@@ -90,6 +90,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
 
         presenter.getCoinDetail();
 
+
         return root;
 
     }

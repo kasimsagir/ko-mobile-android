@@ -1,5 +1,11 @@
 package com.kinght.commerce.ui.MainActivity;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +18,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.firebase.NotificationReceiver;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
@@ -22,9 +29,12 @@ import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
@@ -58,6 +68,7 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
                         Log.d("veri","veri");
                     }
                 });
+
 
 
     }

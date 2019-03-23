@@ -1,6 +1,8 @@
 package com.kinght.commerce.data;
 
 
+import android.util.Log;
+
 import com.kinght.commerce.data.network.ApiServices;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
@@ -332,8 +334,7 @@ public class DataManagerImp implements DataManager {
 
     @Override
     public void getEvents(ServiceCallback<List<Events>> listServiceCallback) {
-
-
+        apiServices.getEvents(listServiceCallback);
     }
 
 

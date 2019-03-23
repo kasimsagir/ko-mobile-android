@@ -175,6 +175,6 @@ public class ApiServicesImp implements ApiServices {
 
     @Override
     public void getEvents(ServiceCallback<List<Events>> eventsServiceCallback) {
-
+        eventServices.getEvents(eventsServiceCallback);
     }
 }
