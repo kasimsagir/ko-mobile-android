@@ -20,6 +20,7 @@ import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
 import com.kinght.commerce.ui.ProductListActivity.ProductListActivity;
 import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
+import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
 
 import java.util.List;
@@ -132,6 +133,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
             case R.id.fragment_main_add_left_button:
                 break;
             case R.id.fragment_main_gold_image_view:
+                CommonUtils.changeActivity(getActivity(),ProductListActivity.class);
                 break;
             case R.id.fragment_main_partipicate_image_view:
                 Intent intent = new Intent(getActivity(), PartipicateActivity.class);
