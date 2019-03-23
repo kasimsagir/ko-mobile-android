@@ -3,6 +3,7 @@ package com.kinght.commerce.ui.MainActivity.MainFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
+import com.kinght.commerce.ui.ProductListActivity.ProductListActivity;
 import com.kinght.commerce.ui.adapters.EntryRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseFragment;
 import com.kinght.commerce.utility.Constant;
@@ -61,6 +64,8 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     TextView fragmentMainCoinTextView;
 
 
+
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -82,7 +87,11 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Entry item) {
-                Intent intent = new Intent(getActivity(), EntryDetailActivity.class);
+                /*Intent intent = new Intent(getActivity(), EntryDetailActivity.class);
+                intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
+                startActivity(intent);*/
+
+                Intent intent = new Intent(getActivity(), ProductListActivity.class);
                 intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
                 startActivity(intent);
             }
@@ -130,6 +139,8 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 break;
         }
     }
+
+
 
 
 }

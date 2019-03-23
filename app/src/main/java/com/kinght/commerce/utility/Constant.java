@@ -14,6 +14,9 @@ public class Constant {
     public static final String BUNDLE_IS_FROM_SETTING="isFromSetting";
 
 
+    public static final String base64="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsMOvicgDogojifarp+lAh5KibTusz9oVv/awDMmVkArIpC4ZKluc06dG2UFnUA7qVZHfIC352scqRpMy86Ui9EYPbC5AHlvfYp6geU0nTkCoBZF9L5e3sy6NJ7gFn4ZiMQt7aoZ2r7oexqggvCxPJu0aSU6q7/94ZLoy8o8/tSKbplov/buTcrk+5tFAaiB2OBlj2JtPKb4EI4V+j8j5wROQXUZmGcIyU7JcjsmAfd7i6x/W5LkLinPENv50p0PIaeDobaUS4PK9J3WhDBKWUEMkBypVP618yqGd01M26Y3a8wuytyM8OAr8a0tL0mSgtDoBNJ2jvQR/eURztS+pJQIDAQAB";
+
+
     //Prefs
     public static String authorizationKey="";
 
