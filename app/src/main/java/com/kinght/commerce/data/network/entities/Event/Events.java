@@ -16,6 +16,17 @@ public class Events {
     @SerializedName("eventName")
     private String eventName;
 
+    private boolean isSelected=false;
+
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     public List<String> getEventHours() {
         return eventHours;
     }

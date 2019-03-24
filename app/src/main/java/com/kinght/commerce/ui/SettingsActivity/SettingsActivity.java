@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.EventsActivity.EventsActivity;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivity;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
@@ -52,7 +53,7 @@ public class SettingsActivity extends BaseActivity implements SettingsActivityMv
         setTitle("Ayarlar");
     }
 
-    @OnClick({R.id.activity_settings_profile_update_frame_layout, R.id.activity_settings_password_update_frame_layout, R.id.activity_settings_notification_configuration_frame_layout, R.id.activity_settings_logout_frame_layout})
+    @OnClick({R.id.activity_settings_profile_update_frame_layout, R.id.activity_settings_password_update_frame_layout, R.id.activity_settings_notification_configuration_frame_layout, R.id.activity_settings_logout_frame_layout,R.id.activity_settings_events_configuration_frame_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_settings_profile_update_frame_layout:
@@ -69,6 +70,10 @@ public class SettingsActivity extends BaseActivity implements SettingsActivityMv
             case R.id.activity_settings_logout_frame_layout:
                 presenter.logOut();
                 break;
+            case R.id.activity_settings_events_configuration_frame_layout:
+                CommonUtils.changeActivity(SettingsActivity.this, EventsActivity.class);
+                break;
+
         }
     }
 

@@ -8,6 +8,9 @@ import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpPresenter;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityMvpView;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivityPresenter;
+import com.kinght.commerce.ui.EventsActivity.EventsActivityMvpPresenter;
+import com.kinght.commerce.ui.EventsActivity.EventsActivityMvpView;
+import com.kinght.commerce.ui.EventsActivity.EventsActivityPresenter;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityMvpPresenter;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityMvpView;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivityPresenter;
@@ -160,11 +163,13 @@ public class PresenterModules {
         return new NotificationSettingsActivityPresenter<>(dataManager);
     }
 
-
     @Provides
     UpdateProfileActivityMvpPresenter<UpdateProfileActivityMvpView> provideUpdateProfileActivity(DataManager dataManager){
         return new UpdateProfileActivityPresenter<>(dataManager);
     }
 
-
+    @Provides
+    EventsActivityMvpPresenter<EventsActivityMvpView> provideEventsActivity(DataManager dataManager){
+        return new EventsActivityPresenter<>(dataManager);
+    }
 }

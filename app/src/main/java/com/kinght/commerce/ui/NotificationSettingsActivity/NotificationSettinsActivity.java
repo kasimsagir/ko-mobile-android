@@ -42,7 +42,6 @@ public class NotificationSettinsActivity extends BaseActivity implements Notific
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        presenter.getEvents();
 
     }
 

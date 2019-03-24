@@ -8,6 +8,7 @@ package com.kinght.commerce.di.components;
 import com.kinght.commerce.di.modules.DataModules;
 import com.kinght.commerce.di.modules.PresenterModules;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
+import com.kinght.commerce.ui.EventsActivity.EventsActivity;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivity;
 import com.kinght.commerce.ui.LoginActivity.LoginActivity;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragment;
@@ -69,4 +70,6 @@ public interface ViewComponents {
     void injectUpdateProfileActivity(UpdateProfileActivity updateProfileActivity);
 
     void injectNotificationSettinsActivity(NotificationSettinsActivity notificationSettinsActivity);
+
+    void injectEventsActivity(EventsActivity eventsActivity);
 }
