@@ -14,6 +14,7 @@ import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
 
 import java.util.List;
 
@@ -52,4 +53,6 @@ public interface DataManager  {
     void updateEventListCache(List<Event> eventList);
     Hour getEventHours(int id);
     void removeCache();
+    void getSettings(ServiceCallback<List<Settings>> listServiceCallback);
+    void updateSettings(List<Settings> serversList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
 }

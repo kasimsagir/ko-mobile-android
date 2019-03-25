@@ -1,27 +1,24 @@
 package com.kinght.commerce.ui.NotificationSettingsActivity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
-import com.kinght.commerce.data.network.entities.Event.Events;
-import com.kinght.commerce.firebase.NotificationReceiver;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
+import com.kinght.commerce.ui.adapters.ServerNotificationRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseActivity;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NotificationSettinsActivity extends BaseActivity implements NotificationSettingsActivityMvpView {
 
@@ -29,6 +26,12 @@ public class NotificationSettinsActivity extends BaseActivity implements Notific
     NotificationSettingsActivityMvpPresenter<NotificationSettingsActivityMvpView> presenter;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.activity_notification_recylerview)
+    RecyclerView activityNotificationRecylerview;
+
+    ServerNotificationRecylerViewAdapters adapter;
+    @BindView(R.id.activity_notification_save_button)
+    Button activityNotificationSaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +45,28 @@ public class NotificationSettinsActivity extends BaseActivity implements Notific
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        adapter = new ServerNotificationRecylerViewAdapters(new ServerNotificationRecylerViewAdapters.ItemListener() {
+            @Override
+            public void onItemClick(Settings item, int position) {
+                presenter.setPositionData(item, position);
+            }
+        });
+        presenter.getSettings();
+
 
     }
 
 
-    public Integer returnDayFromString(String day){
-        switch (day){
-            case "Monday":
-                return Calendar.MONDAY;
-            case "Sunday":
-                return Calendar.SUNDAY;
-            case "Tuesday":
-                return Calendar.TUESDAY;
-            case "Wednesday":
-                return Calendar.WEDNESDAY;
-            case "Thursday":
-                return Calendar.THURSDAY;
-            case "Friday":
-                return Calendar.FRIDAY;
-            case "Saturday":
-                return Calendar.SATURDAY;
-            default:
-                return null;
-        }
+    @Override
+    public void loadDataToList(List<Settings> response) {
+        adapter.setData(response);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        activityNotificationRecylerview.setLayoutManager(manager);
+        activityNotificationRecylerview.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.activity_notification_save_button)
+    public void onViewClicked() {
+        presenter.updateSettings();
     }
 }

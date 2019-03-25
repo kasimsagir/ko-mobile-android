@@ -24,6 +24,7 @@ import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
 import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
 import com.kinght.commerce.data.pref.PrefHelper;
 import com.kinght.commerce.utility.Constant;
 
@@ -415,6 +416,16 @@ public class DataManagerImp implements DataManager {
     public void removeCache() {
         prefHelper.saveEventListCache("");
         prefHelper.saveAuthorizationKey("");
+    }
+
+    @Override
+    public void getSettings(ServiceCallback<List<Settings>> listServiceCallback) {
+        apiServices.getSettings(listServiceCallback);
+    }
+
+    @Override
+    public void updateSettings(List<Settings> serversList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.updateSettings(serversList,commonResponseServiceCallback);
     }
 
 

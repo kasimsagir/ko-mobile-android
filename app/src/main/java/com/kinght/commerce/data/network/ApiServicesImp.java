@@ -16,6 +16,7 @@ import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
 import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
 import com.kinght.commerce.data.network.services.ApplicationServices;
 import com.kinght.commerce.data.network.services.EntryServices;
 import com.kinght.commerce.data.network.services.EventServices;
@@ -96,6 +97,16 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
         userServices.updateMe(user,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void getSettings(ServiceCallback<List<Settings>> settingsServiceCallback) {
+        userServices.getSettings(settingsServiceCallback);
+    }
+
+    @Override
+    public void updateSettings(List<Settings> serviceCallback, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        userServices.updateSettings(serviceCallback,commonResponseServiceCallback);
     }
 
     @Override

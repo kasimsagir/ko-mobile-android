@@ -17,6 +17,9 @@ import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
 import com.kinght.commerce.data.network.entities.Servers.CreateEntryRequest;
 import com.kinght.commerce.data.network.entities.Servers.ServerResponse;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.SettingResponse;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
 
 import java.util.List;
 
@@ -111,4 +114,11 @@ public interface ApiInterface {
 
     @GET("getEvents")
     Call<EventResponse> getEvents();
+
+    @GET("secure/users/me/settings")
+    Call<SettingResponse> getSettings();
+
+    @POST("secure/users/me/settings")
+    Call<CommonResponse> updateSettings(@Body List<Settings> serversList);
+
 }

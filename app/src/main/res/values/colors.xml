@@ -6,7 +6,7 @@
 
 
     <color name="transparent">#00000000</color>
-    <color name="purple">#5F3289</color>
+    <color name="purple">#1E1E28</color>
     <color name="light_purple">#9755D5</color>
     <color name="orange">#eec401</color>
     <color name="white">#F9F9F9</color>
@@ -18,4 +18,5 @@
     <color name="blue">#0663b9</color>
     <color name="pink">#f80e6b</color>
     <color name="green">#39b286</color>
+    <color name="grey">#55555F</color>
 </resources>

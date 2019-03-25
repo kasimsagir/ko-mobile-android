@@ -7,6 +7,10 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.RegisterObject;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
+
+import java.util.List;
 
 public interface UserServices {
 
@@ -19,4 +23,6 @@ public interface UserServices {
     void getUser(String userId, ServiceCallback<User> userServiceCallback);
     void getMe(ServiceCallback<User> userServiceCallback);
     void updateMe(User user,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void getSettings(ServiceCallback<List<Settings>> settingsServiceCallback);
+    void updateSettings(List<Settings> serversList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
 }

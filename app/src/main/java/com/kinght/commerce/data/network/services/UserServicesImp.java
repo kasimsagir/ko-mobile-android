@@ -10,10 +10,14 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.RegisterObject;
+import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.data.network.entities.Settings.SettingResponse;
+import com.kinght.commerce.data.network.entities.Settings.Settings;
 import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -233,6 +237,56 @@ public class UserServicesImp implements UserServices {
     @Override
     public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
         Call<CommonResponse> call=apiInterface.updateProfile(user);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.isSuccessful()){
+                    commonResponseServiceCallback.onSuccess(response.body());
+                }else {
+                    try {
+                        commonResponseServiceCallback.onError(response.code(),CommonUtils.errorHandler(response.errorBody().string()).getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                commonResponseServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
+            }
+        });
+    }
+
+    @Override
+    public void getSettings(ServiceCallback<List<Settings>> settingsServiceCallback) {
+        Call<SettingResponse> call=apiInterface.getSettings();
+
+        call.enqueue(new Callback<SettingResponse>() {
+            @Override
+            public void onResponse(Call<SettingResponse> call, Response<SettingResponse> response) {
+                if(response.isSuccessful()){
+                    settingsServiceCallback.onSuccess(response.body().getSettings());
+                }else {
+                    try {
+                        settingsServiceCallback.onError(response.code(),CommonUtils.errorHandler(response.errorBody().string()).getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SettingResponse> call, Throwable t) {
+                settingsServiceCallback.onError(Constant.ERROR_CODE,new NetworkError(t).response());
+            }
+        });
+    }
+
+    @Override
+    public void updateSettings(List<Settings> serversList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.updateSettings(serversList);
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

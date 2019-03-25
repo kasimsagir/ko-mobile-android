@@ -8,5 +8,22 @@
     android:background="@color/colorPrimaryDark">
 
     <include layout="@layout/toolbar"/>
-
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Gönderi paylaşılınca bildirim almak istediğiniz Serverı seçiniz"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_notification_recylerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="Kaydet"
+        android:id="@+id/activity_notification_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"/>
 </LinearLayout>

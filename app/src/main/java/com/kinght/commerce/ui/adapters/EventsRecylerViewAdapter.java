@@ -102,12 +102,12 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
                         if(!item.getEventHours().get(finalI).isSelected()){
                             item.getEventHours().get(finalI).setSelected(true);
                             imageView.setImageResource(R.mipmap.ic_login_check_on);
-                            myListener.onItemClick(item,getAdapterPosition());
                         }else {
                             item.getEventHours().get(finalI).setSelected(false);
                             imageView.setImageResource(R.mipmap.ic_login_check_off);
-                            myListener.onItemClick(item,getAdapterPosition());
                         }
+                        myListener.onItemClick(item,getAdapterPosition());
+
 
                     }
                 });
@@ -123,7 +123,7 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
         @Override
         public void onClick(View v) {
             if (myListener != null) {
-                myListener.onItemClick(item,getAdapterPosition());
+                //myListener.onItemClick(item,getAdapterPosition());
             }
         }
     }
