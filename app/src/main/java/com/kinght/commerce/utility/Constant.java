@@ -20,4 +20,7 @@ public class Constant {
     //Prefs
     public static String authorizationKey="";
 
+
+    //Events Alarm Param
+    public static final int ALARM_INCREASE=15;
 }

@@ -3,6 +3,8 @@ package com.kinght.commerce.data;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kinght.commerce.data.network.ApiServices;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
@@ -10,7 +12,9 @@ import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.Event;
 import com.kinght.commerce.data.network.entities.Event.Events;
+import com.kinght.commerce.data.network.entities.Event.Hour;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
@@ -23,6 +27,7 @@ import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.pref.PrefHelper;
 import com.kinght.commerce.utility.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -333,8 +338,83 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void getEvents(ServiceCallback<List<Events>> listServiceCallback) {
-        apiServices.getEvents(listServiceCallback);
+    public void getEvents(ServiceCallback<List<Event>> listServiceCallback) {
+        final int[] id = {0};
+
+        List<Event> eventList=new ArrayList<>();
+
+        if(prefHelper.getEventListCache() != ""){
+            eventList=new Gson().fromJson(prefHelper.getEventListCache(),new TypeToken<List<Event>>(){}.getType());
+            listServiceCallback.onSuccess(eventList);
+
+        }else {
+            List<Event> finalEventList = eventList;
+            apiServices.getEvents(new ServiceCallback<List<Events>>() {
+                @Override
+                public void onSuccess(List<Events> response) {
+                    for(Events events:response){
+                        Event event=new Event();
+                        event.setEventName(events.getEventName());
+                        event.setEventDays(events.getEventDays());
+                        List<Hour> hours=new ArrayList<>();
+                        for(String hour:events.getEventHours()){
+                            Hour hour1=new Hour();
+                            hour1.setHour(hour);
+                            hour1.setId(id[0]);
+                            id[0]++;
+                            hours.add(hour1);
+                        }
+                        event.setEventHours(hours);
+                        finalEventList.add(event);
+                    }
+                    updateEventListCache(finalEventList);
+                    listServiceCallback.onSuccess(finalEventList);
+                }
+
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(int code, String errorResponse) {
+
+                }
+            });
+        }
+
+
+    }
+
+    @Override
+    public void updateEventListCache(List<Event> eventList) {
+        String data=new Gson().toJson(eventList);
+        prefHelper.saveEventListCache(data);
+    }
+
+    @Override
+    public Hour getEventHours(int id) {
+        List<Event> eventList=new ArrayList<>();
+
+        if(prefHelper.getEventListCache() != ""){
+            eventList=new Gson().fromJson(prefHelper.getEventListCache(),new TypeToken<List<Event>>(){}.getType());
+            for(Event event:eventList){
+                for(Hour hour:event.getEventHours()){
+                    if(id==hour.getId()){
+                        return hour;
+                    }
+                }
+            }
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public void removeCache() {
+        prefHelper.saveEventListCache("");
+        prefHelper.saveAuthorizationKey("");
     }
 
 

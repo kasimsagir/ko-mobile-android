@@ -7,7 +7,9 @@ import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.Event;
 import com.kinght.commerce.data.network.entities.Event.Events;
+import com.kinght.commerce.data.network.entities.Event.Hour;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
@@ -46,5 +48,8 @@ public interface DataManager  {
     void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepThree(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateProfile(String nickname,String name,String surname, String registerServerId, boolean isShowPassword,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-    void getEvents(ServiceCallback<List<Events>> listServiceCallback);
+    void getEvents(ServiceCallback<List<Event>> listServiceCallback);
+    void updateEventListCache(List<Event> eventList);
+    Hour getEventHours(int id);
+    void removeCache();
 }

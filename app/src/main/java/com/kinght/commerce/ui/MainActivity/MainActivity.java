@@ -1,5 +1,13 @@
 package com.kinght.commerce.ui.MainActivity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,6 +32,8 @@ import com.kinght.commerce.utility.CommonUtils;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
@@ -62,6 +72,7 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
 
     }
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

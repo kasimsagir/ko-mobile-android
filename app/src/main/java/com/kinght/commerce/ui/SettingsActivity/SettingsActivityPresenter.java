@@ -9,7 +9,7 @@ public class SettingsActivityPresenter<V extends SettingsActivityMvpView> extend
     @Override
     public void logOut() {
         Constant.authorizationKey="";
-        getDataManager().saveAuthorizationKey("");
+        getDataManager().removeCache();
         getMvpView().openMainActivity();
     }
 }

@@ -5,5 +5,4 @@ import com.kinght.commerce.ui.base.MvpView;
 import java.util.List;
 
 public interface NotificationSettingsActivityMvpView extends MvpView {
-    void loadDataToList(List<Events> response);
 }

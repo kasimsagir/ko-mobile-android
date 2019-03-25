@@ -45,14 +45,6 @@ public class NotificationSettinsActivity extends BaseActivity implements Notific
 
     }
 
-    @Override
-    public void loadDataToList(List<Events> response) {
-        Log.d("veri","veri");
-
-
-
-    }
-
 
     public Integer returnDayFromString(String day){
         switch (day){

@@ -7,6 +7,7 @@ package com.kinght.commerce.di.components;
 
 import com.kinght.commerce.di.modules.DataModules;
 import com.kinght.commerce.di.modules.PresenterModules;
+import com.kinght.commerce.firebase.NotificationReceiver;
 import com.kinght.commerce.ui.EntryDetailActivity.EntryDetailActivity;
 import com.kinght.commerce.ui.EventsActivity.EventsActivity;
 import com.kinght.commerce.ui.ForgetPasswordActivity.ForgetPasswordActivity;
@@ -72,4 +73,6 @@ public interface ViewComponents {
     void injectNotificationSettinsActivity(NotificationSettinsActivity notificationSettinsActivity);
 
     void injectEventsActivity(EventsActivity eventsActivity);
+
+    void injectNotificationReceiver(NotificationReceiver notificationReceiver);
 }
