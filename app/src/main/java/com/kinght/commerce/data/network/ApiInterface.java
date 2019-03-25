@@ -36,7 +36,7 @@ public interface ApiInterface {
 
 
     @GET("secure/start-application")
-    Call<CommonResponse> startApplication();
+    Call<CommonResponse> startApplication(@Query("pnsToken") String pnsToken);
 
     @Headers("Cache-Control: no-store")
     @POST("login")

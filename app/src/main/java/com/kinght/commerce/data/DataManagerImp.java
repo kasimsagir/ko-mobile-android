@@ -56,11 +56,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void startApplication(ServiceCallback<Boolean> isRegister, ServiceCallback<Boolean> isHasUpdate) {
-        apiServices.startApplication(new ServiceCallback<CommonResponse>() {
+    public void startApplication(String pnsToken, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.startApplication(pnsToken,new ServiceCallback<CommonResponse>() {
             @Override
             public void onSuccess(CommonResponse response) {
-
+                commonResponseServiceCallback.onSuccess(response);
             }
 
             @Override
@@ -70,11 +70,7 @@ public class DataManagerImp implements DataManager {
 
             @Override
             public void onError(int code, String errorResponse) {
-                if (code == Constant.UNREGISTER_CODE) {
-                    isRegister.onSuccess(false);
-                } else {
-                    isRegister.onSuccess(true);
-                }
+
             }
         });
     }

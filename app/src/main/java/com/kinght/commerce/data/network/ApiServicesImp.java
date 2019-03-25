@@ -125,8 +125,8 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
-    public void startApplication(ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        applicationServices.startApplication(commonResponseServiceCallback);
+    public void startApplication(String pnsToken,ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        applicationServices.startApplication(pnsToken,commonResponseServiceCallback);
     }
 
     @Override

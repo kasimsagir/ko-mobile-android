@@ -26,8 +26,8 @@ public class ApplicationServicesImp implements ApplicationServices {
     }
 
     @Override
-    public void startApplication(ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        Call<CommonResponse> call=apiInterface.startApplication();
+    public void startApplication(String pnsToken,ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.startApplication(pnsToken);
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

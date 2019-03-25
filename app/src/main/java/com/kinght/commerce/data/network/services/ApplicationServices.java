@@ -6,6 +6,6 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 
 public interface ApplicationServices {
 
-    void startApplication(ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void startApplication(String pnsToken,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getIntermediaries(ServiceCallback<User> userServiceCallback);
 }

@@ -22,7 +22,7 @@ public interface DataManager  {
     void saveAuthorizationKey(String authorizationKey);
     String getAuthorizationKey();
 
-    void startApplication(ServiceCallback<Boolean> isRegister,ServiceCallback<Boolean> isHasUpdate);
+    void startApplication(String pnsToken,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void registerStepOne(String name, String surname, String password, String serverId, String nickname, String phoneNumber, boolean isShowPhoneNumber, String pnsToken, ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void registerStepTwo(String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void login(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
