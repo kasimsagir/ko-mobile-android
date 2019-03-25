@@ -16,6 +16,7 @@ import com.kinght.commerce.utility.Constant;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -69,7 +70,7 @@ public class EventsActivityPresenter<V extends EventsActivityMvpView> extends Ba
                     Intent intent = new Intent(getMvpView().getActivity(), NotificationReceiver.class);
                     intent.putExtra("key", item.getEventName());
                     intent.putExtra("id",hour.getId());
-                    int ticks = (int) System.currentTimeMillis();
+                    int ticks = new Random().nextInt(30000000);
 
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(getMvpView().getActivity(), ticks, intent, 0);
                     alarmManager = (AlarmManager) getMvpView().getActivity().getSystemService(ALARM_SERVICE);

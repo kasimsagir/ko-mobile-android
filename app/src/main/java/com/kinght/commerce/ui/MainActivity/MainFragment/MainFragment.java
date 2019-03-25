@@ -88,13 +88,13 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Entry item) {
-                /*Intent intent = new Intent(getActivity(), EntryDetailActivity.class);
-                intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
-                startActivity(intent);*/
-
-                Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                Intent intent = new Intent(getActivity(), EntryDetailActivity.class);
                 intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
                 startActivity(intent);
+
+               /* Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
+                startActivity(intent);*/
             }
         });
 

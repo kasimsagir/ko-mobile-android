@@ -286,7 +286,9 @@ public class UserServicesImp implements UserServices {
 
     @Override
     public void updateSettings(List<Settings> serversList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        Call<CommonResponse> call=apiInterface.updateSettings(serversList);
+        SettingResponse settingResponse=new SettingResponse();
+        settingResponse.setSettings(serversList);
+        Call<CommonResponse> call=apiInterface.updateSettings(settingResponse);
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

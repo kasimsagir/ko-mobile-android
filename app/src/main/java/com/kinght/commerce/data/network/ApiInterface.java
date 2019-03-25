@@ -119,6 +119,6 @@ public interface ApiInterface {
     Call<SettingResponse> getSettings();
 
     @POST("secure/users/me/settings")
-    Call<CommonResponse> updateSettings(@Body List<Settings> serversList);
+    Call<CommonResponse> updateSettings(@Body SettingResponse serversList);
 
 }
