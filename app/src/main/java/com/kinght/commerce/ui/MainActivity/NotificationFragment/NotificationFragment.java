@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,6 +36,9 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
 
 
     NotificiationRecylerviewAdapter adapter;
+    @BindView(R.id.fragment_notification_swipe_refresh_layout)
+    SwipeRefreshLayout fragmentNotificationSwipeRefreshLayout;
+
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -46,12 +50,12 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
                              Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_notification, container, false);
-        ButterKnife.bind(this,root);
+        ButterKnife.bind(this, root);
         ((MvpApp) getActivity().getApplication()).getActivityComponent().injectNotificationFragment(this);
         presenter.onAttach(this);
 
         presenter.getNotifications();
-        adapter=new NotificiationRecylerviewAdapter(new NotificiationRecylerviewAdapter.ItemListener() {
+        adapter = new NotificiationRecylerviewAdapter(new NotificiationRecylerviewAdapter.ItemListener() {
             @Override
             public void onItemClick(Notifications item) {
 
@@ -59,13 +63,21 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
         });
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Bildirimler");
-
+        fragmentNotificationSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getNotifications();
+            }
+        });
         return root;
     }
 
 
     @Override
     public void loadDataToList(List<Notifications> response) {
+        if(fragmentNotificationSwipeRefreshLayout.isRefreshing()){
+            fragmentNotificationSwipeRefreshLayout.setRefreshing(false);
+        }
         adapter.setData(response);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentNotificationRecylerView.setLayoutManager(manager);

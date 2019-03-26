@@ -4,6 +4,8 @@ import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.ui.base.BasePresenter;
+import com.kinght.commerce.ui.base.DialogCallback;
+
 import javax.inject.Inject;
 public class ReportActivityPresenter<V extends ReportActivityMvpView> extends BasePresenter<V> implements ReportActivityMvpPresenter<V> {@Inject public ReportActivityPresenter(DataManager dataManager) {super(dataManager);}
 
@@ -14,8 +16,20 @@ public class ReportActivityPresenter<V extends ReportActivityMvpView> extends Ba
     getDataManager().createReport(entryId, text, text1, new ServiceCallback<CommonResponse>() {
         @Override
         public void onSuccess(CommonResponse response) {
-            getMvpView().getActivity().onBackPressed();
+
             getMvpView().hideLoading();
+
+            getMvpView().showDialogWithOutChoose("Başarılı", "Oluşturduğunuz rapor tarafımıza iletildi", "Tamam", new DialogCallback() {
+                @Override
+                public void pressedPossitiveButton() {
+                    getMvpView().getActivity().onBackPressed();
+                }
+
+                @Override
+                public void pressedNegativeButton() {
+
+                }
+            });
         }
 
         @Override

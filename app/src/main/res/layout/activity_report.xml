@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Başlık"
+
         app:layout_constraintTop_toBottomOf="@+id/include6"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -26,9 +27,11 @@
         android:id="@+id/activity_report_message_edit_text"
         style="@style/RegisterTextInputEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:hint="Mesaj"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/activity_report_header_edit_text"
         tools:layout_editor_absoluteX="0dp" />
 

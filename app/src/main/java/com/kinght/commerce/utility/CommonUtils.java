@@ -161,7 +161,8 @@ public class CommonUtils {
     }
 
     public static String regularText(EditText editText) {
-        return editText.getText().toString().trim();
+
+        return String.valueOf(editText.getText().toString().trim());
     }
 
     public static boolean isRegularText(String text){
@@ -170,6 +171,13 @@ public class CommonUtils {
             return false;
         }else {
             return true;
+        }
+    }
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
     public static String getPnsToken() {

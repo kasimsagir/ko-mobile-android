@@ -67,7 +67,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     private int TAKE_PICTURE = 0;
     private int SELECT_GALLERY = 1;
     long pictureTimeMillis;
-    private String base64Image = null;
+    private String base64Image = "";
 
     public CreateEntryFragment() {
 
@@ -106,7 +106,8 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
                 }
                 break;
             case R.id.fragment_create_entry_send_button:
-                presenter.createEntry(base64Image, CommonUtils.regularText(fragmentCreateEntryHeaderEditText), CommonUtils.regularText(fragmentCreateEntryMessageEditText), Integer.parseInt(fragmentCreateEntryPriceEditText.getText().toString()));
+                presenter.createEntry(base64Image, CommonUtils.regularText(fragmentCreateEntryHeaderEditText), CommonUtils.regularText(fragmentCreateEntryMessageEditText), CommonUtils.tryParse(fragmentCreateEntryPriceEditText.getText().toString()));
+
                 break;
             case R.id.fragment_create_entry_select_server_edit_text:
                 presenter.getServerList();

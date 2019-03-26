@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePresenter<V> implements MainFragmentMvpPresenter<V> {
     List<String> serverNameList;
+    String serverId=null;
 
     @Inject
     public MainFragmentPresenter(DataManager dataManager) {
@@ -41,6 +42,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
                     public void selectedItem(Integer select) {
                         getMvpView().getSelectedServerName(response.get(select).getName());
                         getServerEntries(response.get(select).get_id());
+                        serverId=response.get(select).get_id();
 
                     }
                 });
@@ -147,5 +149,14 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
             });
         }
 
+    }
+
+    @Override
+    public void refresh() {
+        if(serverId == null){
+            getEntries();
+        }else {
+            getServerEntries(serverId);
+        }
     }
 }

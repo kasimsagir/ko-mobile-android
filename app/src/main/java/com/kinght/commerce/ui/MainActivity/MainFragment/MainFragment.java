@@ -3,14 +3,12 @@ package com.kinght.commerce.ui.MainActivity.MainFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
@@ -31,6 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -63,8 +62,8 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     ImageView fragmentMainPartipicateImageView;
     @BindView(R.id.fragment_main_coin_text_view)
     TextView fragmentMainCoinTextView;
-
-
+    @BindView(R.id.fragment_main_swipe_refresh_layout)
+    SwipeRefreshLayout fragmentMainSwipeRefreshLayout;
 
 
     public MainFragment() {
@@ -100,13 +99,21 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
 
         presenter.getCoinDetail();
 
-
+        fragmentMainSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.refresh();
+            }
+        });
         return root;
 
     }
 
     @Override
     public void loadDataToList(List<Entry> response) {
+        if(fragmentMainSwipeRefreshLayout.isRefreshing()){
+            fragmentMainSwipeRefreshLayout.setRefreshing(false);
+        }
         entryRecylerViewAdapters.setData(response);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentMainRecylerView.setLayoutManager(manager);
@@ -133,7 +140,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
             case R.id.fragment_main_add_left_button:
                 break;
             case R.id.fragment_main_gold_image_view:
-                CommonUtils.changeActivity(getActivity(),ProductListActivity.class);
+                CommonUtils.changeActivity(getActivity(), ProductListActivity.class);
                 break;
             case R.id.fragment_main_partipicate_image_view:
                 Intent intent = new Intent(getActivity(), PartipicateActivity.class);
@@ -141,8 +148,6 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 break;
         }
     }
-
-
 
 
 }

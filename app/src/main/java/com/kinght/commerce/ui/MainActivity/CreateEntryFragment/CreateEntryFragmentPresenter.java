@@ -76,36 +76,49 @@ public class CreateEntryFragmentPresenter<V extends CreateEntryFragmentMvpView> 
     }
 
     @Override
-    public void createEntry(String base64Image, String header, String message,int price) {
-        getMvpView().showLoading();
-        getDataManager().createEntry(serverId, header, message, price, base64Image, new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
-                getMvpView().showDialogWithOutChoose("Başarılı", "Gönderinizin onaylanması için bekleyiniz", "Tamam", new DialogCallback() {
-                    @Override
-                    public void pressedPossitiveButton() {
-                        getMvpView().openMainFragment();
-                    }
+    public void createEntry(String base64Image, String header, String message,Integer price) {
+        if(base64Image.isEmpty()){
+            getMvpView().showError("Lütfen item fotoğrafını ekleyiniiz");
+        }else if (header.isEmpty()){
+            getMvpView().showError("Lütfen başlık ekleyiniz");
+        }else if(message.isEmpty()){
+            getMvpView().showError("Lütfen mesaj ekleyiniz");
+        }else if(price == null){
+            getMvpView().showError("Lütfen itemin ücretini belirleyiniz");
+        }else if (serverId == null){
+            getMvpView().showError("Lütfen gönderiyi paylaşmak istediğiniz serverı seçiniz");
+        } else{
+            getMvpView().showLoading();
+            getDataManager().createEntry(serverId, header, message, price, base64Image, new ServiceCallback<CommonResponse>() {
+                @Override
+                public void onSuccess(CommonResponse response) {
+                    getMvpView().showDialogWithOutChoose("Başarılı", "Gönderinizin onaylanması için bekleyiniz", "Tamam", new DialogCallback() {
+                        @Override
+                        public void pressedPossitiveButton() {
+                            getMvpView().openMainFragment();
+                        }
 
-                    @Override
-                    public void pressedNegativeButton() {
+                        @Override
+                        public void pressedNegativeButton() {
 
-                    }
-                });
-                getMvpView().hideLoading();
-            }
+                        }
+                    });
+                    getMvpView().hideLoading();
+                }
 
-            @Override
-            public void onSuccess() {
+                @Override
+                public void onSuccess() {
 
-            }
+                }
 
-            @Override
-            public void onError(int code, String errorResponse) {
-                getMvpView().showError(errorResponse);
-                getMvpView().hideLoading();
-            }
-        });
+                @Override
+                public void onError(int code, String errorResponse) {
+                    getMvpView().showError(errorResponse);
+                    getMvpView().hideLoading();
+                }
+            });
+        }
+
 
     }
 }
