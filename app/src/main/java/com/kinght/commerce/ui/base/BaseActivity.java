@@ -168,9 +168,11 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
             stockArr = itemList.toArray(stockArr);
 
 
+
             builder.setItems(stockArr, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
                     listSelectItem.selectedItem(which);
                 }
             });

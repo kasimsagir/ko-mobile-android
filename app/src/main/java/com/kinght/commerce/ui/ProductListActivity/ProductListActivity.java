@@ -2,25 +2,26 @@ package com.kinght.commerce.ui.ProductListActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Gold.Gold;
 import com.kinght.commerce.ui.adapters.GoldRecylerViewAdapters;
+import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductListActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
+public class ProductListActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
 
 
     BillingProcessor bp;
@@ -29,6 +30,8 @@ public class ProductListActivity extends AppCompatActivity implements BillingPro
 
     GoldRecylerViewAdapters adapters;
     List<Gold> goldList;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +40,26 @@ public class ProductListActivity extends AppCompatActivity implements BillingPro
         ButterKnife.bind(this);
 
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         bp = new BillingProcessor(this, Constant.base64, this);
         bp.initialize();
-        goldList=new ArrayList<>();
-        goldList.add(new Gold(70,"6.99 TL","1"));
-        goldList.add(new Gold(150,"12.99 TL","1"));
-        goldList.add(new Gold(220,"19.99 TL","1"));
-        goldList.add(new Gold(300,"26.99 TL","1"));
-        goldList.add(new Gold(400,"34.99 TL","1"));
-        adapters=new GoldRecylerViewAdapters(goldList, new GoldRecylerViewAdapters.ItemListener() {
+        goldList = new ArrayList<>();
+        goldList.add(new Gold(70, "6.99 TL", "product_1"));
+        goldList.add(new Gold(150, "12.99 TL", "product_2"));
+        goldList.add(new Gold(220, "19.99 TL", "product_3"));
+        goldList.add(new Gold(300, "26.99 TL", "product_4"));
+        goldList.add(new Gold(400, "34.99 TL", "product_5"));
+        adapters = new GoldRecylerViewAdapters(goldList, new GoldRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Gold item) {
-                bp.subscribe(ProductListActivity.this, "delaroy_monthly");
+                bp.purchase(ProductListActivity.this, item.getId());
 
             }
         });
-
-
 
 
         LinearLayoutManager manager = new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false);

@@ -53,6 +53,7 @@ public class EntryDetailActivityPresenter<V extends EntryDetailActivityMvpView> 
         List<String> options=new ArrayList<>();
         options.add("Whatsapp İle İletişime Geç");
         options.add("Telefon İle İletişime Geç");
+        options.add("İptal");
         getMvpView().showListDialog(options, "İletişime Geç", new ListSelectItem<Integer>() {
             @Override
             public void selectedItem(Integer select) {

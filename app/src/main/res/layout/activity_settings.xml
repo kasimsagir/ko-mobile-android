@@ -10,9 +10,10 @@
     <include layout="@layout/toolbar"/>
 
     <FrameLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/activity_settings_profile_update_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,9 +46,10 @@
     </FrameLayout>
 
     <FrameLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/activity_settings_password_update_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,9 +82,10 @@
     </FrameLayout>
 
     <FrameLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/activity_settings_notification_configuration_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,9 +120,11 @@
 
 
     <FrameLayout
+        android:layout_marginTop="5dp"
+
         android:id="@+id/activity_settings_events_configuration_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,9 +159,10 @@
 
 
     <FrameLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/activity_settings_logout_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"

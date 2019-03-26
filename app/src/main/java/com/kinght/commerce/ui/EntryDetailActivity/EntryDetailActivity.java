@@ -80,7 +80,7 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
         activityEntryDetailAdvertisementTextView.setText(CommonUtils.longToddMMMyyyyHHMMss(createdDate));
         activityEntryDetailTitleTextView.setText(header);
         activityEntryDetailDescriptionTextView.setText(message);
-        activityEntryDetailPriceTextView.setText(String.valueOf(price));
+        activityEntryDetailPriceTextView.setText(String.valueOf(price)+" "+getString(R.string.tl));
         activityEntryDetailPublishedTextView.setText(nickname);
 
     }
