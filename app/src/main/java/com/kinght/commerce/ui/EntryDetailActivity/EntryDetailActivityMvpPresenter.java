@@ -6,4 +6,6 @@ public interface EntryDetailActivityMvpPresenter<V extends EntryDetailActivityMv
     void showContactList();
 
     void showPublishedProfile();
+
+    void editEntry();
 }

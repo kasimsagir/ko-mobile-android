@@ -54,4 +54,15 @@ public class PrefHelperImp implements PrefHelper {
     public String getEventListCache() {
         return mPrefs.getString("EVENT","");
     }
+
+    @Override
+    public void saveUserId(String id) {
+        mPrefs.edit().putString("USERID", id).apply();
+
+    }
+
+    @Override
+    public String getUserId() {
+        return mPrefs.getString("USERID","");
+    }
 }

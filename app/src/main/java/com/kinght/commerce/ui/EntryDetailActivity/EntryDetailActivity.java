@@ -48,6 +48,8 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
     Toolbar toolbar;
     @BindView(R.id.activity_entry_report_button)
     MaterialButton activityEntryReportButton;
+    @BindView(R.id.activity_entry_detail_entry_config_button)
+    MaterialButton activityEntryDetailEntryConfigButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,32 +82,41 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
         activityEntryDetailAdvertisementTextView.setText(CommonUtils.longToddMMMyyyyHHMMss(createdDate));
         activityEntryDetailTitleTextView.setText(header);
         activityEntryDetailDescriptionTextView.setText(message);
-        activityEntryDetailPriceTextView.setText(String.valueOf(price)+" "+getString(R.string.tl));
+        activityEntryDetailPriceTextView.setText(String.valueOf(price) + " " + getString(R.string.tl));
         activityEntryDetailPublishedTextView.setText(nickname);
 
     }
 
     @Override
     public void showUserProfileActivity(String userId) {
-        Intent intent=new Intent(EntryDetailActivity.this, UserProfileActivity.class);
-        intent.putExtra(Constant.BUNDLE_USER_ID,userId);
+        Intent intent = new Intent(EntryDetailActivity.this, UserProfileActivity.class);
+        intent.putExtra(Constant.BUNDLE_USER_ID, userId);
         startActivity(intent);
     }
 
-    @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button, R.id.activity_entry_detail_published_text_view})
+    @Override
+    public void entryOwnerConfiguration() {
+        activityEntryDetailContactButton.setVisibility(View.GONE);
+        activityEntryDetailEntryConfigButton.setVisibility(View.VISIBLE);
+
+    }
+
+    @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button, R.id.activity_entry_detail_published_text_view,R.id.activity_entry_detail_entry_config_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_entry_detail_contact_button:
                 presenter.showContactList();
                 break;
             case R.id.activity_entry_report_button:
-                Intent intent=new Intent(EntryDetailActivity.this, ReportActivity.class);
-                intent.putExtra(Constant.BUNDLE_ENTRY_ID,entryId);
+                Intent intent = new Intent(EntryDetailActivity.this, ReportActivity.class);
+                intent.putExtra(Constant.BUNDLE_ENTRY_ID, entryId);
                 startActivity(intent);
                 break;
             case R.id.activity_entry_detail_published_text_view:
                 presenter.showPublishedProfile();
-
+                break;
+            case R.id.activity_entry_detail_entry_config_button:
+                presenter.editEntry();
                 break;
         }
     }

@@ -115,28 +115,11 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
     @Override
     public void getCoinDetail() {
-        getDataManager().startApplication(CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
 
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });
-
-        if (getDataManager().getAuthorizationKey() != "") {
-            getDataManager().getCoin(new ServiceCallback<Coin>() {
+            getDataManager().getMe(new ServiceCallback<User>() {
                 @Override
-                public void onSuccess(Coin response) {
-                    getMvpView().coinDetail(response.getValue());
+                public void onSuccess(User response) {
+                    getMvpView().coinDetail(response.getCoin().getValue());
 
                 }
 
@@ -147,10 +130,10 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
                 @Override
                 public void onError(int code, String errorResponse) {
-                    getMvpView().showError(errorResponse);
+                   // getMvpView().showError(errorResponse);
                 }
             });
-        }
+
 
     }
 

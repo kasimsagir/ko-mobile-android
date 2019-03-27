@@ -235,7 +235,23 @@ public class DataManagerImp implements DataManager {
 
     @Override
     public void getMe(ServiceCallback<User> userServiceCallback) {
-        apiServices.getMe(userServiceCallback);
+        apiServices.getMe(new ServiceCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
+                prefHelper.saveUserId(response.get_id());
+                userServiceCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+                userServiceCallback.onError(code,errorResponse);
+            }
+        });
     }
 
     @Override
@@ -425,7 +441,13 @@ public class DataManagerImp implements DataManager {
         apiServices.updateSettings(serversList,commonResponseServiceCallback);
     }
 
-
+    @Override
+    public boolean isItMe(User user) {
+        if(prefHelper.getUserId().equals(user.get_id())){
+            return true;
+        }
+        return false;
+    }
 
 
 }

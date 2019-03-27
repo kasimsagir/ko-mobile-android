@@ -56,4 +56,6 @@ public interface DataManager  {
     void removeCache();
     void getSettings(ServiceCallback<List<Settings>> listServiceCallback);
     void updateSettings(List<Settings> serversList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+
+    boolean isItMe(User user);
 }
