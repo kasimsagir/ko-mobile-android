@@ -12,6 +12,7 @@ import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.Event.Hour;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
+import com.kinght.commerce.data.network.entities.Promotion.Coin;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.network.entities.Settings.Settings;

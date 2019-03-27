@@ -5,6 +5,7 @@ import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Promotion.Coin;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.ListSelectItem;
@@ -132,10 +133,10 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
         });
 
         if (getDataManager().getAuthorizationKey() != "") {
-            getDataManager().getMe(new ServiceCallback<User>() {
+            getDataManager().getCoin(new ServiceCallback<Coin>() {
                 @Override
-                public void onSuccess(User response) {
-                    getMvpView().coinDetail(response.getCoin().getValue());
+                public void onSuccess(Coin response) {
+                    getMvpView().coinDetail(response.getValue());
 
                 }
 
@@ -146,7 +147,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
                 @Override
                 public void onError(int code, String errorResponse) {
-
+                    getMvpView().showError(errorResponse);
                 }
             });
         }

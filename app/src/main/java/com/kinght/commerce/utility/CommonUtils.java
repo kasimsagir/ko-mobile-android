@@ -189,7 +189,6 @@ public class CommonUtils {
         Picasso.get().load(url).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
-                Log.d("veri", "veri");
             }
 
             @Override

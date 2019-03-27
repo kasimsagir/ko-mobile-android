@@ -19,6 +19,7 @@ import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
+import com.kinght.commerce.data.network.entities.Promotion.Coin;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.RegisterObject;
 import com.kinght.commerce.data.network.entities.Report.ReportRequest;
@@ -423,6 +424,8 @@ public class DataManagerImp implements DataManager {
     public void updateSettings(List<Settings> serversList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
         apiServices.updateSettings(serversList,commonResponseServiceCallback);
     }
+
+
 
 
 }

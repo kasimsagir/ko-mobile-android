@@ -20,7 +20,8 @@ import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
-import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
+import com.kinght.commerce.ui.MainActivity.MainActivityMvpPresenter;
+import com.kinght.commerce.ui.MainActivity.MainActivityMvpView;
 import com.kinght.commerce.ui.base.BaseFragment;
 import com.kinght.commerce.utility.CommonUtils;
 import com.squareup.picasso.Picasso;
@@ -34,7 +35,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import butterknife.BindView;
@@ -61,6 +61,10 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
     @Inject
     CreateEntryFragmentMvpPresenter<CreateEntryFragmentMvpView> presenter;
+
+    @Inject
+    MainActivityMvpPresenter<MainActivityMvpView> mainActivityMvpViewMainActivityMvpPresenter;
+
     View root;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -148,7 +152,14 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
     @Override
     public void openMainFragment() {
-        CommonUtils.switchToFragment((AppCompatActivity) getActivity(), new MainFragment());
+
+        base64Image="";
+        fragmentCreateEntryImageSelectFromImageView.setImageBitmap(null);
+        fragmentCreateEntryHeaderEditText.setText("");
+        presenter.clearSelectedServerId();
+        fragmentCreateEntryMessageEditText.setText("");
+        fragmentCreateEntryPriceEditText.setText("");
+        ((MainActivity)getActivity()).openMainFragment();
     }
 
     @Override

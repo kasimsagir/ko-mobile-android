@@ -91,6 +91,10 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentProfileRecylerview.setLayoutManager(manager);
         fragmentProfileRecylerview.setAdapter(entryRecylerViewAdapters);
+        fragmentProfileRecylerview.setHasFixedSize(true);
+        fragmentProfileRecylerview.setItemViewCacheSize(20);
+        fragmentProfileRecylerview.setDrawingCacheEnabled(true);
+        fragmentProfileRecylerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
     @Override

@@ -6,4 +6,6 @@ public interface CreateEntryFragmentMvpPresenter<V extends CreateEntryFragmentMv
     void getServerList();
 
     void createEntry(String base64Image, String regularText, String regularText1,Integer price);
+
+    void clearSelectedServerId();
 }

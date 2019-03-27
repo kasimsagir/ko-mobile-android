@@ -77,14 +77,16 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, root);
-        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectMainFragment(this);
 
 
         fragmentMainServerNameButton.setTypeface(getRegularMyriadFont());
         fragmentMainAddLeftButton.setTypeface(getRegularMyriadFont());
-        presenter.onAttach(this);
-
+        if(presenter == null){
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectMainFragment(this);
+            presenter.onAttach(this);
+        }
         presenter.getEntries();
+
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Entry item) {
@@ -97,6 +99,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 startActivity(intent);*/
             }
         });
+
 
         presenter.getCoinDetail();
 
@@ -119,6 +122,10 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentMainRecylerView.setLayoutManager(manager);
         fragmentMainRecylerView.setAdapter(entryRecylerViewAdapters);
+        fragmentMainRecylerView.setHasFixedSize(true);
+        fragmentMainRecylerView.setItemViewCacheSize(20);
+        fragmentMainRecylerView.setDrawingCacheEnabled(true);
+        fragmentMainRecylerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
     }
 
@@ -148,6 +155,20 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 Intent intent = new Intent(getActivity(), PartipicateActivity.class);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //do when hidden
+        } else {
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectMainFragment(this);
+            presenter.onAttach(this);
+            presenter.getCoinDetail();
+
+
         }
     }
 

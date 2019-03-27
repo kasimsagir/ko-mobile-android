@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
+        android:scaleType="fitXY"
         android:id="@+id/row_entry_thumbnail_image_view"
         android:layout_width="80dp"
         android:layout_height="80dp"

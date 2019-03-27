@@ -99,5 +99,9 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentNotificationRecylerView.setLayoutManager(manager);
         fragmentNotificationRecylerView.setAdapter(adapter);
+        fragmentNotificationRecylerView.setHasFixedSize(true);
+        fragmentNotificationRecylerView.setItemViewCacheSize(20);
+        fragmentNotificationRecylerView.setDrawingCacheEnabled(true);
+        fragmentNotificationRecylerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 }

@@ -121,4 +121,9 @@ public class CreateEntryFragmentPresenter<V extends CreateEntryFragmentMvpView> 
 
 
     }
+
+    @Override
+    public void clearSelectedServerId() {
+        serverId=null;
+    }
 }

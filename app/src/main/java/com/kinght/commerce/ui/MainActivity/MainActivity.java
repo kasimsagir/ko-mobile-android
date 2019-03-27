@@ -135,6 +135,12 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
     };
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+
+    @Override
     public void openMainFragment() {
         fm.beginTransaction().hide(active).show(mainFragment).commit();
         active = mainFragment;

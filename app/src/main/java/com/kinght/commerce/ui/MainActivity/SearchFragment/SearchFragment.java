@@ -113,6 +113,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         fragmentSearchEntryRecylerView.setLayoutManager(manager);
         fragmentSearchEntryRecylerView.setAdapter(entryRecylerViewAdapters);
+        fragmentSearchEntryRecylerView.setHasFixedSize(true);
+        fragmentSearchEntryRecylerView.setItemViewCacheSize(20);
+        fragmentSearchEntryRecylerView.setDrawingCacheEnabled(true);
+        fragmentSearchEntryRecylerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
     }
 
