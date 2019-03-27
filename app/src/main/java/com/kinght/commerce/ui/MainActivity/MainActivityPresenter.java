@@ -75,11 +75,8 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
             getMvpView().openMainFragment();
         } else if (account.equalsIgnoreCase("SEARCH")) {
             getMvpView().openSearchFragment();
-        } else if (account.equalsIgnoreCase("NOTIFICATION")) {
-            getMvpView().openNotificationFragment();
         } else {
             if (getDataManager().getAuthorizationKey() == "") {
-
                 getMvpView().showDialogWithOutChoose("Uyarı", "Bu Özelliği kullanabilmek için giriş yapmanız gerekmekte", "Giriş Yap", new DialogCallback() {
                     @Override
                     public void pressedPossitiveButton() {
@@ -98,6 +95,8 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
                     getMvpView().createEntryFragment();
                 } else if (account.equalsIgnoreCase("ACCOUNT")) {
                     getMvpView().openAccountFragment();
+                } else if (account.equalsIgnoreCase("NOTIFICATION")) {
+                    getMvpView().openNotificationFragment();
                 }
             }
         }

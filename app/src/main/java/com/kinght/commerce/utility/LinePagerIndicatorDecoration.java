@@ -77,7 +77,7 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
             return;
         }
 
-        // find offset of active page (if the user is scrolling)
+        // find offset of active page (if the user isExactTime scrolling)
         final View activeChild = layoutManager.findViewByPosition(activePosition);
         int left = activeChild.getLeft();
         int width = activeChild.getWidth();

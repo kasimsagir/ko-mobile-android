@@ -34,7 +34,7 @@ public class Firebase extends FirebaseMessagingService {
 
 
         // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
+        // message, here isExactTime where that should be initiated. See sendNotification method below.
     }
 
     public void showNotification(Context context, String title, String body, Intent intent) {

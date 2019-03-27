@@ -144,6 +144,7 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
     public void openMainFragment() {
         fm.beginTransaction().hide(active).show(mainFragment).commit();
         active = mainFragment;
+        CommonUtils.hideKeyboard(MainActivity.this);
     }
 
     @Override

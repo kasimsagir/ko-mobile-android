@@ -16,8 +16,11 @@ import com.kinght.commerce.R;
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.Event.Event;
+import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,15 +38,16 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         ((MvpApp) context.getApplicationContext()).getActivityComponent().injectNotificationReceiver(this);
         id=intent.getIntExtra("id",0);
-        Log.d("Notification ID",String.valueOf(id));
-        Log.d("veri","Broadcast çalıştı 1");
+        Calendar calendar = Calendar.getInstance();
+
         dataManager.getEvents(new ServiceCallback<List<Event>>() {
             @Override
             public void onSuccess(List<Event> response) {
                 Log.d("veri","Broadcast çalıştı 2");
-                if(dataManager.getEventHours(id).isSelected()){
-                    Log.d("veri","Broadcast çalıştı 3");
-                    showNotification(context, intent.getStringExtra("key"), intent.getStringExtra("key")+" etkinliği "+ Constant.ALARM_INCREASE+" dakika sonra başlayacak",intent);
+                if(dataManager.getEventHours(id).isSelected() ){
+                    if(new Date(System.currentTimeMillis()).getHours() == new Date(dataManager.getEventHours(id).getCurrentMilisTime(calendar.get(Calendar.DAY_OF_WEEK))).getHours()){
+                        showNotification(context, intent.getStringExtra("key"), intent.getStringExtra("key")+" etkinliği "+ Constant.ALARM_INCREASE+" dakika sonra başlayacak",intent);
+                    }
                 }
 
             }

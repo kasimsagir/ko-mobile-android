@@ -154,9 +154,10 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     public void openMainFragment() {
 
         base64Image="";
-        fragmentCreateEntryImageSelectFromImageView.setImageBitmap(null);
+        fragmentCreateEntryImageSelectFromImageView.setImageResource(R.drawable.ic_tab_add_rentagle);
         fragmentCreateEntryHeaderEditText.setText("");
         presenter.clearSelectedServerId();
+        fragmentCreateEntrySelectServerEditText.setText("");
         fragmentCreateEntryMessageEditText.setText("");
         fragmentCreateEntryPriceEditText.setText("");
         ((MainActivity)getActivity()).openMainFragment();
