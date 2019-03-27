@@ -20,21 +20,26 @@ import com.kinght.commerce.ui.LoginActivity.LoginActivityPresenter;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.ChooseFragment.ChooseFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragment;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.CreateEntryFragment.CreateEntryFragmentPresenter;
 import com.kinght.commerce.ui.MainActivity.MainActivityMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainActivityMvpView;
 import com.kinght.commerce.ui.MainActivity.MainActivityPresenter;
+import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragment;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.MainFragment.MainFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragment;
 import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.NotificationFragment.NotificationFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragmentPresenter;
+import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpPresenter;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentMvpView;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragmentPresenter;
@@ -171,5 +176,35 @@ public class PresenterModules {
     @Provides
     EventsActivityMvpPresenter<EventsActivityMvpView> provideEventsActivity(DataManager dataManager){
         return new EventsActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    @Singleton
+    MainFragment provideMainFragmentInit(){
+        return new MainFragment();
+    }
+
+    @Provides
+    @Singleton
+    SearchFragment provideSearchFragmentInit(){
+        return new SearchFragment();
+    }
+
+    @Provides
+    @Singleton
+    CreateEntryFragment provideCreateEntryFragmentInit(){
+        return new CreateEntryFragment();
+    }
+
+    @Provides
+    @Singleton
+    NotificationFragment provideNotificationFragmentInit(){
+        return new NotificationFragment();
+    }
+
+    @Provides
+    @Singleton
+    ProfileFragment provideProfileFragmentInit(){
+        return new ProfileFragment();
     }
 }

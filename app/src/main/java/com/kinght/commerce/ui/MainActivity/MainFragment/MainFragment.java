@@ -66,6 +66,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
     SwipeRefreshLayout fragmentMainSwipeRefreshLayout;
 
 
+    @Inject
     public MainFragment() {
         // Required empty public constructor
     }
@@ -138,6 +139,7 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 presenter.getServerList();
                 break;
             case R.id.fragment_main_add_left_button:
+                presenter.showFilter();
                 break;
             case R.id.fragment_main_gold_image_view:
                 CommonUtils.changeActivity(getActivity(), ProductListActivity.class);

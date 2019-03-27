@@ -1,7 +1,6 @@
 package com.kinght.commerce.ui.base;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -20,6 +19,7 @@ import com.kinght.commerce.utility.CommonUtils;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -77,6 +77,14 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
             public void onDismiss(DialogInterface dialogInterface) {
             }
         });
+        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
 
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.show();
@@ -92,6 +100,15 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
+
+        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
 
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.show();

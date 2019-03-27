@@ -17,8 +17,8 @@ import javax.inject.Inject;
 
 public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePresenter<V> implements MainFragmentMvpPresenter<V> {
     List<String> serverNameList;
-    String serverId=null;
-
+    String serverId = null;
+    List<Entry> entryList;
     @Inject
     public MainFragmentPresenter(DataManager dataManager) {
         super(dataManager);
@@ -42,7 +42,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
                     public void selectedItem(Integer select) {
                         getMvpView().getSelectedServerName(response.get(select).getName());
                         getServerEntries(response.get(select).get_id());
-                        serverId=response.get(select).get_id();
+                        serverId = response.get(select).get_id();
 
                     }
                 });
@@ -66,6 +66,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
         getDataManager().getEntries(new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
+                entryList=response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }
@@ -88,9 +89,10 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
     @Override
     public void getServerEntries(String serverId) {
         getMvpView().showLoading();
-        getDataManager().getServerEntries(serverId,new ServiceCallback<List<Entry>>() {
+        getDataManager().getServerEntries(serverId, new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
+                entryList=response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }
@@ -129,7 +131,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
             }
         });
 
-        if(getDataManager().getAuthorizationKey() != ""){
+        if (getDataManager().getAuthorizationKey() != "") {
             getDataManager().getMe(new ServiceCallback<User>() {
                 @Override
                 public void onSuccess(User response) {
@@ -153,10 +155,27 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
     @Override
     public void refresh() {
-        if(serverId == null){
+        if (serverId == null) {
             getEntries();
-        }else {
+        } else {
             getServerEntries(serverId);
         }
+    }
+
+    @Override
+    public void showFilter() {
+        List<String> options = new ArrayList<>();
+        options.add("En Son Eklenenler");
+        options.add("En Eskiler");
+        getMvpView().showListDialog(options, "Filtreleme", new ListSelectItem<Integer>() {
+            @Override
+            public void selectedItem(Integer select) {
+                if (select == 0) {
+
+                } else if (select == 1) {
+                    
+                }
+            }
+        });
     }
 }

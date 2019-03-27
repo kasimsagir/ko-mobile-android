@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -61,8 +62,19 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_search, container, false);
-        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
-        presenter.onAttach(this);
+
+
+        if(presenter == null){
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
+            presenter.onAttach(this);
+
+        }
+
+        presenter.getAllEntries();
+        presenter.getMe();
+
+
+
         ButterKnife.bind(this, root);
 
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
@@ -74,8 +86,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
             }
         });
 
-        presenter.getAllEntries();
-        presenter.getMe();
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -103,6 +114,18 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         fragmentSearchEntryRecylerView.setLayoutManager(manager);
         fragmentSearchEntryRecylerView.setAdapter(entryRecylerViewAdapters);
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //do when hidden
+        } else {
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
+            presenter.onAttach(this);
+
+        }
     }
 
     @Override

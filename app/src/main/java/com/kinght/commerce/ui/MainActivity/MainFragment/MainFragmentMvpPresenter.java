@@ -9,4 +9,6 @@ public interface MainFragmentMvpPresenter<V extends MainFragmentMvpView> extends
     void getCoinDetail();
 
     void refresh();
+
+    void showFilter();
 }

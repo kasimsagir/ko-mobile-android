@@ -34,12 +34,33 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
     @Inject
     MainActivityMvpPresenter<MainActivityMvpView> presenter;
 
+    @Inject
+    MainFragment mainFragment;
+
+    @Inject
+    SearchFragment searchFragment;
+
+    @Inject
+    CreateEntryFragment createEntryFragment;
+
+    @Inject
+    NotificationFragment notificationFragment;
+
+    @Inject
+    ProfileFragment profileFragment;
+
+
+    Fragment active = mainFragment;
+
+    final FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +72,19 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         presenter.onAttach(this);
+        active=mainFragment;
         presenter.mainFragment();
 
-        FirebaseInstanceId.getInstance().getInstanceId()
+        fm.beginTransaction().add(R.id.fragment, searchFragment, "2").hide(searchFragment).commit();
+        fm.beginTransaction().add(R.id.fragment, createEntryFragment, "3").hide(createEntryFragment).commit();
+        fm.beginTransaction().add(R.id.fragment, notificationFragment, "4").hide(notificationFragment).commit();
+        fm.beginTransaction().add(R.id.fragment, profileFragment, "5").hide(profileFragment).commit();
+        fm.beginTransaction().add(R.id.fragment, mainFragment, "1").commit();
+
+
+      //  fm.beginTransaction().add(R.id.fragment, mainFragment, "1").commit();
+
+       /* FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -67,6 +98,8 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
                         Log.d("veri","veri");
                     }
                 });
+*/
+
 
 
 
@@ -103,7 +136,8 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
     @Override
     public void openMainFragment() {
-        CommonUtils.switchToFragment(MainActivity.this, new MainFragment());
+        fm.beginTransaction().hide(active).show(mainFragment).commit();
+        active = mainFragment;
     }
 
     @Override
@@ -114,25 +148,27 @@ public class MainActivity extends BaseActivity implements MainActivityMvpView {
 
     @Override
     public void openAccountFragment() {
-        CommonUtils.switchToFragment(MainActivity.this, new ProfileFragment());
+        fm.beginTransaction().hide(active).show(profileFragment).commit();
+        active = profileFragment;
 
     }
 
     @Override
     public void openSearchFragment() {
-        CommonUtils.switchToFragment(MainActivity.this, new SearchFragment());
-
+        fm.beginTransaction().hide(active).show(searchFragment).commit();
+        active = searchFragment;
     }
 
     @Override
     public void openNotificationFragment() {
-        CommonUtils.switchToFragment(MainActivity.this,new NotificationFragment());
+        fm.beginTransaction().hide(active).show(notificationFragment).commit();
+        active = notificationFragment;
     }
 
     @Override
     public void createEntryFragment() {
-        CommonUtils.switchToFragment(MainActivity.this, new CreateEntryFragment());
-
+        fm.beginTransaction().hide(active).show(createEntryFragment).commit();
+        active = createEntryFragment;
     }
 
     @Override

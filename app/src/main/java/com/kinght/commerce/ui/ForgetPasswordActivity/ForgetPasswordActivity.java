@@ -71,10 +71,10 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
                 presenter.configurationForChangePassword();
                 titleToolbarTitleTextView.setText("Şifremi Güncelle");
 
-            }else {
-                titleToolbarTitleTextView.setText("Şifremi Unuttum");
-
             }
+        }else {
+            titleToolbarTitleTextView.setText("Şifremi Unuttum");
+
         }
 
     }

@@ -63,7 +63,6 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectProfileFragment(this);
         ButterKnife.bind(this, root);
         entryRecylerViewAdapters = new EntryRecylerViewAdapters(new EntryRecylerViewAdapters.ItemListener() {
             @Override
@@ -74,8 +73,11 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
             }
         });
 
-        presenter.onAttach(this);
-        presenter.getMe();
+        if(presenter == null){
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectProfileFragment(this);
+            presenter.onAttach(this);
+        }
+
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
 
@@ -96,6 +98,21 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Profilm");
         fragmentProfilePhoneNumberTextView.setText(s);
         fragmentProfileNicknameTextView.setText(nickname);
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //do when hidden
+        } else {
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectProfileFragment(this);
+            presenter.onAttach(this);
+            presenter.getMe();
+
+
+        }
     }
 
 

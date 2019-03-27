@@ -51,10 +51,13 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
 
         root = inflater.inflate(R.layout.fragment_notification, container, false);
         ButterKnife.bind(this, root);
-        ((MvpApp) getActivity().getApplication()).getActivityComponent().injectNotificationFragment(this);
-        presenter.onAttach(this);
 
-        presenter.getNotifications();
+        if(presenter == null){
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectNotificationFragment(this);
+            presenter.onAttach(this);
+        }
+
+
         adapter = new NotificiationRecylerviewAdapter(new NotificiationRecylerviewAdapter.ItemListener() {
             @Override
             public void onItemClick(Notifications item) {
@@ -70,6 +73,20 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
             }
         });
         return root;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //do when hidden
+        } else {
+            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectNotificationFragment(this);
+            presenter.onAttach(this);
+            presenter.getNotifications();
+
+
+        }
     }
 
 
