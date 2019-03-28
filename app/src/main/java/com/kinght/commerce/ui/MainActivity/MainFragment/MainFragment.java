@@ -94,9 +94,6 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
                 intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
                 startActivity(intent);
 
-               /* Intent intent = new Intent(getActivity(), ProductListActivity.class);
-                intent.putExtra(Constant.BUNDLE_ENTRY_ID, item.getId());
-                startActivity(intent);*/
             }
         });
 
@@ -139,6 +136,11 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         fragmentMainCoinTextView.setText(String.valueOf(value));
     }
 
+    @Override
+    public void setFilterName(String s) {
+fragmentMainAddLeftButton.setText(s);
+    }
+
     @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button, R.id.fragment_main_gold_image_view, R.id.fragment_main_partipicate_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -164,8 +166,11 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
         if (hidden) {
             //do when hidden
         } else {
-            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectMainFragment(this);
-            presenter.onAttach(this);
+            if(presenter == null){
+                ((MvpApp) getActivity().getApplication()).getActivityComponent().injectMainFragment(this);
+                presenter.onAttach(this);
+            }
+
             presenter.getCoinDetail();
 
 

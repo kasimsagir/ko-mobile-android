@@ -11,4 +11,6 @@ public interface MainFragmentMvpView extends MvpView {
     void getSelectedServerName(String name);
 
     void coinDetail(int value);
+
+    void setFilterName(String s);
 }

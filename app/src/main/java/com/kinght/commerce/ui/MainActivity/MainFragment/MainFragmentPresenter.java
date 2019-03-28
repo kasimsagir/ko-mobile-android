@@ -20,6 +20,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
     List<String> serverNameList;
     String serverId = null;
     List<Entry> entryList;
+
     @Inject
     public MainFragmentPresenter(DataManager dataManager) {
         super(dataManager);
@@ -67,7 +68,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
         getDataManager().getEntries(new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
-                entryList=response;
+                entryList = response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }
@@ -93,7 +94,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
         getDataManager().getServerEntries(serverId, new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
-                entryList=response;
+                entryList = response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }
@@ -147,7 +148,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
                 @Override
                 public void onError(int code, String errorResponse) {
-                   // getMvpView().showError(errorResponse);
+                    // getMvpView().showError(errorResponse);
                 }
             });
         }
@@ -168,15 +169,64 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
         List<String> options = new ArrayList<>();
         options.add("En Son Eklenenler");
         options.add("En Eskiler");
+        options.add("Azalan Fiyat");
+        options.add("Artan Fiyat");
         getMvpView().showListDialog(options, "Filtreleme", new ListSelectItem<Integer>() {
             @Override
             public void selectedItem(Integer select) {
-                if (select == 0) {
-
-                } else if (select == 1) {
-                    
+                for(int i=1;i<entryList.size();i++){
+                    filter(select);
                 }
+                getMvpView().setFilterName(options.get(select));
             }
         });
     }
+
+
+    public void filter(int type) {
+        Entry entry = null;
+        int indexOfSwap = 0;
+        for (int i = 0; i < entryList.size(); i++) {
+            if (entry == null) {
+                indexOfSwap = i;
+                entry = entryList.get(i);
+            } else {
+                if (type == 1) {
+                    if (entryList.get(i).getCreatedDate() < entry.getCreatedDate()) {
+                        entryList.set(indexOfSwap,entryList.get(i));
+                        entryList.set(i,entry);
+                        indexOfSwap=i;
+                        entry = entryList.get(i);
+                    }
+
+                }else if(type == 0){
+                    if (entryList.get(i).getCreatedDate() > entry.getCreatedDate()) {
+                        entryList.set(indexOfSwap,entryList.get(i));
+                        entryList.set(i,entry);
+                        indexOfSwap=i;
+                        entry = entryList.get(i);
+                    }
+                }else if(type == 2){
+                    if (entryList.get(i).getPrice() > entry.getPrice()) {
+                        entryList.set(indexOfSwap,entryList.get(i));
+                        entryList.set(i,entry);
+                        indexOfSwap=i;
+                        entry = entryList.get(i);
+                    }
+                }
+                else if(type == 3){
+                    if (entryList.get(i).getPrice() < entry.getPrice()) {
+                        entryList.set(indexOfSwap,entryList.get(i));
+                        entryList.set(i,entry);
+                        indexOfSwap=i;
+                        entry = entryList.get(i);
+                    }
+                }
+            }
+
+        }
+        getMvpView().loadDataToList(entryList);
+
+    }
+
 }
