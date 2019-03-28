@@ -15,14 +15,15 @@ import javax.inject.Inject;
 
 public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends BasePresenter<V> implements SearchFragmentMvpPresenter<V> {
 
-    List<String> serverList;
-    List<Entry> entryList;
+    List<String> serverList = new ArrayList<>();
+    List<Entry> entryList = new ArrayList<>();
+
     String selectedServerId;
+
     @Inject
     public SearchFragmentPresenter(DataManager dataManager) {
         super(dataManager);
-        serverList=new ArrayList<>();
-        entryList=new ArrayList<>();
+
     }
 
     @Override
@@ -31,14 +32,14 @@ public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends Ba
         getDataManager().getServers(new ServiceCallback<List<Servers>>() {
             @Override
             public void onSuccess(List<Servers> response) {
-                for(Servers server:response){
+                for (Servers server : response) {
                     serverList.add(server.getName());
                 }
 
                 getMvpView().showListDialog(serverList, "Server Seç", new ListSelectItem<Integer>() {
                     @Override
                     public void selectedItem(Integer select) {
-                        selectedServerId=response.get(select).get_id();
+                        selectedServerId = response.get(select).get_id();
                         getMvpView().showServerNameToUser(response.get(select).getName());
                         getServerEntries(response.get(select).get_id());
 
@@ -61,8 +62,8 @@ public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends Ba
     @Override
     public void getFilterEntries(String input) {
         List<Entry> entries = new ArrayList<>();
-        for(Entry entry:entryList){
-            if(entry.getHeader().contains(input) || entry.getMessage().contains(input)){
+        for (Entry entry : entryList) {
+            if (entry.getHeader().contains(input) || entry.getMessage().contains(input)) {
                 entries.add(entry);
             }
         }
@@ -74,7 +75,7 @@ public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends Ba
         getDataManager().getEntries(new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
-                entryList=response;
+                entryList = response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }
@@ -116,10 +117,10 @@ public class SearchFragmentPresenter<V extends SearchFragmentMvpView> extends Ba
 
     public void getServerEntries(String serverId) {
         getMvpView().showLoading();
-        getDataManager().getServerEntries(serverId,new ServiceCallback<List<Entry>>() {
+        getDataManager().getServerEntries(serverId, new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
-                entryList=response;
+                entryList = response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
             }

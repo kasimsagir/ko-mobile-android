@@ -24,6 +24,7 @@
         <EditText
             android:textColorHint="@color/white"
             android:hint="Ad"
+            android:focusable="false"
             android:id="@+id/activity_update_profile_customer_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +45,7 @@
         <EditText
             android:textColorHint="@color/white"
             android:hint="Soyad"
+            android:focusable="false"
             android:id="@+id/activity_update_profile_surname_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -59,7 +59,8 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
     }
 
     @Override
-    public void register(String name, String surname, String nickname, String phoneNumber, String password, boolean isCheckPhone) {
+    public void register(String name, String surname, String nickname, String phoneNumber, String password, boolean isCheckPhone, boolean isCheckTerm) {
+
         if (!CommonUtils.isRegularText(name)) {
             getMvpView().showError("Lütfen isim alanını doldurunuz");
         } else if (!CommonUtils.isRegularText(nickname)) {
@@ -68,7 +69,12 @@ public class RegisterActivityPresenter<V extends RegisterActivityMvpView> extend
             getMvpView().showError("Lütfen telefon alanını doldurunuz");
         } else if (!CommonUtils.isRegularText(password)) {
             getMvpView().showError("Lütfen şifre alanını doldurunuz");
-        } else {
+        }
+        else if(!isCheckTerm){
+            getMvpView().showError("Kaydınızı tamamlamak istiyorsanız sözleşmeyi kabul etmelisiniz");
+
+        }
+        else {
             getMvpView().showLoading();
             phoneNumber = phoneNumber.replace("(", "").replace(")", "").replace("-", "");
 

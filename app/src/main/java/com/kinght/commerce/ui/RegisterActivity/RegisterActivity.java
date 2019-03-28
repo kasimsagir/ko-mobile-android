@@ -4,6 +4,7 @@ package com.kinght.commerce.ui.RegisterActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
@@ -11,11 +12,17 @@ import com.kinght.commerce.R;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
+import com.luseen.autolinklibrary.AutoLinkMode;
+import com.luseen.autolinklibrary.AutoLinkOnClickListener;
+import com.luseen.autolinklibrary.AutoLinkTextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,9 +49,10 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
     EditText activityRegisterPhonePasswordText;
     @BindView(R.id.activity_login_check_image_view)
     AppCompatImageView activityLoginCheckImageView;
-
     @BindView(R.id.activity_register_phone_number_check_image_view)
     AppCompatImageView activityRegisterPhoneNumberCheckImageView;
+    @BindView(R.id.activity_login_use_terms_text_view)
+    AutoLinkTextView useTermsTextView;
 
     boolean isCheck = false;
     boolean isPhoneCheck= false;
@@ -61,6 +69,21 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
         setSupportActionBar(toolbar);
         setTitle("Kayıt Ol");
 
+        useTermsTextView.addAutoLinkMode(
+                AutoLinkMode.MODE_CUSTOM);
+        String burada = "ekleyerek";
+        useTermsTextView.setCustomRegex("\\s" + burada + "\\b");
+        useTermsTextView.setAutoLinkText("Bilgililerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesini için burada belirtilen şartlarda izin veriyorum ve Kullanıcı gelnel sözleşmesini"
+);
+        useTermsTextView.setCustomModeColor(ContextCompat.getColor(this, R.color.white));
+        useTermsTextView.setSelectedStateColor(ContextCompat.getColor(this, R.color.dark_grey));
+
+        useTermsTextView.setAutoLinkOnClickListener(new AutoLinkOnClickListener() {
+            @Override
+            public void onAutoLinkTextClick(AutoLinkMode autoLinkMode, String matchedText) {
+                Toast.makeText(getApplicationContext(),"sss",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @OnClick({R.id.activity_register_server_edit_text, R.id.activity_register_register_button, R.id.activity_login_check_image_view,R.id.activity_register_phone_number_check_image_view})
@@ -70,7 +93,7 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
                 presenter.showServerList();
                 break;
             case R.id.activity_register_register_button:
-                presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText), CommonUtils.regularText(activityRegisterSurnameEditText), CommonUtils.regularText(activityRegisterCustomerNicknameEditText), CommonUtils.regularText(activityRegisterPhoneEditText), CommonUtils.regularText(activityRegisterPhonePasswordText),isPhoneCheck);
+                presenter.register(CommonUtils.regularText(activityRegisterCustomerNameEditText), CommonUtils.regularText(activityRegisterSurnameEditText), CommonUtils.regularText(activityRegisterCustomerNicknameEditText), CommonUtils.regularText(activityRegisterPhoneEditText), CommonUtils.regularText(activityRegisterPhonePasswordText),isPhoneCheck,isCheck);
                 break;
             case R.id.activity_login_check_image_view:
                 if (!isCheck) {

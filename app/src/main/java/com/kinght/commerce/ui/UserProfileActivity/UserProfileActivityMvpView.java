@@ -7,5 +7,5 @@ import java.util.List;
 public interface UserProfileActivityMvpView extends MvpView {
     void loadDataToList(List<Entry> entryList);
 
-    void loadUserDataToView(String phoneNumber, String nickname);
+    void loadUserDataToView(String phoneNumber, String nickname, String serverName);
 }

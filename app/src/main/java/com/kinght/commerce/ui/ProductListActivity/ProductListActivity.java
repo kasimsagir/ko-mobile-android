@@ -2,6 +2,7 @@ package com.kinght.commerce.ui.ProductListActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -53,7 +54,7 @@ public class ProductListActivity extends BaseActivity implements BillingProcesso
         goldList.add(new Gold(220, "19.99 TL", "product_3"));
         goldList.add(new Gold(300, "26.99 TL", "product_4"));
         goldList.add(new Gold(400, "34.99 TL", "product_5"));
-        adapters = new GoldRecylerViewAdapters(goldList, new GoldRecylerViewAdapters.ItemListener() {
+        adapters = new GoldRecylerViewAdapters(bp,goldList, new GoldRecylerViewAdapters.ItemListener() {
             @Override
             public void onItemClick(Gold item) {
                 bp.purchase(ProductListActivity.this, item.getId());
@@ -81,6 +82,8 @@ public class ProductListActivity extends BaseActivity implements BillingProcesso
         /*
          * Called when requested PRODUCT ID was successfully purchased
          */
+
+        Log.d("veri","veri");
     }
 
     @Override
@@ -91,6 +94,8 @@ public class ProductListActivity extends BaseActivity implements BillingProcesso
          * Note - this includes handling the case where the user canceled the buy dialog:
          * errorCode = Constants.BILLING_RESPONSE_RESULT_USER_CANCELED
          */
+        Log.d("veri","veri");
+
     }
 
     @Override
@@ -99,6 +104,8 @@ public class ProductListActivity extends BaseActivity implements BillingProcesso
          * Called when purchase history was restored and the list of all owned PRODUCT ID's
          * was loaded from Google Play
          */
+        Log.d("veri","veri");
+
     }
 
     @Override

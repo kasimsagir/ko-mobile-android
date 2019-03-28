@@ -45,6 +45,8 @@ public class UserProfileActivity extends BaseActivity implements UserProfileActi
     EntryRecylerViewAdapters entryRecylerViewAdapters;
 
     String userId;
+    @BindView(R.id.activity_user_profile_server_name_text_view)
+    TextView activityUserProfileServerNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +57,10 @@ public class UserProfileActivity extends BaseActivity implements UserProfileActi
         ((MvpApp) getApplication()).getActivityComponent().injectUserProfileActivity(this);
         presenter.onAttach(this);
 
-        Bundle bundle=getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
 
-        if(bundle != null){
-            userId=bundle.getString(Constant.BUNDLE_USER_ID,"");
+        if (bundle != null) {
+            userId = bundle.getString(Constant.BUNDLE_USER_ID, "");
         }
 
 
@@ -86,13 +88,15 @@ public class UserProfileActivity extends BaseActivity implements UserProfileActi
     }
 
     @Override
-    public void loadUserDataToView(String s, String nickname) {
+    public void loadUserDataToView(String s, String nickname, String serverName) {
         activityUserProfilePhoneNumberTextView.setText(s);
         activityUserProfileNicknameTextView.setText(nickname);
+        activityUserProfileServerNameTextView.setText(serverName);
         setTitle(nickname);
     }
+
     @OnClick(R.id.activity_user_profile_phone_number_text_view)
     public void onViewClicked() {
-        CommonUtils.callPhone(getActivity(),activityUserProfilePhoneNumberTextView.getText().toString());
+        CommonUtils.callPhone(getActivity(), activityUserProfilePhoneNumberTextView.getText().toString());
     }
 }

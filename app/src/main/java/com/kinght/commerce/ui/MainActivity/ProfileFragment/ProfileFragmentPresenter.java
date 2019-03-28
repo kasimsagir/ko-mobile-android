@@ -21,9 +21,9 @@ public class ProfileFragmentPresenter<V extends ProfileFragmentMvpView> extends 
             public void onSuccess(User response) {
                 getMvpView().loadDataToList(response.getEntryList());
                 if(response.isShowPhoneNumber()){
-                    getMvpView().loadUserDataToView(response.getPhoneNumber(),response.getNickname());
+                    getMvpView().loadUserDataToView(response.getPhoneNumber(),response.getNickname(),response.getServers().getName());
                 }else {
-                    getMvpView().loadUserDataToView("",response.getNickname());
+                    getMvpView().loadUserDataToView("",response.getNickname(), response.getServers().getName());
                 }
                 getMvpView().hideLoading();
             }

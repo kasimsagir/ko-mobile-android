@@ -25,7 +25,9 @@
         android:background="@drawable/corner_round_grey_linear_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include5" />
+        app:layout_constraintTop_toBottomOf="@+id/include5"
+
+       />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_search_server_name_button"

@@ -79,5 +79,8 @@ dependencies {
     // Mask Edittext
     implementation 'ru.egslava:MaskedEditText:1.0.5'
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+
+    implementation 'com.github.armcha:AutoLinkTextView:0.3.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

@@ -104,6 +104,21 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
                 return false;
             }
         });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                presenter.getFilterEntries("");
+                return false;
+            }
+        });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.onActionViewExpanded();
+            }
+        });
         return root;
     }
 
@@ -126,8 +141,11 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         if (hidden) {
             //do when hidden
         } else {
-            ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
-            presenter.onAttach(this);
+            if(presenter== null){
+                ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
+                presenter.onAttach(this);
+            }
+
 
         }
     }

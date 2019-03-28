@@ -49,6 +49,8 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
     TextView fragmentProfilePhoneNumberTextView;
     @BindView(R.id.fragment_profile_nickname_text_view)
     TextView fragmentProfileNicknameTextView;
+    @BindView(R.id.fragment_profile_server_name_text_view)
+    TextView fragmentProfileServerNameTextView;
 
 
     public ProfileFragment() {
@@ -73,7 +75,7 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
             }
         });
 
-        if(presenter == null){
+        if (presenter == null) {
             ((MvpApp) getActivity().getApplication()).getActivityComponent().injectProfileFragment(this);
             presenter.onAttach(this);
         }
@@ -98,10 +100,11 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
     }
 
     @Override
-    public void loadUserDataToView(String s, String nickname) {
+    public void loadUserDataToView(String phoneNumber, String nickname, String serverName) {
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Profilm");
-        fragmentProfilePhoneNumberTextView.setText(s);
+        fragmentProfilePhoneNumberTextView.setText(phoneNumber);
         fragmentProfileNicknameTextView.setText(nickname);
+        fragmentProfileServerNameTextView.setText(serverName);
     }
 
 
