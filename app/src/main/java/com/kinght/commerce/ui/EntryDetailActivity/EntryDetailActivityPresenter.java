@@ -150,7 +150,7 @@ public class EntryDetailActivityPresenter<V extends EntryDetailActivityMvpView> 
 
                 }
                 if(select == 1){
-
+                    getMvpView().openEntryUpdateActivity(entry.getId());
 
                 }
             }

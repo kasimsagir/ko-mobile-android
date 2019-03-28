@@ -162,8 +162,9 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
-    public void updateEntry(String area, String entryId, UpdateEntryRequest updateEntryRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        entryServices.updateEntry(area,entryId,updateEntryRequest,commonResponseServiceCallback);
+    public void updateEntry(Entry entry, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        entryServices.updateEntry(entry,commonResponseServiceCallback);
+
     }
 
     @Override

@@ -286,32 +286,10 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void updateEntryHeader(String header, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
-        updateEntryRequest.setHeader(header);
-        apiServices.updateEntry("HEADER",entryId,updateEntryRequest,commonResponseServiceCallback);
+    public void updateEntry(Entry entry, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.updateEntry(entry,commonResponseServiceCallback);
     }
 
-    @Override
-    public void updateEntryMessage(String message, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
-        updateEntryRequest.setMessage(message);
-        apiServices.updateEntry("MESSAGE",entryId,updateEntryRequest,commonResponseServiceCallback);
-    }
-
-    @Override
-    public void updateEntryPrice(int price, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
-        updateEntryRequest.setPrice(price);
-        apiServices.updateEntry("PRICE",entryId,updateEntryRequest,commonResponseServiceCallback);
-    }
-
-    @Override
-    public void updateEntryServer(String serverId, String entryId, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        UpdateEntryRequest updateEntryRequest=new UpdateEntryRequest();
-        updateEntryRequest.setServer(serverId);
-        apiServices.updateEntry("SERVER",entryId,updateEntryRequest,commonResponseServiceCallback);
-    }
 
     @Override
     public void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback) {

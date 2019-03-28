@@ -103,8 +103,8 @@ public interface ApiInterface {
     @GET("entries/{entryId}/detail")
     Call<Entry> getEntryDetail(@Path("entryId") String entryId);
 
-    @PATCH("secure/entries/{entryId}/update")
-    Call<CommonResponse> updateEntry(@Query("area") String area, @Path("entryId") String entryId, @Body UpdateEntryRequest updateEntryRequest);
+    @POST("secure/entries/{entryId}/update")
+    Call<CommonResponse> updateEntry(@Body Entry entry, @Path("entryId") String entryId);
 
     @GET("secure/notifications")
     Call<NotificationResponse> getNotifications();

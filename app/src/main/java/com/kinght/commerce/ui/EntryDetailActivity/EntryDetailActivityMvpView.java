@@ -8,4 +8,6 @@ public interface EntryDetailActivityMvpView extends MvpView {
     void showUserProfileActivity(String userId);
 
     void entryOwnerConfiguration();
+
+    void openEntryUpdateActivity(String id);
 }

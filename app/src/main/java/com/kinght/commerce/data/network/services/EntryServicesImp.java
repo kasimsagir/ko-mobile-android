@@ -131,8 +131,8 @@ public class EntryServicesImp implements EntryServices {
     }
 
     @Override
-    public void updateEntry(String area,String entryId, UpdateEntryRequest updateEntryRequest, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        Call<CommonResponse> call=apiInterface.updateEntry(area,entryId,updateEntryRequest);
+    public void updateEntry(Entry entry, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.updateEntry(entry,entry.getId());
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

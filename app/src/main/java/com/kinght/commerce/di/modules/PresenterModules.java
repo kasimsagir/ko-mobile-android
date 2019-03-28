@@ -61,6 +61,9 @@ import com.kinght.commerce.ui.SettingsActivity.SettingsActivityPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpPresenter;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityMvpView;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivityPresenter;
+import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivityMvpPresenter;
+import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivityMvpView;
+import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivityPresenter;
 import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityMvpPresenter;
 import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityMvpView;
 import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivityPresenter;
@@ -176,6 +179,11 @@ public class PresenterModules {
     @Provides
     EventsActivityMvpPresenter<EventsActivityMvpView> provideEventsActivity(DataManager dataManager){
         return new EventsActivityPresenter<>(dataManager);
+    }
+
+    @Provides
+    UpdateEntryActivityMvpPresenter<UpdateEntryActivityMvpView> provideUpdateEntryActivity(DataManager dataManager){
+        return new UpdateEntryActivityPresenter<>(dataManager);
     }
 
     @Provides

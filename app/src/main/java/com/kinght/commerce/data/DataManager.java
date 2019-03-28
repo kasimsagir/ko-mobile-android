@@ -41,10 +41,7 @@ public interface DataManager  {
     void partipicateLottery(String lotteryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void deleteEntry(String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getEntry(String entryId,ServiceCallback<Entry> entryServiceCallback);
-    void updateEntryHeader(String header,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-    void updateEntryMessage(String message,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-    void updateEntryPrice(int price,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-    void updateEntryServer(String serverId,String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void updateEntry(Entry entry, ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getNotifications(ServiceCallback<List<Notifications>> listServiceCallback);
     void forgetPasswordStepOne(String phoneNumber,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);

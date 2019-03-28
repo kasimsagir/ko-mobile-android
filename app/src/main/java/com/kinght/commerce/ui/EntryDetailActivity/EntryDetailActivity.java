@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
+import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivity;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
@@ -99,6 +100,13 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
         activityEntryDetailContactButton.setVisibility(View.GONE);
         activityEntryDetailEntryConfigButton.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void openEntryUpdateActivity(String id) {
+        Intent intent = new Intent(EntryDetailActivity.this, UpdateEntryActivity.class);
+        intent.putExtra(Constant.BUNDLE_ENTRY_ID, id);
+        startActivity(intent);
     }
 
     @OnClick({R.id.activity_entry_detail_contact_button, R.id.activity_entry_report_button, R.id.activity_entry_detail_published_text_view,R.id.activity_entry_detail_entry_config_button})

@@ -14,5 +14,5 @@ public interface EntryServices {
     void getEntries(ServiceCallback<List<Entry>> entries);
     void deleteEntry(String entryId,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getEntry(String entryId,ServiceCallback<Entry> entryServiceCallback);
-    void updateEntry(String area,String entryId, UpdateEntryRequest updateEntryRequest,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void updateEntry(Entry entry,ServiceCallback<CommonResponse> commonResponseServiceCallback);
 }

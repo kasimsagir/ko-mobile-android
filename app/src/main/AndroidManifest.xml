@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.EventsActivity.EventsActivity"></activity>
+        <activity android:name=".ui.UpdateEntryActivity.UpdateEntryActivity"></activity>
+        <activity android:name=".ui.EventsActivity.EventsActivity" />
         <activity android:name=".ui.NotificationSettingsActivity.NotificationSettinsActivity" />
         <activity android:name=".ui.ProductListActivity.ProductListActivity" />
         <activity android:name=".ui.NotificationSettingsActivity.NotificationSettinsActivity" />
@@ -66,7 +67,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="123" />
 
-        <receiver android:name=".firebase.NotificationReceiver"></receiver>
+        <receiver android:name=".firebase.NotificationReceiver" />
     </application>
 
 </manifest>

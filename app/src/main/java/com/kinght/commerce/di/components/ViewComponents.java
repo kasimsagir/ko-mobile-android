@@ -25,6 +25,7 @@ import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.SettingsActivity.SettingsActivity;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
+import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivity;
 import com.kinght.commerce.ui.UpdateProfileActivity.UpdateProfileActivity;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
 
@@ -75,4 +76,6 @@ public interface ViewComponents {
     void injectEventsActivity(EventsActivity eventsActivity);
 
     void injectNotificationReceiver(NotificationReceiver notificationReceiver);
+
+    void injectUpdateEntryActivity(UpdateEntryActivity updateEntryActivity);
 }
