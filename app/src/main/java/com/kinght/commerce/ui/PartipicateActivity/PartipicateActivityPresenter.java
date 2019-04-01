@@ -5,6 +5,7 @@ import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.ui.base.BasePresenter;
+import com.kinght.commerce.ui.base.DialogCallback;
 
 import java.util.List;
 
@@ -73,6 +74,18 @@ public class PartipicateActivityPresenter<V extends PartipicateActivityMvpView> 
             public void onSuccess(CommonResponse response) {
                 getMvpView().hideLoading();
                 getPartipicate();
+
+                getMvpView().showDialogWithOutChoose("Başarılı", "Çekilişe başarıyla katıldınız. Çekiliş sonuçları uygulama içerisinden bildirim olarak telefonunuza gelecektir. Sahte SMS'lere dikkat ediniz", "Tamam", new DialogCallback() {
+                    @Override
+                    public void pressedPossitiveButton() {
+
+                    }
+
+                    @Override
+                    public void pressedNegativeButton() {
+
+                    }
+                });
             }
 
             @Override

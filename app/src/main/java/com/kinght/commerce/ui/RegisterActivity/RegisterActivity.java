@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
 import com.kinght.commerce.ui.SmsVerificationActivity.SmsVerificationActivity;
+import com.kinght.commerce.ui.UseTermsActivity.UseTermsActivity;
 import com.kinght.commerce.ui.base.BaseActivity;
 import com.kinght.commerce.utility.CommonUtils;
 import com.luseen.autolinklibrary.AutoLinkMode;
@@ -71,17 +72,17 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityMv
 
         useTermsTextView.addAutoLinkMode(
                 AutoLinkMode.MODE_CUSTOM);
-        String burada = "ekleyerek";
+        String burada = "Kullanıcı genel sözleşmesini";
         useTermsTextView.setCustomRegex("\\s" + burada + "\\b");
-        useTermsTextView.setAutoLinkText("Bilgililerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesini için burada belirtilen şartlarda izin veriyorum ve Kullanıcı gelnel sözleşmesini"
-);
+        useTermsTextView.setAutoLinkText("Bilgilerimi ekleyerek tarafıma ticari elektronik iletiler gönderilmesi için burada belirtilen şartlarda izin veriyorum ve Kullanıcı genel sözleşmesini inceledim.");
+
         useTermsTextView.setCustomModeColor(ContextCompat.getColor(this, R.color.white));
         useTermsTextView.setSelectedStateColor(ContextCompat.getColor(this, R.color.dark_grey));
 
         useTermsTextView.setAutoLinkOnClickListener(new AutoLinkOnClickListener() {
             @Override
             public void onAutoLinkTextClick(AutoLinkMode autoLinkMode, String matchedText) {
-                Toast.makeText(getApplicationContext(),"sss",Toast.LENGTH_SHORT).show();
+                CommonUtils.changeActivity(RegisterActivity.this, UseTermsActivity.class);
             }
         });
     }

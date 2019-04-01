@@ -58,6 +58,7 @@ public class DataManagerImp implements DataManager {
 
     @Override
     public void startApplication(String pnsToken, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Constant.authorizationKey=prefHelper.getAuthorizationKey();
         apiServices.startApplication(pnsToken,new ServiceCallback<CommonResponse>() {
             @Override
             public void onSuccess(CommonResponse response) {
@@ -71,7 +72,7 @@ public class DataManagerImp implements DataManager {
 
             @Override
             public void onError(int code, String errorResponse) {
-
+                commonResponseServiceCallback.onError(code,errorResponse);
             }
         });
     }

@@ -3,6 +3,7 @@ package com.kinght.commerce.ui.base;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -208,6 +209,7 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
         final EditText input = new EditText(this);
 
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.getBackground().mutate().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         builder.setView(input);
 
         builder.setPositiveButton(getStringFromResourceId(R.string.button_ok), new DialogInterface.OnClickListener() {
@@ -216,6 +218,7 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
                 dialogStringCallback.inputText(input.getText().toString());
             }
         });
+
         builder.setNegativeButton(getStringFromResourceId(R.string.button_cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -223,10 +226,21 @@ public  class BaseActivity extends AppCompatActivity implements MvpView,BaseFrag
             }
         });
 
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
+
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
 
 
-
-        builder.show();
     }
 
     @Override

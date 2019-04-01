@@ -58,9 +58,11 @@
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="44dp"
-                android:layout_marginLeft="44dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:src="@drawable/logo"
@@ -68,9 +70,11 @@
                 android:textColor="@color/orange"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_main_partipicate_image_view"
+                app:layout_constraintHorizontal_bias="0.194"
                 app:layout_constraintStart_toEndOf="@+id/fragment_main_coin_text_view"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.0" />
 
 
             <ImageView
@@ -78,17 +82,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-                android:src="@color/white"
+                android:src="@drawable/gift"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.682"
-                app:layout_constraintStart_toEndOf="@+id/fragment_main_title_text_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -132,7 +132,7 @@
                     android:layout_marginLeft="5dp"
                     android:backgroundTint="@color/pink"
                     android:layout_weight="0.5"
-                    android:text="En Son Eklenenler"
+                    android:text="En Yeni"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cornerRadius="50dp"/>

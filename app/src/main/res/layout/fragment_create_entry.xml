@@ -32,7 +32,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:src="@drawable/ic_tab_add"
+                android:src="@mipmap/ic_plus_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include4" />
@@ -111,7 +111,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gönderi Oluştur"
+                android:text="Gönderi Oluştur (1 JETOn)"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_create_entry_select_server_edit_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

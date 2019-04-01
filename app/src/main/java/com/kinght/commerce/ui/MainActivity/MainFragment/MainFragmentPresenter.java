@@ -20,6 +20,7 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
     List<String> serverNameList;
     String serverId = null;
     List<Entry> entryList;
+    Integer selectFilterType = null;
 
     @Inject
     public MainFragmentPresenter(DataManager dataManager) {
@@ -38,7 +39,6 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
                 for (Servers server : response) {
                     serverNameList.add(server.getName());
                 }
-
                 getMvpView().showListDialog(serverNameList, "Server Seç", new ListSelectItem<Integer>() {
                     @Override
                     public void selectedItem(Integer select) {
@@ -65,11 +65,22 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
     @Override
     public void getEntries() {
         getMvpView().showLoading();
+
+
         getDataManager().getEntries(new ServiceCallback<List<Entry>>() {
             @Override
             public void onSuccess(List<Entry> response) {
                 entryList = response;
-                getMvpView().loadDataToList(response);
+
+                if (selectFilterType != null) {
+                    for (int i = 1; i < entryList.size(); i++) {
+                        filter(selectFilterType);
+                    }
+                }else {
+                    getMvpView().loadDataToList(response);
+
+                }
+
                 getMvpView().hideLoading();
             }
 
@@ -116,22 +127,6 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
 
     @Override
     public void getCoinDetail() {
-        getDataManager().startApplication(CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
-            @Override
-            public void onSuccess(CommonResponse response) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });
 
         if (getDataManager().getAuthorizationKey() != "") {
             getDataManager().getMe(new ServiceCallback<User>() {
@@ -167,14 +162,15 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
     @Override
     public void showFilter() {
         List<String> options = new ArrayList<>();
-        options.add("En Son Eklenenler");
-        options.add("En Eskiler");
-        options.add("Azalan Fiyat");
-        options.add("Artan Fiyat");
+        options.add("En Yeni");
+        options.add("En Eski");
+        options.add("En Ucuz");
+        options.add("En Pahalı");
         getMvpView().showListDialog(options, "Filtreleme", new ListSelectItem<Integer>() {
             @Override
             public void selectedItem(Integer select) {
-                for(int i=1;i<entryList.size();i++){
+                selectFilterType=select;
+                for (int i = 1; i < entryList.size(); i++) {
                     filter(select);
                 }
                 getMvpView().setFilterName(options.get(select));
@@ -193,32 +189,31 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
             } else {
                 if (type == 1) {
                     if (entryList.get(i).getCreatedDate() < entry.getCreatedDate()) {
-                        entryList.set(indexOfSwap,entryList.get(i));
-                        entryList.set(i,entry);
-                        indexOfSwap=i;
+                        entryList.set(indexOfSwap, entryList.get(i));
+                        entryList.set(i, entry);
+                        indexOfSwap = i;
                         entry = entryList.get(i);
                     }
 
-                }else if(type == 0){
+                } else if (type == 0) {
                     if (entryList.get(i).getCreatedDate() > entry.getCreatedDate()) {
-                        entryList.set(indexOfSwap,entryList.get(i));
-                        entryList.set(i,entry);
-                        indexOfSwap=i;
+                        entryList.set(indexOfSwap, entryList.get(i));
+                        entryList.set(i, entry);
+                        indexOfSwap = i;
                         entry = entryList.get(i);
                     }
-                }else if(type == 2){
+                } else if (type == 2) {
                     if (entryList.get(i).getPrice() > entry.getPrice()) {
-                        entryList.set(indexOfSwap,entryList.get(i));
-                        entryList.set(i,entry);
-                        indexOfSwap=i;
+                        entryList.set(indexOfSwap, entryList.get(i));
+                        entryList.set(i, entry);
+                        indexOfSwap = i;
                         entry = entryList.get(i);
                     }
-                }
-                else if(type == 3){
+                } else if (type == 3) {
                     if (entryList.get(i).getPrice() < entry.getPrice()) {
-                        entryList.set(indexOfSwap,entryList.get(i));
-                        entryList.set(i,entry);
-                        indexOfSwap=i;
+                        entryList.set(indexOfSwap, entryList.get(i));
+                        entryList.set(i, entry);
+                        indexOfSwap = i;
                         entry = entryList.get(i);
                     }
                 }

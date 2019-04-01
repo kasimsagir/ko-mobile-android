@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +74,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     private int SELECT_GALLERY = 1;
     long pictureTimeMillis;
     private String base64Image = "";
+    boolean isChanged= false;
 
     public CreateEntryFragment() {
 
@@ -89,7 +92,42 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
         presenter.onAttach(this);
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Gönderi Oluştur");
+
+       /* fragmentCreateEntryPriceEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isChanged=false;
+                int editTextCount = s.toString().replace(",","").length();
+                if (editTextCount % 4 == 0) {
+                    fragmentCreateEntryPriceEditText.removeTextChangedListener(this);
+                    fragmentCreateEntryPriceEditText.setText(addChar(s.toString(),',',editTextCount));
+                    fragmentCreateEntryPriceEditText.setSelection(fragmentCreateEntryPriceEditText.getText().toString().length());
+                    fragmentCreateEntryPriceEditText.addTextChangedListener(this);
+
+                }
+
+
+            }
+        });*/
+
         return root;
+    }
+
+    public String addChar(String str, char ch, int position) {
+        if(str.length()>0){
+            return str.substring(0, position) + ch + str.substring(position);
+        }
+        return "";
     }
 
 
@@ -153,14 +191,14 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     @Override
     public void openMainFragment() {
 
-        base64Image="";
-        fragmentCreateEntryImageSelectFromImageView.setImageResource(R.drawable.ic_tab_add_rentagle);
+        base64Image = "";
+        fragmentCreateEntryImageSelectFromImageView.setImageResource(R.mipmap.ic_plus_image);
         fragmentCreateEntryHeaderEditText.setText("");
         presenter.clearSelectedServerId();
         fragmentCreateEntrySelectServerEditText.setText("");
         fragmentCreateEntryMessageEditText.setText("");
         fragmentCreateEntryPriceEditText.setText("");
-        ((MainActivity)getActivity()).openMainFragment();
+        ((MainActivity) getActivity()).openMainFragment();
     }
 
     @Override

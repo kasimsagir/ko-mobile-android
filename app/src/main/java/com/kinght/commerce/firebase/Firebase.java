@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.os.Build;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -70,6 +71,8 @@ public class Firebase extends FirebaseMessagingService {
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
         }
+        mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+
         mBuilder.setContentIntent(resultPendingIntent);
 
         notificationManager.notify(notificationId, mBuilder.build());

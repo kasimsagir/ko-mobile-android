@@ -79,7 +79,7 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
 
         public void setData(Event item,ViewHolder holder) {
             this.item = item;
-            rowEventsTitleTextView.setText(item.getEventName());
+            rowEventsTitleTextView.setText("    "+item.getEventName());
 
             for(int i=0;i<item.getEventHours().size();i++){
 

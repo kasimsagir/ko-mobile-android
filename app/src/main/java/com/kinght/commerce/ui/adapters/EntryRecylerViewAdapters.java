@@ -1,5 +1,7 @@
 package com.kinght.commerce.ui.adapters;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +86,13 @@ public class EntryRecylerViewAdapters extends RecyclerView.Adapter<EntryRecylerV
         public void setData(Entry item) {
             this.item = item;
             CommonUtils.getImageWithCache(rowEntryThumbnailImageView,item.getEntryImageUrl());
-            rowEntryHeaderTextView.setText(item.getHeader());
             rowEntryDescriptionTextView.setText(item.getMessage());
-            rowEntryPriceTextView.setText(String.valueOf(item.getPrice())+" TL");
+            rowEntryPriceTextView.setText(String.valueOf(item.getPrice())+" ₺");
+
+            SpannableString content = new SpannableString(item.getHeader());
+            content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+            rowEntryHeaderTextView.setText(content);
+
             // TODO set data to view
         }
 

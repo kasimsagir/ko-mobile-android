@@ -29,6 +29,7 @@
         android:orientation="vertical">
 
         <TextView
+
             android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/row_notification_header_text_view"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="header"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/orange"
           />
         <TextView
             android:layout_marginLeft="20dp"

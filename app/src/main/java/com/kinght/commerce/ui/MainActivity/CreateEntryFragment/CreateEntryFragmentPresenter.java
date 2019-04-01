@@ -83,11 +83,12 @@ public class CreateEntryFragmentPresenter<V extends CreateEntryFragmentMvpView> 
             getMvpView().showError("Lütfen başlık ekleyiniz");
         }else if(message.isEmpty()){
             getMvpView().showError("Lütfen mesaj ekleyiniz");
-        }else if(price == null){
-            getMvpView().showError("Lütfen itemin ücretini belirleyiniz");
         }else if (serverId == null){
             getMvpView().showError("Lütfen gönderiyi paylaşmak istediğiniz serverı seçiniz");
         } else{
+            if(price == null){
+                price=0;
+            }
             getMvpView().showLoading();
             getDataManager().createEntry(serverId, header, message, price, base64Image, new ServiceCallback<CommonResponse>() {
                 @Override

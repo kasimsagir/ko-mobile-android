@@ -6,6 +6,7 @@ import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.Settings.Settings;
 import com.kinght.commerce.ui.base.BasePresenter;
+import com.kinght.commerce.ui.base.DialogCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,21 @@ public class NotificationSettingsActivityPresenter<V extends NotificationSetting
             @Override
             public void onSuccess(CommonResponse response) {
                 getMvpView().hideLoading();
-                getMvpView().getActivity().onBackPressed();
+
+                getMvpView().showDialogWithOutChoose("Başarılı", "Bildirim ayarlarınız başarıyla kaydedildi", "Tamam", new DialogCallback() {
+                    @Override
+                    public void pressedPossitiveButton() {
+                        getMvpView().getActivity().onBackPressed();
+
+                    }
+
+                    @Override
+                    public void pressedNegativeButton() {
+
+                    }
+                });
+
+
             }
 
             @Override

@@ -8,4 +8,5 @@ public interface EntryDetailActivityMvpPresenter<V extends EntryDetailActivityMv
     void showPublishedProfile();
 
     void editEntry();
+
 }

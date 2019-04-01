@@ -8,6 +8,7 @@ import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.DialogCallback;
+import com.kinght.commerce.ui.base.DialogStringCallback;
 import com.kinght.commerce.ui.base.ListSelectItem;
 import com.kinght.commerce.utility.CommonUtils;
 
@@ -150,7 +151,48 @@ public class EntryDetailActivityPresenter<V extends EntryDetailActivityMvpView> 
 
                 }
                 if(select == 1){
-                    getMvpView().openEntryUpdateActivity(entry.getId());
+                    getMvpView().showInputDialog("Fiyat Düzenle", String.valueOf(entry.getPrice()), new DialogStringCallback() {
+                        @Override
+                        public void inputText(String input) {
+                            getMvpView().showLoading();
+                            entry.setPrice(Integer.parseInt(input));
+                            getDataManager().updateEntry(entry, new ServiceCallback<CommonResponse>() {
+                                @Override
+                                public void onSuccess(CommonResponse response) {
+
+                                    getMvpView().showDialogWithOutChoose("Başarılı", "Fiyat başarıyla güncellendi", "Tamam", new DialogCallback() {
+                                        @Override
+                                        public void pressedPossitiveButton() {
+                                            getMvpView().getActivity().onBackPressed();
+                                        }
+
+                                        @Override
+                                        public void pressedNegativeButton() {
+
+                                        }
+                                    });
+                                    getMvpView().hideLoading();
+                                }
+
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError(int code, String errorResponse) {
+                                    getMvpView().showError(errorResponse);
+                                    getMvpView().hideLoading();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void clickCancelButton() {
+
+                        }
+                    });
+                    //getMvpView().openEntryUpdateActivity(entry.getId());
 
                 }
             }

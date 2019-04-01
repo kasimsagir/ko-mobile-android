@@ -4,6 +4,7 @@ package com.kinght.commerce.ui.EntryDetailActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -48,7 +49,7 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.activity_entry_report_button)
-    MaterialButton activityEntryReportButton;
+    ImageView activityEntryReportButton;
     @BindView(R.id.activity_entry_detail_entry_config_button)
     MaterialButton activityEntryDetailEntryConfigButton;
 

@@ -20,7 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.UpdateEntryActivity.UpdateEntryActivity"></activity>
+        <activity android:name=".ui.UseTermsActivity.UseTermsActivity"></activity>
+        <activity
+            android:name=".ui.SplashActivity.SplashActivity"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.UpdateEntryActivity.UpdateEntryActivity" />
         <activity android:name=".ui.EventsActivity.EventsActivity" />
         <activity android:name=".ui.NotificationSettingsActivity.NotificationSettinsActivity" />
         <activity android:name=".ui.ProductListActivity.ProductListActivity" />
@@ -48,13 +58,7 @@
         <activity
             android:name=".ui.MainActivity.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
 
         <service android:name=".firebase.Firebase">
             <intent-filter>
