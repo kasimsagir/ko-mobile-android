@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
 import com.kinght.commerce.R;
 import com.kinght.commerce.data.network.entities.Gold.Gold;
 
@@ -21,11 +20,9 @@ public class GoldRecylerViewAdapters extends RecyclerView.Adapter<GoldRecylerVie
 
     private List<Gold> myItems;
     private ItemListener myListener;
-    private  BillingProcessor billingProcessor;
-    public GoldRecylerViewAdapters(BillingProcessor billingProcessor, List<Gold> items, ItemListener listener) {
+    public GoldRecylerViewAdapters( List<Gold> items, ItemListener listener) {
         myItems = items;
         myListener = listener;
-        this.billingProcessor=billingProcessor;
     }
 
     public void setListener(ItemListener listener) {
@@ -70,8 +67,9 @@ public class GoldRecylerViewAdapters extends RecyclerView.Adapter<GoldRecylerVie
 
         public void setData(Gold item) {
             this.item = item;
-            rowGoldTitleTextView.setText(billingProcessor.getPurchaseListingDetails(item.getId()).priceText);
-            rowGoldPriceTextView.setText(billingProcessor.getPurchaseListingDetails(item.getId()).description);
+
+            rowGoldTitleTextView.setText(item.getPrice());
+            rowGoldPriceTextView.setText(String.valueOf(item.getPrice()));
             // TODO set data to view
         }
 

@@ -3,14 +3,20 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     signingConfigs {
+        config {
+            keyAlias 'floody'
+            keyPassword 'serkan1994'
+            storeFile file('/home/hsmnzaydn/Downloads/floody.jks')
+            storePassword 'serkan1994'
+        }
     }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.kinght.commerce"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.0"
+        versionCode 10
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -21,6 +27,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+            jniDebuggable true
+            signingConfig signingConfigs.config
         }
     }
     lintOptions {
@@ -78,9 +87,7 @@ dependencies {
 
     // Mask Edittext
     implementation 'ru.egslava:MaskedEditText:1.0.5'
-    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
-
+    implementation 'com.android.billingclient:billing:1.0'
     implementation 'com.github.armcha:AutoLinkTextView:0.3.0'
-
 }
 apply plugin: 'com.google.gms.google-services'
