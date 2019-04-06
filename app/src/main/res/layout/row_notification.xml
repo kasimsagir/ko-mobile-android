@@ -41,6 +41,7 @@
           />
         <TextView
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_gravity="center"
             android:id="@+id/row_notification_message_text_view"
             android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.utility.CommonUtils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +88,15 @@ public class EntryRecylerViewAdapters extends RecyclerView.Adapter<EntryRecylerV
             this.item = item;
             CommonUtils.getImageWithCache(rowEntryThumbnailImageView,item.getEntryImageUrl());
             rowEntryDescriptionTextView.setText(item.getMessage());
-            rowEntryPriceTextView.setText(String.valueOf(item.getPrice())+" ₺");
+
+            String pattern = "###,###.###";
+            DecimalFormat decimalFormat = new DecimalFormat(pattern);
+
+            String format = decimalFormat.format(item.getPrice());
+
+
+
+            rowEntryPriceTextView.setText(format+" ₺");
 
             SpannableString content = new SpannableString(item.getHeader());
             content.setSpan(new UnderlineSpan(), 0, content.length(), 0);

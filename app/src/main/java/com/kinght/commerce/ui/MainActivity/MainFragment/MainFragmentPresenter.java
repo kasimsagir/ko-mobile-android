@@ -202,14 +202,14 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
                         indexOfSwap = i;
                         entry = entryList.get(i);
                     }
-                } else if (type == 2) {
+                } else if (type == 3) {
                     if (entryList.get(i).getPrice() > entry.getPrice()) {
                         entryList.set(indexOfSwap, entryList.get(i));
                         entryList.set(i, entry);
                         indexOfSwap = i;
                         entry = entryList.get(i);
                     }
-                } else if (type == 3) {
+                } else if (type == 2) {
                     if (entryList.get(i).getPrice() < entry.getPrice()) {
                         entryList.set(indexOfSwap, entryList.get(i));
                         entryList.set(i, entry);

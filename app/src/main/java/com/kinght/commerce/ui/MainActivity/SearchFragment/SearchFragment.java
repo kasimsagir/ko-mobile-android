@@ -71,7 +71,6 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
         }
 
         presenter.getAllEntries();
-        presenter.getMe();
 
 
 
@@ -145,6 +144,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentMvpVie
                 ((MvpApp) getActivity().getApplication()).getActivityComponent().injectSearchFragment(this);
                 presenter.onAttach(this);
             }
+            presenter.getMe();
 
 
         }

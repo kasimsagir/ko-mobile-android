@@ -3,6 +3,7 @@ package com.kinght.commerce.ui.MainActivity;
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.DialogCallback;
@@ -20,6 +21,23 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
 
     @Override
     public void mainFragment() {
+        getDataManager().getIntermediaries(new ServiceCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
+
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });
+
         getMvpView().openMainFragment();
 
     }

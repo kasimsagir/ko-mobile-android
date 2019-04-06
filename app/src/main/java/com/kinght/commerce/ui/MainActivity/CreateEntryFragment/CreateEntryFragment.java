@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
     private int SELECT_GALLERY = 1;
     long pictureTimeMillis;
     private String base64Image = "";
-    boolean isChanged= false;
+    boolean isChanged = false;
 
     public CreateEntryFragment() {
 
@@ -93,7 +94,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Gönderi Oluştur");
 
-       /* fragmentCreateEntryPriceEditText.addTextChangedListener(new TextWatcher() {
+        fragmentCreateEntryPriceEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -106,25 +107,33 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
 
             @Override
             public void afterTextChanged(Editable s) {
-                isChanged=false;
-                int editTextCount = s.toString().replace(",","").length();
-                if (editTextCount % 4 == 0) {
+                if(s.toString() != ""){
                     fragmentCreateEntryPriceEditText.removeTextChangedListener(this);
-                    fragmentCreateEntryPriceEditText.setText(addChar(s.toString(),',',editTextCount));
+                    String pattern = "###,###.###";
+                    DecimalFormat decimalFormat = new DecimalFormat(pattern);
+                    String format="";
+                    try{
+                        if(fragmentCreateEntryPriceEditText.getText().toString().replace(",", "").replace(".","").toString() != ""){
+                            format = decimalFormat.format(Double.parseDouble(fragmentCreateEntryPriceEditText.getText().toString().replace(",", "").replace(".","")));
+                        }
+                    }catch (Exception e){
+
+                    }
+
+                    fragmentCreateEntryPriceEditText.setText(format);
                     fragmentCreateEntryPriceEditText.setSelection(fragmentCreateEntryPriceEditText.getText().toString().length());
                     fragmentCreateEntryPriceEditText.addTextChangedListener(this);
-
                 }
 
 
             }
-        });*/
+        });
 
         return root;
     }
 
     public String addChar(String str, char ch, int position) {
-        if(str.length()>0){
+        if (str.length() > 0) {
             return str.substring(0, position) + ch + str.substring(position);
         }
         return "";
@@ -148,7 +157,7 @@ public class CreateEntryFragment extends BaseFragment implements CreateEntryFrag
                 }
                 break;
             case R.id.fragment_create_entry_send_button:
-                presenter.createEntry(base64Image, CommonUtils.regularText(fragmentCreateEntryHeaderEditText), CommonUtils.regularText(fragmentCreateEntryMessageEditText), CommonUtils.tryParse(fragmentCreateEntryPriceEditText.getText().toString()));
+                presenter.createEntry(base64Image, CommonUtils.regularText(fragmentCreateEntryHeaderEditText), CommonUtils.regularText(fragmentCreateEntryMessageEditText), CommonUtils.tryParse(fragmentCreateEntryPriceEditText.getText().toString().replace(",","")));
 
                 break;
             case R.id.fragment_create_entry_select_server_edit_text:
