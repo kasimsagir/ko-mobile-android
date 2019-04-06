@@ -22,7 +22,7 @@ public interface UserServices {
     void login(LoginRequest loginRequest,ServiceCallback<AuthorizationResponse> authorizationResponseServiceCallback);
     void getUser(String userId, ServiceCallback<User> userServiceCallback);
     void getMe(ServiceCallback<User> userServiceCallback);
-    void updateMe(User user,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void updateMe(String updateType,User user,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getSettings(ServiceCallback<List<Settings>> settingsServiceCallback);
     void updateSettings(List<Settings> serversList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
 }

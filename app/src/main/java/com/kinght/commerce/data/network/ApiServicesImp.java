@@ -97,8 +97,8 @@ public class ApiServicesImp implements ApiServices {
 
 
     @Override
-    public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        userServices.updateMe(user,commonResponseServiceCallback);
+    public void updateMe(String updateType,User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        userServices.updateMe(updateType,user,commonResponseServiceCallback);
     }
 
     @Override

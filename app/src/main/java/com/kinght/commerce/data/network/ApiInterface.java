@@ -110,7 +110,7 @@ public interface ApiInterface {
     Call<NotificationResponse> getNotifications();
 
     @POST("secure/users/me/update")
-    Call<CommonResponse> updateProfile(@Body User user);
+    Call<CommonResponse> updateProfile(@Query("updateType") String updateType,@Body User user);
 
     @GET("getEvents")
     Call<EventResponse> getEvents();

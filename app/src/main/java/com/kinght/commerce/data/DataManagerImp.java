@@ -327,7 +327,18 @@ public class DataManagerImp implements DataManager {
         user.setServers(servers);
         user.setIsShowPhoneNumber(isShowPassword);
 
-        apiServices.updateMe(user,commonResponseServiceCallback);
+        apiServices.updateMe("PROFILE",user,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void updateCoin(int coin, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+
+        User user=new User();
+        Coin coin1=new Coin();
+        coin1.setValue(coin);
+        user.setCoin(coin1);
+
+        apiServices.updateMe("COIN",user,commonResponseServiceCallback);
     }
 
     @Override

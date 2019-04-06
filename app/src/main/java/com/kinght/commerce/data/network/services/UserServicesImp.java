@@ -235,8 +235,8 @@ public class UserServicesImp implements UserServices {
     }
 
     @Override
-    public void updateMe(User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
-        Call<CommonResponse> call=apiInterface.updateProfile(user);
+    public void updateMe(String updateType,User user, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        Call<CommonResponse> call=apiInterface.updateProfile(updateType,user);
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override

@@ -47,6 +47,7 @@ public interface DataManager  {
     void forgetPasswordStepTwo(String phoneNumber,String smsCode,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void forgetPasswordStepThree(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateProfile(String nickname,String name,String surname, String registerServerId, boolean isShowPassword,ServiceCallback<CommonResponse> commonResponseServiceCallback);
+    void updateCoin(int coin,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void getEvents(ServiceCallback<List<Event>> listServiceCallback);
     void updateEventListCache(List<Event> eventList);
     Hour getEventHours(int id);

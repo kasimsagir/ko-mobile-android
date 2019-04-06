@@ -21,6 +21,7 @@ import com.kinght.commerce.ui.MainActivity.ProfileFragment.ProfileFragment;
 import com.kinght.commerce.ui.MainActivity.SearchFragment.SearchFragment;
 import com.kinght.commerce.ui.NotificationSettingsActivity.NotificationSettinsActivity;
 import com.kinght.commerce.ui.PartipicateActivity.PartipicateActivity;
+import com.kinght.commerce.ui.ProductListActivity.ProductListActivity;
 import com.kinght.commerce.ui.RegisterActivity.RegisterActivity;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.SettingsActivity.SettingsActivity;
@@ -81,4 +82,6 @@ public interface ViewComponents {
     void injectUpdateEntryActivity(UpdateEntryActivity updateEntryActivity);
 
     void injectSplashActivity(SplashActivity splashActivity);
+
+    void injectProductList(ProductListActivity productListActivity);
 }

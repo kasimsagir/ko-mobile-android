@@ -14,18 +14,25 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
+import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.data.DataManager;
+import com.kinght.commerce.data.network.ServiceCallback;
+import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Gold.Gold;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.SplashActivity.SplashActivity;
 import com.kinght.commerce.ui.adapters.GoldRecylerViewAdapters;
 import com.kinght.commerce.ui.base.BaseActivity;
+import com.kinght.commerce.ui.base.DialogCallback;
 import com.kinght.commerce.utility.Constant;
 import com.kinght.commerce.utility.Security;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +55,10 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
 
     BillingClient mBillingClient;
 
+    @Inject
+    DataManager dataManager;
+    Gold selectedItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +71,7 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        ((MvpApp) getApplication()).getActivityComponent().injectProductList(this);
 
 
 
@@ -83,6 +95,7 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
                     adapters = new GoldRecylerViewAdapters(goldList, new GoldRecylerViewAdapters.ItemListener() {
                         @Override
                         public void onItemClick(Gold item) {
+                            selectedItem=item;
                             buySubscription(item.getId());
                         }
                     });
@@ -142,6 +155,32 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
                     @Override
                     public void onConsumeResponse(int responseCode, String purchaseToken) {
                         if (responseCode == BillingClient.BillingResponse.OK) {
+                            dataManager.updateCoin(selectedItem.getGold(), new ServiceCallback<CommonResponse>() {
+                                @Override
+                                public void onSuccess(CommonResponse response) {
+                                    showDialogWithOutChoose("Başarılı", selectedItem.getGold() + " adet gold satın aldınız", "Tamam", new DialogCallback() {
+                                        @Override
+                                        public void pressedPossitiveButton() {
+                                            onBackPressed();
+                                        }
+
+                                        @Override
+                                        public void pressedNegativeButton() {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError(int code, String errorResponse) {
+
+                                }
+                            });
                             //satın alma tamamlandı yapacağınız işlemler
                         }
                     }
