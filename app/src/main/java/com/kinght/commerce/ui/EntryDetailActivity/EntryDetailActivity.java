@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
+import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.ReportActivity.ReportActivity;
 import com.kinght.commerce.ui.UpdateEntryActivity.UpdateEntryActivity;
 import com.kinght.commerce.ui.UserProfileActivity.UserProfileActivity;
@@ -127,6 +128,16 @@ public class EntryDetailActivity extends BaseActivity implements EntryDetailActi
             case R.id.activity_entry_detail_entry_config_button:
                 presenter.editEntry();
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(Constant.isOpenNotification){
+            CommonUtils.changeActivity(EntryDetailActivity.this, MainActivity.class);
+            Constant.isOpenNotification=false;
+            this.finish();
         }
     }
 }

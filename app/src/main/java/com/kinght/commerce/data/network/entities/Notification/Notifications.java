@@ -13,6 +13,18 @@ public class Notifications {
     @Expose
     @SerializedName("_id")
     private String _id;
+    @Expose
+    @SerializedName("relatedObjectId")
+    private int relatedObjectId;
+
+
+    public int getRelatedObjectId() {
+        return relatedObjectId;
+    }
+
+    public void setRelatedObjectId(int relatedObjectId) {
+        this.relatedObjectId = relatedObjectId;
+    }
 
     public String getMessage() {
         return message;

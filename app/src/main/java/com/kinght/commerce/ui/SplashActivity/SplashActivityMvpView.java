@@ -4,4 +4,6 @@ public interface SplashActivityMvpView extends MvpView {
     void openMainActivity();
 
     void openSmsVerificationActivity();
+
+    void openEntryDetail(String entryId);
 }

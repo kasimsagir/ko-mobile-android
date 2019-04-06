@@ -39,4 +39,29 @@ public class SplashActivityPresenter<V extends SplashActivityMvpView> extends Ba
             }
         });
     }
+
+    @Override
+    public void openEntryDetail(String entryId) {
+        getMvpView().hideSystemUI();
+        getDataManager().startApplication(CommonUtils.getPnsToken(), new ServiceCallback<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse response) {
+                getMvpView().openEntryDetail(entryId);
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+                if(code == 401){
+                    getMvpView().openMainActivity();
+                }else if(code == 452){
+                    getMvpView().openSmsVerificationActivity();
+                }
+            }
+        });
+    }
 }

@@ -23,4 +23,9 @@ public class Constant {
 
     //Events Alarm Param
     public static final int ALARM_INCREASE=15;
+
+    public static final String FIREBASE_CLOUD_MESSAGING_KEY_NOTIFICATION_APP_CLOSED = "notification";
+
+    //Notifications
+    public static boolean isOpenNotification=false;
 }

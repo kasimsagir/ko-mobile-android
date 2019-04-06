@@ -15,27 +15,40 @@ import android.provider.Settings;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 import com.kinght.commerce.R;
+import com.kinght.commerce.data.network.entities.Notification.Notifications;
 import com.kinght.commerce.ui.MainActivity.MainActivity;
 import com.kinght.commerce.ui.SplashActivity.SplashActivity;
+import com.kinght.commerce.utility.Constant;
 
+import org.json.JSONObject;
+
+import java.util.Map;
 import java.util.jar.Attributes;
 
 import androidx.core.app.NotificationCompat;
 
 public class Firebase extends FirebaseMessagingService {
 
-
+String entryId=null;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // ...
+
+        Gson gson = new Gson();
+        Map<String, String> map = remoteMessage.getData();
+         entryId=map.get("relatedObjectId");
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
 
         // Check if message contains a data payload.
-            Intent intent = new Intent(this, SplashActivity.class);
-            showNotification(this,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),intent);
+            Intent intent = new Intent( this, SplashActivity.class);
+            intent.putExtra("entryId",entryId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        showNotification(this,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),intent);
             //sendNotification(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"));
 
 
@@ -89,10 +102,8 @@ public class Firebase extends FirebaseMessagingService {
         }
         PendingIntent resultPendingIntent = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            resultPendingIntent = stackBuilder.getPendingIntent(
-                    0,
-                    PendingIntent.FLAG_UPDATE_CURRENT
-            );
+            resultPendingIntent =  PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
         }
         mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 
