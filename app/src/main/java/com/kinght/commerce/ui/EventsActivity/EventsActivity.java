@@ -1,20 +1,14 @@
 package com.kinght.commerce.ui.EventsActivity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.kinght.commerce.MvpApp;
 import com.kinght.commerce.R;
-import com.kinght.commerce.data.network.entities.Event.Event;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
 import com.kinght.commerce.data.network.entities.Event.Events;
-import com.kinght.commerce.firebase.NotificationReceiver;
 import com.kinght.commerce.ui.adapters.EventsRecylerViewAdapter;
 import com.kinght.commerce.ui.base.BaseActivity;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class EventsActivity extends BaseActivity implements EventsActivityMvpView {
 
@@ -48,10 +43,10 @@ public class EventsActivity extends BaseActivity implements EventsActivityMvpVie
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        adapter=new EventsRecylerViewAdapter(EventsActivity.this,new EventsRecylerViewAdapter.ItemListener() {
+        adapter = new EventsRecylerViewAdapter(EventsActivity.this, new EventsRecylerViewAdapter.ItemListener() {
             @Override
-            public void onItemClick(Event item,int position) {
-                presenter.selectItem(item,position);
+            public void onItemClick(EventHours item, int position) {
+                presenter.selectItem(item, position);
 
 
             }
@@ -60,12 +55,11 @@ public class EventsActivity extends BaseActivity implements EventsActivityMvpVie
         presenter.getEvents();
 
 
-
     }
 
 
     @Override
-    public void loadDataToList(List<Event> response) {
+    public void loadDataToList(List<Events> response) {
         adapter.setData(response);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         activityEventsRecylerView.setLayoutManager(manager);
@@ -74,5 +68,8 @@ public class EventsActivity extends BaseActivity implements EventsActivityMvpVie
     }
 
 
-
+    @OnClick(R.id.activity_events_save_button)
+    public void onViewClicked() {
+        presenter.save();
+    }
 }

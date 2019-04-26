@@ -7,31 +7,50 @@ import java.util.List;
 
 public class Events {
     @Expose
-    @SerializedName("eventHours")
-    private List<String> eventHours;
-    @Expose
-    @SerializedName("eventDays")
-    private List<String> eventDays;
+    @SerializedName("__v")
+    private int __v;
     @Expose
     @SerializedName("eventName")
     private String eventName;
+    @Expose
+    @SerializedName("_id")
+    private String _id;
+    @Expose
+    @SerializedName("eventHours")
+    private List<EventHours> eventHours;
+    @Expose
+    @SerializedName("eventDays")
+    private List<String> eventDays;
 
-    private boolean isSelected=false;
-
-
-    public boolean isSelected() {
-        return isSelected;
+    public int get__v() {
+        return __v;
     }
 
-    public void setSelected(boolean selected) {
-        isSelected = selected;
+    public void set__v(int __v) {
+        this.__v = __v;
     }
 
-    public List<String> getEventHours() {
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public List<EventHours> getEventHours() {
         return eventHours;
     }
 
-    public void setEventHours(List<String> eventHours) {
+    public void setEventHours(List<EventHours> eventHours) {
         this.eventHours = eventHours;
     }
 
@@ -41,13 +60,5 @@ public class Events {
 
     public void setEventDays(List<String> eventDays) {
         this.eventDays = eventDays;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
     }
 }

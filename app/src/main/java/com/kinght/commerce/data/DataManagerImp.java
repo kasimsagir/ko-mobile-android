@@ -1,7 +1,7 @@
 package com.kinght.commerce.data;
 
 
-import android.util.Log;
+import android.app.usage.UsageEvents;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,11 +10,9 @@ import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
-import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
-import com.kinght.commerce.data.network.entities.Event.Event;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
 import com.kinght.commerce.data.network.entities.Event.Events;
-import com.kinght.commerce.data.network.entities.Event.Hour;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
@@ -342,6 +340,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
+    public void getEvents( ServiceCallback<List<Events>> listServiceCallback) {
+        apiServices.getEvents(prefHelper.getUserId(),listServiceCallback);
+    }
+
+  /*  @Override
     public void getEvents(ServiceCallback<List<Event>> listServiceCallback) {
         final int[] id = {0};
 
@@ -413,7 +416,7 @@ public class DataManagerImp implements DataManager {
         }
 
         return null;
-    }
+    }*/
 
     @Override
     public void removeCache() {
@@ -429,6 +432,11 @@ public class DataManagerImp implements DataManager {
     @Override
     public void updateSettings(List<Settings> serversList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
         apiServices.updateSettings(serversList,commonResponseServiceCallback);
+    }
+
+    @Override
+    public void updateEventList(List<EventHours> hoursList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        apiServices.updateEventList(prefHelper.getUserId(),hoursList,commonResponseServiceCallback);
     }
 
     @Override

@@ -1,18 +1,16 @@
 package com.kinght.commerce.data;
 
 
-import android.app.Notification;
+import android.app.usage.UsageEvents;
 
 import com.kinght.commerce.data.network.ServiceCallback;
 import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
+import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
-import com.kinght.commerce.data.network.entities.Event.Event;
-import com.kinght.commerce.data.network.entities.Event.Events;
-import com.kinght.commerce.data.network.entities.Event.Hour;
 import com.kinght.commerce.data.network.entities.Lottery.Lottery;
 import com.kinght.commerce.data.network.entities.Notification.Notifications;
-import com.kinght.commerce.data.network.entities.Promotion.Coin;
 import com.kinght.commerce.data.network.entities.Promotion.Promotions;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
 import com.kinght.commerce.data.network.entities.Settings.Settings;
@@ -48,12 +46,10 @@ public interface DataManager  {
     void forgetPasswordStepThree(String phoneNumber,String password,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateProfile(String nickname,String name,String surname, String registerServerId, boolean isShowPassword,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     void updateCoin(int coin,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-    void getEvents(ServiceCallback<List<Event>> listServiceCallback);
-    void updateEventListCache(List<Event> eventList);
-    Hour getEventHours(int id);
+    void getEvents(ServiceCallback<List<Events>> listServiceCallback);
     void removeCache();
     void getSettings(ServiceCallback<List<Settings>> listServiceCallback);
     void updateSettings(List<Settings> serversList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
-
+    void updateEventList(List<EventHours> hoursList,ServiceCallback<CommonResponse> commonResponseServiceCallback);
     boolean isItMe(User user);
 }

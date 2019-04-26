@@ -12,6 +12,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -46,6 +47,7 @@ String entryId=null;
         // Check if message contains a data payload.
             Intent intent = new Intent( this, SplashActivity.class);
             intent.putExtra("entryId",entryId);
+        Log.d("veri",entryId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         showNotification(this,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),intent);

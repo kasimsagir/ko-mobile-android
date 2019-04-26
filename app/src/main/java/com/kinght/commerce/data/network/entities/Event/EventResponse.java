@@ -11,6 +11,12 @@ public  class EventResponse {
     @Expose
     @SerializedName("events")
     private List<Events> events;
+    @Expose
+    @SerializedName("statusCode")
+    private int statusCode;
+    @Expose
+    @SerializedName("isSuccess")
+    private boolean isSuccess;
 
     public List<Events> getEvents() {
         return events;
@@ -18,5 +24,21 @@ public  class EventResponse {
 
     public void setEvents(List<Events> events) {
         this.events = events;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public boolean getIsSuccess() {
+        return isSuccess;
+    }
+
+    public void setIsSuccess(boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
 }

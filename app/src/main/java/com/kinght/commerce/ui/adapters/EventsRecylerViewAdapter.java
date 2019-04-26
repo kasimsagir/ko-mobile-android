@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kinght.commerce.R;
-import com.kinght.commerce.data.network.entities.Event.Event;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
 import com.kinght.commerce.data.network.entities.Event.Events;
-import com.kinght.commerce.data.network.entities.Event.Hour;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ import butterknife.ButterKnife;
 public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecylerViewAdapter.ViewHolder> {
 
 
-    private List<Event> myItems;
+    private List<Events> myItems;
     private ItemListener myListener;
     private Context context;
     public EventsRecylerViewAdapter(Context context,ItemListener listener) {
@@ -31,7 +30,7 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
         this.context=context;
     }
 
-    public void setData(List<Event> eventsList) {
+    public void setData(List<Events> eventsList) {
         this.myItems = eventsList;
         notifyDataSetChanged();
     }
@@ -58,13 +57,13 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
     }
 
     public interface ItemListener {
-        void onItemClick(Event item, int position);
+        void onItemClick(EventHours item, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // TODO - Your view members
-        public Event item;
+        public Events item;
 
         @BindView(R.id.row_events_title_text_view)
         TextView rowEventsTitleTextView;
@@ -77,7 +76,7 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
             // TODO instantiate/assign view members
         }
 
-        public void setData(Event item,ViewHolder holder) {
+        public void setData(Events item,ViewHolder holder) {
             this.item = item;
             rowEventsTitleTextView.setText("    "+item.getEventName());
 
@@ -87,9 +86,9 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
                 View view = inflater.inflate(R.layout.row_events_child, null);
                 ImageView imageView = (ImageView) view.findViewById(R.id.row_events_child_image_view);
                 TextView hoursTextView = (TextView) view.findViewById(R.id.row_events_child_hour_text_View);
-                hoursTextView.setText(item.getEventHours().get(i).getHour());
+                hoursTextView.setText(item.getEventHours().get(i).getEventHour());
 
-                if(item.getEventHours().get(i).isSelected()){
+                if(item.getEventHours().get(i).getIsSelected()){
                     imageView.setImageResource(R.mipmap.ic_login_check_on);
                 }else {
                     imageView.setImageResource(R.mipmap.ic_login_check_off);
@@ -99,14 +98,14 @@ public class EventsRecylerViewAdapter extends RecyclerView.Adapter<EventsRecyler
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(!item.getEventHours().get(finalI).isSelected()){
-                            item.getEventHours().get(finalI).setSelected(true);
+                        if(!item.getEventHours().get(finalI).getIsSelected()){
+                            item.getEventHours().get(finalI).setIsSelected(true);
                             imageView.setImageResource(R.mipmap.ic_login_check_on);
                         }else {
-                            item.getEventHours().get(finalI).setSelected(false);
+                            item.getEventHours().get(finalI).setIsSelected(false);
                             imageView.setImageResource(R.mipmap.ic_login_check_off);
                         }
-                        myListener.onItemClick(item,getAdapterPosition());
+                        myListener.onItemClick(item.getEventHours().get(finalI),getAdapterPosition());
 
 
                     }

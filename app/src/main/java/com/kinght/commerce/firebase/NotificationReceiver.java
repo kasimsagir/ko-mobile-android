@@ -15,8 +15,6 @@ import com.kinght.commerce.R;
 
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
-import com.kinght.commerce.data.network.entities.Event.Event;
-import com.kinght.commerce.utility.CommonUtils;
 import com.kinght.commerce.utility.Constant;
 
 import java.util.Calendar;
@@ -37,7 +35,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         ((MvpApp) context.getApplicationContext()).getActivityComponent().injectNotificationReceiver(this);
-        id=intent.getIntExtra("id",0);
+     /*   id=intent.getIntExtra("id",0);
         Calendar calendar = Calendar.getInstance();
 
         dataManager.getEvents(new ServiceCallback<List<Event>>() {
@@ -63,7 +61,7 @@ public class NotificationReceiver extends BroadcastReceiver {
             }
         });
 
-
+*/
 
     }
 

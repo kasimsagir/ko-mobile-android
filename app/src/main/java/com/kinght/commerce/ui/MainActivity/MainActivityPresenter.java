@@ -21,25 +21,7 @@ public class MainActivityPresenter<V extends MainActivityMvpView> extends BasePr
 
     @Override
     public void mainFragment() {
-        getDataManager().getIntermediaries(new ServiceCallback<User>() {
-            @Override
-            public void onSuccess(User response) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-
-            }
-        });
-
         getMvpView().openMainFragment();
-
     }
 
     @Override

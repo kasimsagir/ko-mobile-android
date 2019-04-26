@@ -4,8 +4,8 @@ package com.kinght.commerce.data.network;
 import com.kinght.commerce.data.network.entities.AuthorizationResponse;
 import com.kinght.commerce.data.network.entities.CommonResponse;
 import com.kinght.commerce.data.network.entities.Entries.Entry;
-import com.kinght.commerce.data.network.entities.Entries.UpdateEntryRequest;
 import com.kinght.commerce.data.network.entities.Entries.User;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
 import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.data.network.entities.ForgetPasswordRequest;
 import com.kinght.commerce.data.network.entities.LoginRequest;
@@ -188,7 +188,12 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
-    public void getEvents(ServiceCallback<List<Events>> eventsServiceCallback) {
-        eventServices.getEvents(eventsServiceCallback);
+    public void getEvents(String userId,ServiceCallback<List<Events>> eventsServiceCallback) {
+        eventServices.getEvents(userId,eventsServiceCallback);
+    }
+
+    @Override
+    public void updateEventList(String userId, List<EventHours> hoursList, ServiceCallback<CommonResponse> commonResponseServiceCallback) {
+        eventServices.updateEventList(userId,hoursList,commonResponseServiceCallback);
     }
 }

@@ -6,13 +6,13 @@ import android.content.Intent;
 
 import com.kinght.commerce.data.DataManager;
 import com.kinght.commerce.data.network.ServiceCallback;
-import com.kinght.commerce.data.network.entities.Event.Event;
-import com.kinght.commerce.data.network.entities.Event.Hour;
+import com.kinght.commerce.data.network.entities.CommonResponse;
+import com.kinght.commerce.data.network.entities.Event.EventHours;
+import com.kinght.commerce.data.network.entities.Event.Events;
 import com.kinght.commerce.firebase.NotificationReceiver;
 import com.kinght.commerce.ui.base.BasePresenter;
-import com.kinght.commerce.utility.Constant;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +21,8 @@ import javax.inject.Inject;
 import static android.content.Context.ALARM_SERVICE;
 
 public class EventsActivityPresenter<V extends EventsActivityMvpView> extends BasePresenter<V> implements EventsActivityMvpPresenter<V> {
-    List<Event> eventList;
+    List<Events> eventList;
+    List<EventHours> eventHoursList=new ArrayList<>();
 
     @Inject
     public EventsActivityPresenter(DataManager dataManager) {
@@ -32,9 +33,9 @@ public class EventsActivityPresenter<V extends EventsActivityMvpView> extends Ba
     @Override
     public void getEvents() {
         getMvpView().showLoading();
-        getDataManager().getEvents(new ServiceCallback<List<Event>>() {
+        getDataManager().getEvents(new ServiceCallback<List<Events>>() {
             @Override
-            public void onSuccess(List<Event> response) {
+            public void onSuccess(List<Events> response) {
                 eventList = response;
                 getMvpView().loadDataToList(response);
                 getMvpView().hideLoading();
@@ -55,9 +56,15 @@ public class EventsActivityPresenter<V extends EventsActivityMvpView> extends Ba
     }
 
     @Override
-    public void selectItem(Event item, int position) {
-        eventList.set(position, item);
-        getDataManager().updateEventListCache(eventList);
+    public void selectItem(EventHours item, int position) {
+        if(item.getIsSelected()){
+            eventHoursList.add(item);
+        }else {
+            eventHoursList.remove(item);
+        }
+
+
+        /*getDataManager().updateEventListCache(eventList);
 
 
         for (String day : item.getEventDays()) {
@@ -78,13 +85,34 @@ public class EventsActivityPresenter<V extends EventsActivityMvpView> extends Ba
 
             }
 
-        }
+        }*/
 
 
     }
 
+    @Override
+    public void save() {
+        getMvpView().showLoading();
+        getDataManager().updateEventList(eventHoursList, new ServiceCallback<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse response) {
 
+                getMvpView().hideLoading();
+                getMvpView().getActivity().onBackPressed();
+            }
 
+            @Override
+            public void onSuccess() {
+                getMvpView().hideLoading();
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+                getMvpView().showError(errorResponse);
+                getMvpView().hideLoading();
+            }
+        });
+    }
 
 
 }
