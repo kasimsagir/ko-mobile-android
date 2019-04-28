@@ -47,7 +47,6 @@ String entryId=null;
         // Check if message contains a data payload.
             Intent intent = new Intent( this, SplashActivity.class);
             intent.putExtra("entryId",entryId);
-        Log.d("veri",entryId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         showNotification(this,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),intent);

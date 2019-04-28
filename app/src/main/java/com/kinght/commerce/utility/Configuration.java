@@ -4,7 +4,7 @@ public class Configuration {
     // Server Configuration
     public static final String prodBaseUrl="http://167.99.88.157/api/";
     public static final String devBaseUrl="http://167.99.88.157:8080/api/";
-   // public static final String devBaseUrl="http://167.99.88.157:8080/api/";
+   //public static final String devBaseUrl="http://192.168.0.30:8080/api/";
     //public static final String devBaseUrl="http://floodyapp.com:8080/api/";
     public static String baseUrl="";
 
