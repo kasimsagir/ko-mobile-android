@@ -87,7 +87,7 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
                     // Satın almaya hazır
                     // BUTONLARI AKTIF ET
                     goldList = new ArrayList<>();
-                    goldList.add(new Gold(70, "6.99 TL", "delaroy_monthly"));
+                    goldList.add(new Gold(75, "6.99 TL", "product_1"));
                     goldList.add(new Gold(150, "12.99 TL", "product_2"));
                     goldList.add(new Gold(220, "19.99 TL", "product_3"));
                     goldList.add(new Gold(300, "26.99 TL", "product_4"));
@@ -181,7 +181,6 @@ public class ProductListActivity extends BaseActivity implements PurchasesUpdate
 
                                 }
                             });
-                            //satın alma tamamlandı yapacağınız işlemler
                         }
                     }
                 });

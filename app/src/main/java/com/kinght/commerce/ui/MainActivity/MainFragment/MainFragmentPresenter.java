@@ -7,6 +7,7 @@ import com.kinght.commerce.data.network.entities.Entries.Entry;
 import com.kinght.commerce.data.network.entities.Entries.User;
 import com.kinght.commerce.data.network.entities.Promotion.Coin;
 import com.kinght.commerce.data.network.entities.Servers.Servers;
+import com.kinght.commerce.ui.ProductListActivity.ProductListActivity;
 import com.kinght.commerce.ui.base.BasePresenter;
 import com.kinght.commerce.ui.base.ListSelectItem;
 import com.kinght.commerce.utility.CommonUtils;
@@ -176,6 +177,17 @@ public class MainFragmentPresenter<V extends MainFragmentMvpView> extends BasePr
                 getMvpView().setFilterName(options.get(select));
             }
         });
+    }
+
+    @Override
+    public void openProductList() {
+
+        if(getDataManager().getAuthorizationKey().equals("")){
+            getMvpView().showError("Lütfen giriş yapınız");
+        }else {
+            getMvpView().openProductListActivity();
+        }
+
     }
 
 

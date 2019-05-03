@@ -68,7 +68,7 @@ public class GoldRecylerViewAdapters extends RecyclerView.Adapter<GoldRecylerVie
         public void setData(Gold item) {
             this.item = item;
 
-            rowGoldTitleTextView.setText(item.getPrice());
+            rowGoldTitleTextView.setText(item.getGold()+" Altın Paketi");
             rowGoldPriceTextView.setText(String.valueOf(item.getPrice()));
             // TODO set data to view
         }

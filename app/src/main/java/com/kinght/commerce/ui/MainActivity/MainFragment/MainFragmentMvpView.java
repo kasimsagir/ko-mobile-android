@@ -13,4 +13,6 @@ public interface MainFragmentMvpView extends MvpView {
     void coinDetail(int value);
 
     void setFilterName(String s);
+
+    void openProductListActivity();
 }

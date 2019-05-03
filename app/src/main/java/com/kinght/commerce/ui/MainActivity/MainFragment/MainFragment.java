@@ -141,6 +141,12 @@ public class MainFragment extends BaseFragment implements MainFragmentMvpView {
 fragmentMainAddLeftButton.setText(s);
     }
 
+    @Override
+    public void openProductListActivity() {
+        CommonUtils.changeActivity(getActivity(), ProductListActivity.class);
+
+    }
+
     @OnClick({R.id.fragment_main_server_name_button, R.id.fragment_main_add_left_button, R.id.fragment_main_gold_image_view, R.id.fragment_main_partipicate_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -151,7 +157,7 @@ fragmentMainAddLeftButton.setText(s);
                 presenter.showFilter();
                 break;
             case R.id.fragment_main_gold_image_view:
-                CommonUtils.changeActivity(getActivity(), ProductListActivity.class);
+                presenter.openProductList();
                 break;
             case R.id.fragment_main_partipicate_image_view:
                 Intent intent = new Intent(getActivity(), PartipicateActivity.class);

@@ -11,4 +11,6 @@ public interface MainFragmentMvpPresenter<V extends MainFragmentMvpView> extends
     void refresh();
 
     void showFilter();
+
+    void openProductList();
 }
