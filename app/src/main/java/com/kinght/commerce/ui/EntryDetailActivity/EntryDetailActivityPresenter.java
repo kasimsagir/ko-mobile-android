@@ -65,7 +65,7 @@ public class EntryDetailActivityPresenter<V extends EntryDetailActivityMvpView> 
             @Override
             public void selectedItem(Integer select) {
                 if(select==0){
-                    CommonUtils.sendMessageToUserOnWhatsapp(getMvpView().getActivity(),entry.getCreator().getPhoneNumber());
+                    CommonUtils.sendMessageToUserOnWhatsapp(getMvpView().getActivity(),entry.getCreator().getPhoneNumber(),entry.getHeader());
                 }
                 if(select == 1){
                     CommonUtils.callPhone(getMvpView().getActivity(),entry.getCreator().getPhoneNumber());

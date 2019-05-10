@@ -251,11 +251,22 @@ public class CommonUtils {
 
     }
 
-    public static void sendMessageToUserOnWhatsapp(Activity activity, String number) {
-        Uri uri = Uri.parse("smsto:" + number);
-        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-        i.setPackage("com.whatsapp");
-        activity.startActivity(Intent.createChooser(i, ""));
+    public static void sendMessageToUserOnWhatsapp(Activity activity, String number,String message) {
+
+        try {
+            String text = "Merhaba, "+message+" başlıklı ilan için sizde ulaşıyorum. FLOODY";// Replace with your message.
+            number="9"+number;
+            String toNumber = number; // Replace with mobile phone number without +Sign or leading zeros, but with country code
+            //Suppose your country is India and your phone number is “xxxxxxxxxx”, then you need to send “91xxxxxxxxxx”.
+
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+            activity.startActivity(intent);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

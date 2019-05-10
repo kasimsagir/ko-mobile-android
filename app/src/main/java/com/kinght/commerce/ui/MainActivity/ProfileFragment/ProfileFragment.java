@@ -101,7 +101,7 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentMvpV
 
     @Override
     public void loadUserDataToView(String phoneNumber, String nickname, String serverName) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Profilm");
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Profilim");
         fragmentProfilePhoneNumberTextView.setText(phoneNumber);
         fragmentProfileNicknameTextView.setText(nickname);
         fragmentProfileServerNameTextView.setText(serverName);
